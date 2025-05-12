@@ -29,8 +29,9 @@ app.config.update(
     MAIL_PORT=587,
     MAIL_USE_TLS=True,
     MAIL_USERNAME='perfectmatch.rrhh@gmail.com',
-    MAIL_PASSWORD='apptitudai'
+    MAIL_PASSWORD='wgro qiym amag zbjy'
 )
+
 email = Mail(app)
 
 
