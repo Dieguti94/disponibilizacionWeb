@@ -1,0 +1,16 @@
+Nombre,Apellido,Experiencia,Educacion,Tecnologías,Habilidades,Apto
+Fer,Abal,8,Universitario(EnCurso),HTML,Arriesgado,Apto
+Felipe,Bianccioto,6,PostGrado(EnCurso),SalesForceDev,Social,Apto
+Harry,Potter,4,Universitario(EnCurso),CSS,Divertido,No Apto
+Peter,Abal,12,Universitario(EnCurso),C,Arriesgado,Apto
+Germione,Bianccioto,6,PostGrado(EnCurso),Assembly,Social,Apto
+Hagrid,Potter,2,Universitario(EnCurso),HTML,Divertido,No Apto
+Ron,Abal,8,Universitario(EnCurso),HTML,Arriesgado,Apto
+Lisa,Bianccioto,6,PostGrado(EnCurso),SalesForceDev,Social,Apto
+Bart,Potter,12,Secundario(EnCurso),SalesForceDev,Divertido,No Apto
+Homero,Abal,8,Doctorado,HTML,Arriesgado,Apto
+Abe,Simpson,3,IngenieroSistemas,SalesForceDev,Social,Apto
+Marge,Potter,6,Doctorado,CSS,Divertido,No Apto
+Maggy,Abal,4,IngenieroSistemas,HTML,Arriesgado,Apto
+Lautaro,Bianccioto,6,PostGrado(EnCurso),SalesForceDev,Social,Apto
+Hernesto,Potter,14,Secundario(EnCurso),CSS,Divertido,No Apto

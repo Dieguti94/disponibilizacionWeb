@@ -1,0 +1,121 @@
+Nombre,Apellido,Experiencia,Educacion,Tecnologías,Habilidades
+Luis,Sánchez,11,Postgrado,SQL,Empatía
+Luis,Escobar,11,Universitario,Java,Trabajo en equipo
+Gerardo,Rodríguez,4,Universitario,Python,Comunicación efectiva
+Ignacio,Acosta,11,Universitario,C++,Liderazgo
+Ignacio,Acosta,0,Universitario,Python,Resolución de problemas
+Patricio,Quiroz,5,Universitario,SQL,Resolución de problemas
+Antonio,Pérez,7,Universitario,SQL,Liderazgo
+Benjamin,Fernández,4,Universitario,SQL,Empatía
+Damián,Cabrera,4,Universitario,SQL,Adaptabilidad
+Adrián,Escobar,4,Universitario,SQL,Liderazgo
+Mauricio,Peña,14,Secundario,Python,Resolución de problemas
+Adrián,Vega,10,Universitario,C++,Comunicación efectiva
+Darío,Barrios,7,Universitario,Python,Empatía
+Darío,Rodríguez,14,Secundario,Python,Adaptabilidad
+Luis,López,0,Universitario,Python,Resolución de problemas
+Leonardo,Martínez,5,Postgrado,Java,Empatía
+Adrián,Martínez,10,Postgrado,C++,Trabajo en equipo
+Mauricio,Cruz,13,Universitario,SQL,Comunicación efectiva
+Victor,Sánchez,10,Universitario,C++,Comunicación efectiva
+Leonardo,Vega,2,Postgrado,C++,Comunicación efectiva
+Jorge,Silva,2,Postgrado,C++,Adaptabilidad
+Enzo,Álvarez,10,Postgrado,C++,Liderazgo
+Victor,Ortiz,7,Secundario,SQL,Liderazgo
+Esteban,Cruz,6,Postgrado,Python,Comunicación efectiva
+Gerardo,Acosta,7,Postgrado,C++,Trabajo en equipo
+Jorge,Morales,9,Postgrado,Python,Liderazgo
+Jorge,Álvarez,14,Secundario,SQL,Adaptabilidad
+Alejandro,Silva,7,Secundario,SQL,Resolución de problemas
+Federico,Sánchez,4,Universitario,Python,Trabajo en equipo
+Jorge,Cruz,3,Secundario,C++,Adaptabilidad
+Jorge,Acosta,10,Universitario,C++,Resolución de problemas
+Antonio,Montoya,11,Universitario,Python,Adaptabilidad
+Gabriel,Acosta,2,Postgrado,C++,Adaptabilidad
+Federico,Montoya,12,Secundario,C++,Empatía
+Mauricio,Escobar,13,Universitario,Java,Trabajo en equipo
+Bruno,Sánchez,13,Universitario,C++,Liderazgo
+Hernán,Reyes,12,Secundario,C++,Resolución de problemas
+Darío,Pérez,6,Postgrado,Python,Comunicación efectiva
+Adrián,Cruz,9,Secundario,SQL,Resolución de problemas
+Sergio,Gómez,11,Universitario,C++,Empatía
+Matías,Ramírez,3,Secundario,C++,Resolución de problemas
+Felipe,Torres,4,Postgrado,SQL,Trabajo en equipo
+Ignacio,Morales,7,Universitario,SQL,Liderazgo
+Marcos,Rodríguez,2,Postgrado,C++,Empatía
+Darío,Medina,1,Universitario,SQL,Comunicación efectiva
+Leonardo,Torres,7,Secundario,SQL,Resolución de problemas
+Gabriel,Medina,11,Universitario,C++,Empatía
+Álvaro,Quiroz,4,Secundario,Python,Trabajo en equipo
+Ignacio,Fernández,10,Universitario,Python,Trabajo en equipo
+Gerardo,Silva,0,Universitario,Python,Comunicación efectiva
+Federico,Morales,12,Secundario,C++,Resolución de problemas
+Simón,Morales,14,Secundario,Python,Resolución de problemas
+Enzo,Rodríguez,1,Postgrado,SQL,Liderazgo
+Benjamin,López,7,Secundario,SQL,Trabajo en equipo
+Emanuel,Vega,5,Secundario,C++,Comunicación efectiva
+Ricardo,Gómez,9,Universitario,Python,Resolución de problemas
+Gerardo,Quiroz,7,Postgrado,C++,Liderazgo
+Ricardo,Escobar,3,Secundario,C++,Comunicación efectiva
+Matías,Álvarez,14,Postgrado,Java,Liderazgo
+Marcos,Ortiz,5,Secundario,C++,Trabajo en equipo
+Jorge,Ortiz,12,Postgrado,Java,Trabajo en equipo
+Hernán,Fernández,10,Universitario,C++,Resolución de problemas
+Gerardo,García,12,Universitario,Python,Resolución de problemas
+Gabriel,Pérez,10,Universitario,C++,Adaptabilidad
+Esteban,Rodríguez,11,Universitario,C++,Empatía
+Benjamin,Martínez,14,Postgrado,Java,Comunicación efectiva
+Damián,Castillo,1,Postgrado,SQL,Empatía
+Ignacio,Ramírez,10,Universitario,Python,Comunicación efectiva
+Hernán,Gómez,7,Postgrado,C++,Liderazgo
+Hernán,Castillo,11,Secundario,Python,Adaptabilidad
+Patricio,Martínez,7,Postgrado,C++,Liderazgo
+Emanuel,Pérez,14,Secundario,Python,Trabajo en equipo
+Leonardo,Acosta,0,Universitario,Python,Trabajo en equipo
+Álvaro,García,6,Universitario,Python,Adaptabilidad
+Gerardo,Escobar,13,Universitario,SQL,Adaptabilidad
+Álvaro,Acosta,9,Universitario,Python,Comunicación efectiva
+Ricardo,Martínez,0,Universitario,Python,Adaptabilidad
+Alejandro,Montoya,5,Postgrado,Java,Empatía
+Cristóbal,Cabrera,7,Postgrado,C++,Empatía
+Cristóbal,Ortiz,11,Universitario,Java,Comunicación efectiva
+Ricardo,Ortiz,10,Universitario,Python,Trabajo en equipo
+Adrián,Pérez,4,Universitario,Python,Resolución de problemas
+Adrián,Álvarez,3,Secundario,C++,Trabajo en equipo
+Antonio,Peña,6,Postgrado,Python,Adaptabilidad
+Ricardo,Sánchez,4,Postgrado,SQL,Adaptabilidad
+Emanuel,Sánchez,10,Universitario,C++,Trabajo en equipo
+Ricardo,Montoya,6,Postgrado,Python,Adaptabilidad
+Álvaro,Morales,12,Postgrado,Java,Trabajo en equipo
+Matías,Martínez,4,Postgrado,SQL,Resolución de problemas
+Damián,Gómez,10,Universitario,Python,Resolución de problemas
+Ignacio,Cabrera,7,Universitario,Python,Liderazgo
+Esteban,Domínguez,7,Universitario,SQL,Resolución de problemas
+Leonardo,García,14,Secundario,SQL,Liderazgo
+Ignacio,Vega,5,Universitario,SQL,Adaptabilidad
+Damián,Fernández,13,Secundario,C++,Comunicación efectiva
+Simón,Silva,8,Universitario,SQL,Empatía
+Ignacio,Sánchez,6,Universitario,Python,Adaptabilidad
+Alejandro,Mendoza,11,Universitario,Python,Liderazgo
+Gabriel,Cabrera,10,Universitario,Python,Empatía
+Matías,Rodríguez,13,Universitario,C++,Adaptabilidad
+Simón,Peña,10,Universitario,C++,Empatía
+Luis,Ramírez,0,Universitario,Python,Trabajo en equipo
+Damián,Sánchez,13,Universitario,Java,Empatía
+Patricio,Castillo,6,Postgrado,Python,Trabajo en equipo
+Gerardo,Peña,13,Secundario,C++,Comunicación efectiva
+Gabriel,Guzmán,11,Universitario,C++,Liderazgo
+Simón,Acosta,2,Secundario,SQL,Comunicación efectiva
+Gabriel,Fernández,13,Universitario,Java,Liderazgo
+Esteban,Morales,2,Postgrado,C++,Comunicación efectiva
+Felipe,Domínguez,11,Postgrado,SQL,Empatía
+Luis,Morales,0,Universitario,Python,Adaptabilidad
+Benjamin,Mendoza,11,Universitario,C++,Resolución de problemas
+Gerardo,Martínez,0,Universitario,Python,Empatía
+Felipe,Montoya,10,Universitario,Python,Resolución de problemas
+Alejandro,Álvarez,9,Universitario,Python,Resolución de problemas
+Damián,García,9,Postgrado,Python,Trabajo en equipo
+Victor,Montoya,12,Universitario,Python,Comunicación efectiva
+Bruno,Vega,14,Secundario,Python,Resolución de problemas
+Luis,Peña,11,Universitario,Java,Trabajo en equipo
+Leonardo,Mendoza,8,Universitario,SQL,Comunicación efectiva

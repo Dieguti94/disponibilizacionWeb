@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postulantes Predicción</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StylesIndex.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Logo">
+        </div>
+        <div class="nav">
+            <a href="{{ url_for('predecir') }}">Inicio</a>
+        </div>
+    </header>
+    
+    <h1>Postulados en la Web</h1>
+    <div class="tabla-container">
+        {{ tabla|safe }}
+    </div>
+    <div class="acciones">
+        <form method="get" action="{{ url_for('postulantes') }}" style="display:inline;">
+            <button type="submit">Actualizar</button>
+        </form>
+        <form method="post" action="{{ url_for('predecir_postulantes') }}" style="display:inline;">
+            <button type="submit">Predecir</button>
+        </form>
+        <form method="get" action="{{ url_for('postulantes') }}" style="display:inline;">
+            <input type="hidden" name="filtro" value="apto">
+            <button type="submit">Ver solo Aptos</button>
+        </form>
+        <form method="get" action="{{ url_for('postulantes') }}" style="display:inline;">
+            <button type="submit">Ver todos</button>
+        </form>
+        <form method="get" action="{{ url_for('asignar_puntajes') }}" style="display:inline;">
+            <button type="submit">Asignar Puntajes</button>
+        </form>
+        <form method="post" action="{{ url_for('limpiar_postulantes') }}" style="display:inline;">
+            <button type="submit">Limpiar</button>
+        </form>
+    </div>
+
+</body>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+        </div>
+        <div class="footer-description">
+            <p>
+                Abal, Fernando Gabriel<br>
+                Ábalos, Lucas Gabriel<br>
+                Bianciotto, Matías Felipe<br>
+                Gutiérrez, Diego Germán<br>
+                Roldan, Guadalupe <br>
+                Sotelo, Evelyn Romina
+            </p>
+        </div>
+        <div class="footer-contacts">
+            <div class="footer-country">
+                <div class="address">
+                    <img src="{{ url_for('static', filename='images/ArgentinaS.png') }}" alt="Argentina Flag">
+                    <p>Argentina</p>
+                    <p>Buenos Aires</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
+    </div>
+</footer>
+</html>

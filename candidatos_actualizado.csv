@@ -1,0 +1,121 @@
+Nombre,Apellido,Email,Teléfono,Ubicación,Experiencia,Educacion,Tecnologías,Habilidades,Apto
+Luis,Sánchez,luis.sánchez87@gmail.com,1114793830,Buenos Aires,11,Postgrado,SQL,Empatía,Apto
+Luis,Escobar,luis.escobar93@gmail.com,1120008750,San Juan,11,Universitario,Java,Trabajo en equipo,Apto
+Gerardo,Rodríguez,gerardo.rodríguez47@gmail.com,1123591540,Buenos Aires,4,Universitario,Python,Comunicación efectiva,No Apto
+Ignacio,Acosta,ignacio.acosta2@gmail.com,1188306635,Tucumán,11,Universitario,C++,Liderazgo,Apto
+Ignacio,Acosta,ignacio.acosta30@gmail.com,1150633508,Río Negro,0,Universitario,Python,Resolución de problemas,No Apto
+Patricio,Quiroz,patricio.quiroz58@gmail.com,1165528231,Chubut,5,Universitario,SQL,Resolución de problemas,No Apto
+Antonio,Pérez,antonio.pérez28@gmail.com,1142608776,Chaco,7,Universitario,SQL,Liderazgo,No Apto
+Benjamin,Fernández,benjamin.fernández99@gmail.com,1183967928,San Juan,4,Universitario,SQL,Empatía,No Apto
+Damián,Cabrera,damián.cabrera43@gmail.com,1167271745,Río Negro,4,Universitario,SQL,Adaptabilidad,No Apto
+Adrián,Escobar,adrián.escobar38@gmail.com,1148452016,Tucumán,4,Universitario,SQL,Liderazgo,No Apto
+Mauricio,Peña,mauricio.peña74@gmail.com,1121746603,Catamarca,14,Secundario,Python,Resolución de problemas,Apto
+Adrián,Vega,adrián.vega21@gmail.com,1152579349,Chubut,10,Universitario,C++,Comunicación efectiva,Apto
+Darío,Barrios,darío.barrios83@gmail.com,1147542746,Catamarca,7,Universitario,Python,Empatía,Apto
+Darío,Rodríguez,darío.rodríguez44@gmail.com,1111029684,Río Negro,14,Secundario,Python,Adaptabilidad,Apto
+Luis,López,luis.lópez74@gmail.com,1151517123,Santa Cruz,0,Universitario,Python,Resolución de problemas,No Apto
+Leonardo,Martínez,leonardo.martínez53@gmail.com,1145897006,Buenos Aires,5,Postgrado,Java,Empatía,No Apto
+Adrián,Martínez,adrián.martínez96@gmail.com,1149070950,Corrientes,10,Postgrado,C++,Trabajo en equipo,Apto
+Mauricio,Cruz,mauricio.cruz27@gmail.com,1160911972,Río Negro,13,Universitario,SQL,Comunicación efectiva,Apto
+Victor,Sánchez,victor.sánchez18@gmail.com,1133415275,Misiones,10,Universitario,C++,Comunicación efectiva,Apto
+Leonardo,Vega,leonardo.vega13@gmail.com,1175191767,Catamarca,2,Postgrado,C++,Comunicación efectiva,No Apto
+Jorge,Silva,jorge.silva13@gmail.com,1181507684,Chaco,2,Postgrado,C++,Adaptabilidad,No Apto
+Enzo,Álvarez,enzo.álvarez88@gmail.com,1177062913,Salta,10,Postgrado,C++,Liderazgo,Apto
+Victor,Ortiz,victor.ortiz55@gmail.com,1177184265,Jujuy,7,Secundario,SQL,Liderazgo,No Apto
+Esteban,Cruz,esteban.cruz82@gmail.com,1194782677,Entre Ríos,6,Postgrado,Python,Comunicación efectiva,Apto
+Gerardo,Acosta,gerardo.acosta62@gmail.com,1136503874,Santiago del Estero,7,Postgrado,C++,Trabajo en equipo,No Apto
+Jorge,Morales,jorge.morales89@gmail.com,1175937114,Río Negro,9,Postgrado,Python,Liderazgo,Apto
+Jorge,Álvarez,jorge.álvarez36@gmail.com,1133279807,Santa Fe,14,Secundario,SQL,Adaptabilidad,Apto
+Alejandro,Silva,alejandro.silva15@gmail.com,1123053550,Córdoba,7,Secundario,SQL,Resolución de problemas,No Apto
+Federico,Sánchez,federico.sánchez61@gmail.com,1189566756,Tucumán,4,Universitario,Python,Trabajo en equipo,Apto
+Jorge,Cruz,jorge.cruz33@gmail.com,1124478055,San Luis,3,Secundario,C++,Adaptabilidad,No Apto
+Jorge,Acosta,jorge.acosta72@gmail.com,1133005380,Río Negro,10,Universitario,C++,Resolución de problemas,Apto
+Antonio,Montoya,antonio.montoya89@gmail.com,1111987340,Santa Cruz,11,Universitario,Python,Adaptabilidad,Apto
+Gabriel,Acosta,gabriel.acosta95@gmail.com,1154309283,Santa Fe,2,Postgrado,C++,Adaptabilidad,No Apto
+Federico,Montoya,federico.montoya14@gmail.com,1106301744,San Luis,12,Secundario,C++,Empatía,Apto
+Mauricio,Escobar,mauricio.escobar51@gmail.com,1103731389,Formosa,13,Universitario,Java,Trabajo en equipo,Apto
+Bruno,Sánchez,bruno.sánchez85@gmail.com,1182034606,Misiones,13,Universitario,C++,Liderazgo,Apto
+Hernán,Reyes,hernán.reyes33@gmail.com,1102484339,La Rioja,12,Secundario,C++,Resolución de problemas,Apto
+Darío,Pérez,darío.pérez63@gmail.com,1107634439,Córdoba,6,Postgrado,Python,Comunicación efectiva,Apto
+Adrián,Cruz,adrián.cruz88@gmail.com,1155870538,Santa Fe,9,Secundario,SQL,Resolución de problemas,Apto
+Sergio,Gómez,sergio.gómez57@gmail.com,1124337605,Jujuy,11,Universitario,C++,Empatía,Apto
+Matías,Ramírez,matías.ramírez39@gmail.com,1128806949,Formosa,3,Secundario,C++,Resolución de problemas,No Apto
+Felipe,Torres,felipe.torres78@gmail.com,1116178161,San Juan,4,Postgrado,SQL,Trabajo en equipo,No Apto
+Ignacio,Morales,ignacio.morales51@gmail.com,1190588357,Misiones,7,Universitario,SQL,Liderazgo,No Apto
+Marcos,Rodríguez,marcos.rodríguez83@gmail.com,1169597417,Corrientes,2,Postgrado,C++,Empatía,No Apto
+Darío,Medina,darío.medina72@gmail.com,1120429607,Córdoba,1,Universitario,SQL,Comunicación efectiva,No Apto
+Leonardo,Torres,leonardo.torres86@gmail.com,1104247242,Neuquén,7,Secundario,SQL,Resolución de problemas,No Apto
+Gabriel,Medina,gabriel.medina60@gmail.com,1104421123,San Juan,11,Universitario,C++,Empatía,Apto
+Álvaro,Quiroz,álvaro.quiroz51@gmail.com,1110205667,La Rioja,4,Secundario,Python,Trabajo en equipo,No Apto
+Ignacio,Fernández,ignacio.fernández46@gmail.com,1150904102,Santa Fe,10,Universitario,Python,Trabajo en equipo,Apto
+Gerardo,Silva,gerardo.silva13@gmail.com,1109086044,Río Negro,0,Universitario,Python,Comunicación efectiva,No Apto
+Federico,Morales,federico.morales26@gmail.com,1152932221,Misiones,12,Secundario,C++,Resolución de problemas,Apto
+Simón,Morales,simón.morales5@gmail.com,1114643530,San Juan,14,Secundario,Python,Resolución de problemas,Apto
+Enzo,Rodríguez,enzo.rodríguez18@gmail.com,1179823692,Santa Fe,1,Postgrado,SQL,Liderazgo,No Apto
+Benjamin,López,benjamin.lópez57@gmail.com,1171087490,Santa Cruz,7,Secundario,SQL,Trabajo en equipo,No Apto
+Emanuel,Vega,emanuel.vega66@gmail.com,1188770478,Neuquén,5,Secundario,C++,Comunicación efectiva,No Apto
+Ricardo,Gómez,ricardo.gómez55@gmail.com,1167294274,Río Negro,9,Universitario,Python,Resolución de problemas,Apto
+Gerardo,Quiroz,gerardo.quiroz54@gmail.com,1146307619,Chubut,7,Postgrado,C++,Liderazgo,No Apto
+Ricardo,Escobar,ricardo.escobar38@gmail.com,1175060340,Santiago del Estero,3,Secundario,C++,Comunicación efectiva,No Apto
+Matías,Álvarez,matías.álvarez55@gmail.com,1181736696,Catamarca,14,Postgrado,Java,Liderazgo,Apto
+Marcos,Ortiz,marcos.ortiz73@gmail.com,1156284131,Salta,5,Secundario,C++,Trabajo en equipo,No Apto
+Jorge,Ortiz,jorge.ortiz6@gmail.com,1139829286,Neuquén,12,Postgrado,Java,Trabajo en equipo,Apto
+Hernán,Fernández,hernán.fernández26@gmail.com,1155285716,La Pampa,10,Universitario,C++,Resolución de problemas,Apto
+Gerardo,García,gerardo.garcía36@gmail.com,1185032654,Santa Fe,12,Universitario,Python,Resolución de problemas,Apto
+Gabriel,Pérez,gabriel.pérez46@gmail.com,1115464855,Chubut,10,Universitario,C++,Adaptabilidad,Apto
+Esteban,Rodríguez,esteban.rodríguez61@gmail.com,1173631195,La Rioja,11,Universitario,C++,Empatía,Apto
+Benjamin,Martínez,benjamin.martínez79@gmail.com,1193517014,San Juan,14,Postgrado,Java,Comunicación efectiva,Apto
+Damián,Castillo,damián.castillo52@gmail.com,1148746560,La Rioja,1,Postgrado,SQL,Empatía,No Apto
+Ignacio,Ramírez,ignacio.ramírez12@gmail.com,1173086984,Santiago del Estero,10,Universitario,Python,Comunicación efectiva,Apto
+Hernán,Gómez,hernán.gómez26@gmail.com,1147676851,La Rioja,7,Postgrado,C++,Liderazgo,No Apto
+Hernán,Castillo,hernán.castillo82@gmail.com,1195970160,Santa Cruz,11,Secundario,Python,Adaptabilidad,Apto
+Patricio,Martínez,patricio.martínez90@gmail.com,1123752232,Chaco,7,Postgrado,C++,Liderazgo,No Apto
+Emanuel,Pérez,emanuel.pérez84@gmail.com,1122446526,Santiago del Estero,14,Secundario,Python,Trabajo en equipo,Apto
+Leonardo,Acosta,leonardo.acosta48@gmail.com,1139515787,Salta,0,Universitario,Python,Trabajo en equipo,No Apto
+Álvaro,García,álvaro.garcía44@gmail.com,1187382661,Misiones,6,Universitario,Python,Adaptabilidad,Apto
+Gerardo,Escobar,gerardo.escobar100@gmail.com,1124322785,La Pampa,13,Universitario,SQL,Adaptabilidad,Apto
+Álvaro,Acosta,álvaro.acosta72@gmail.com,1109760126,Córdoba,9,Universitario,Python,Comunicación efectiva,Apto
+Ricardo,Martínez,ricardo.martínez26@gmail.com,1125504954,Entre Ríos,0,Universitario,Python,Adaptabilidad,No Apto
+Alejandro,Montoya,alejandro.montoya28@gmail.com,1102786411,La Pampa,5,Postgrado,Java,Empatía,No Apto
+Cristóbal,Cabrera,cristóbal.cabrera37@gmail.com,1148342686,Santa Fe,7,Postgrado,C++,Empatía,No Apto
+Cristóbal,Ortiz,cristóbal.ortiz24@gmail.com,1175959921,Misiones,11,Universitario,Java,Comunicación efectiva,Apto
+Ricardo,Ortiz,ricardo.ortiz74@gmail.com,1141558151,Chaco,10,Universitario,Python,Trabajo en equipo,Apto
+Adrián,Pérez,adrián.pérez70@gmail.com,1165512136,La Rioja,4,Universitario,Python,Resolución de problemas,No Apto
+Adrián,Álvarez,adrián.álvarez71@gmail.com,1122910418,La Rioja,3,Secundario,C++,Trabajo en equipo,No Apto
+Antonio,Peña,antonio.peña36@gmail.com,1153127287,Salta,6,Postgrado,Python,Adaptabilidad,Apto
+Ricardo,Sánchez,ricardo.sánchez40@gmail.com,1176995733,Formosa,4,Postgrado,SQL,Adaptabilidad,No Apto
+Emanuel,Sánchez,emanuel.sánchez26@gmail.com,1111027209,San Juan,10,Universitario,C++,Trabajo en equipo,Apto
+Ricardo,Montoya,ricardo.montoya68@gmail.com,1156891458,Santiago del Estero,6,Postgrado,Python,Adaptabilidad,Apto
+Álvaro,Morales,álvaro.morales66@gmail.com,1184074164,Tierra del Fuego,12,Postgrado,Java,Trabajo en equipo,Apto
+Matías,Martínez,matías.martínez79@gmail.com,1168827403,Corrientes,4,Postgrado,SQL,Resolución de problemas,No Apto
+Damián,Gómez,damián.gómez17@gmail.com,1179091906,La Rioja,10,Universitario,Python,Resolución de problemas,Apto
+Ignacio,Cabrera,ignacio.cabrera90@gmail.com,1121537000,La Rioja,7,Universitario,Python,Liderazgo,Apto
+Esteban,Domínguez,esteban.domínguez12@gmail.com,1182665087,Buenos Aires,7,Universitario,SQL,Resolución de problemas,No Apto
+Leonardo,García,leonardo.garcía80@gmail.com,1137642857,Formosa,14,Secundario,SQL,Liderazgo,Apto
+Ignacio,Vega,ignacio.vega44@gmail.com,1121909800,Formosa,5,Universitario,SQL,Adaptabilidad,No Apto
+Damián,Fernández,damián.fernández94@gmail.com,1189685060,Río Negro,13,Secundario,C++,Comunicación efectiva,Apto
+Simón,Silva,simón.silva62@gmail.com,1144032603,Chaco,8,Universitario,SQL,Empatía,Apto
+Ignacio,Sánchez,ignacio.sánchez74@gmail.com,1144705983,Misiones,6,Universitario,Python,Adaptabilidad,Apto
+Alejandro,Mendoza,alejandro.mendoza26@gmail.com,1198153055,La Pampa,11,Universitario,Python,Liderazgo,Apto
+Gabriel,Cabrera,gabriel.cabrera46@gmail.com,1121715335,Catamarca,10,Universitario,Python,Empatía,Apto
+Matías,Rodríguez,matías.rodríguez6@gmail.com,1112708127,Tierra del Fuego,13,Universitario,C++,Adaptabilidad,Apto
+Simón,Peña,simón.peña5@gmail.com,1156656418,Mendoza,10,Universitario,C++,Empatía,Apto
+Luis,Ramírez,luis.ramírez98@gmail.com,1123237133,Santiago del Estero,0,Universitario,Python,Trabajo en equipo,No Apto
+Damián,Sánchez,damián.sánchez23@gmail.com,1172896719,Tucumán,13,Universitario,Java,Empatía,Apto
+Patricio,Castillo,patricio.castillo100@gmail.com,1180789678,Jujuy,6,Postgrado,Python,Trabajo en equipo,Apto
+Gerardo,Peña,gerardo.peña77@gmail.com,1112642684,Corrientes,13,Secundario,C++,Comunicación efectiva,Apto
+Gabriel,Guzmán,gabriel.guzmán15@gmail.com,1149464141,Santa Fe,11,Universitario,C++,Liderazgo,Apto
+Simón,Acosta,simón.acosta5@gmail.com,1107463856,Santiago del Estero,2,Secundario,SQL,Comunicación efectiva,No Apto
+Gabriel,Fernández,gabriel.fernández16@gmail.com,1121212997,Buenos Aires,13,Universitario,Java,Liderazgo,Apto
+Esteban,Morales,esteban.morales66@gmail.com,1179043290,Santa Cruz,2,Postgrado,C++,Comunicación efectiva,No Apto
+Felipe,Domínguez,felipe.domínguez51@gmail.com,1158420084,Tierra del Fuego,11,Postgrado,SQL,Empatía,Apto
+Luis,Morales,luis.morales65@gmail.com,1122140380,Neuquén,0,Universitario,Python,Adaptabilidad,No Apto
+Benjamin,Mendoza,benjamin.mendoza80@gmail.com,1179858633,Jujuy,11,Universitario,C++,Resolución de problemas,Apto
+Gerardo,Martínez,gerardo.martínez21@gmail.com,1185504194,Tierra del Fuego,0,Universitario,Python,Empatía,No Apto
+Felipe,Montoya,felipe.montoya64@gmail.com,1152144797,Río Negro,10,Universitario,Python,Resolución de problemas,Apto
+Alejandro,Álvarez,alejandro.álvarez98@gmail.com,1154691286,Catamarca,9,Universitario,Python,Resolución de problemas,Apto
+Damián,García,damián.garcía88@gmail.com,1103713030,Corrientes,9,Postgrado,Python,Trabajo en equipo,Apto
+Victor,Montoya,victor.montoya17@gmail.com,1156688542,Formosa,12,Universitario,Python,Comunicación efectiva,Apto
+Bruno,Vega,bruno.vega35@gmail.com,1134234366,Corrientes,14,Secundario,Python,Resolución de problemas,Apto
+Luis,Peña,luis.peña84@gmail.com,1178471048,Santiago del Estero,11,Universitario,Java,Trabajo en equipo,Apto
+Leonardo,Mendoza,leonardo.mendoza94@gmail.com,1103404354,Río Negro,8,Universitario,SQL,Comunicación efectiva,Apto

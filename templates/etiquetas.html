@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiquetas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StylesCrear.css') }}">
+</head>
+
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Logo">
+    </div>
+    <div class="nav">
+        <a href="{{ url_for('predecir') }}">Inicio</a>
+    </div>
+</header>
+
+<body class="container mt-4">
+  
+    <h1 class="mb-4">Etiquetas de Evaluación</h1>
+    <h3>Educación</h3>
+    {{ tabla_edu|safe }}
+    <h3>Tecnologías</h3>
+    {{ tabla_tec|safe }}
+    <h3>Habilidades</h3>
+    {{ tabla_hab|safe }}
+    
+    <hr class="my-4">
+    <h3>Asignar nueva importancia (de 0 a 3)</h3>
+    <form method="POST" action="{{ url_for('asignar_valores') }}">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="educacion_id" class="form-label">Educación:</label>
+                <select name="educacion_id" class="form-select">
+                    {% for e in educaciones %}
+                        <option value="{{ e.idedu }}">{{ e.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="valor_educacion" class="form-control mt-2" min="0" max="3" placeholder="Importancia">
+            </div>
+            <div class="col-md-4">
+                <label for="tecnologia_id" class="form-label">Tecnología:</label>
+                <select name="tecnologia_id" class="form-select">
+                    {% for t in tecnologias %}
+                        <option value="{{ t.idtec }}">{{ t.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="valor_tecnologia" class="form-control mt-2" min="0" max="3" placeholder="Importancia">
+            </div>
+            <div class="col-md-4">
+                <label for="habilidad_id" class="form-label">Habilidad:</label>
+                <select name="habilidad_id" class="form-select">
+                    {% for h in habilidades %}
+                        <option value="{{ h.idhab }}">{{ h.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="valor_habilidad" class="form-control mt-2" min="0" max="3" placeholder="Importancia">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar valores</button>
+    </form>
+</body>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+        </div>
+        <div class="footer-description">
+            <p>
+                Abal, Fernando Gabriel<br>
+                Ábalos, Lucas Gabriel<br>
+                Bianciotto, Matías Felipe<br>
+                Gutiérrez, Diego Germán<br>
+                Roldan, Guadalupe <br>
+                Sotelo, Evelyn Romina
+
+            </p>
+        </div>
+        <div class="footer-contacts">
+            <div class="footer-country">
+                <div class="address">
+                    <img src="{{ url_for('static', filename='images/ArgentinaS.png') }}" alt="Argentina Flag">
+                    <p>Argentina</p>
+                    <p>Buenos Aires</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
+    </div>
+</footer>
+</html>

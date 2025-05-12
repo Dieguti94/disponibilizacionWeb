@@ -1,0 +1,121 @@
+Nombre,Apellido,Experiencia,Educacion,Tecnologías,Habilidades,Apto
+Luis,Sánchez,11,0,3,2,Apto
+Luis,Escobar,11,2,1,5,Apto
+Gerardo,Rodríguez,4,2,2,1,No Apto
+Ignacio,Acosta,11,2,0,3,Apto
+Ignacio,Acosta,0,2,2,4,No Apto
+Patricio,Quiroz,5,2,3,4,No Apto
+Antonio,Pérez,7,2,3,3,No Apto
+Benjamin,Fernández,4,2,3,2,No Apto
+Damián,Cabrera,4,2,3,0,No Apto
+Adrián,Escobar,4,2,3,3,No Apto
+Mauricio,Peña,14,1,2,4,Apto
+Adrián,Vega,10,2,0,1,Apto
+Darío,Barrios,7,2,2,2,Apto
+Darío,Rodríguez,14,1,2,0,Apto
+Luis,López,0,2,2,4,No Apto
+Leonardo,Martínez,5,0,1,2,No Apto
+Adrián,Martínez,10,0,0,5,Apto
+Mauricio,Cruz,13,2,3,1,Apto
+Victor,Sánchez,10,2,0,1,Apto
+Leonardo,Vega,2,0,0,1,No Apto
+Jorge,Silva,2,0,0,0,No Apto
+Enzo,Álvarez,10,0,0,3,Apto
+Victor,Ortiz,7,1,3,3,No Apto
+Esteban,Cruz,6,0,2,1,Apto
+Gerardo,Acosta,7,0,0,5,No Apto
+Jorge,Morales,9,0,2,3,Apto
+Jorge,Álvarez,14,1,3,0,Apto
+Alejandro,Silva,7,1,3,4,No Apto
+Federico,Sánchez,4,2,2,5,Apto
+Jorge,Cruz,3,1,0,0,No Apto
+Jorge,Acosta,10,2,0,4,Apto
+Antonio,Montoya,11,2,2,0,Apto
+Gabriel,Acosta,2,0,0,0,No Apto
+Federico,Montoya,12,1,0,2,Apto
+Mauricio,Escobar,13,2,1,5,Apto
+Bruno,Sánchez,13,2,0,3,Apto
+Hernán,Reyes,12,1,0,4,Apto
+Darío,Pérez,6,0,2,1,Apto
+Adrián,Cruz,9,1,3,4,Apto
+Sergio,Gómez,11,2,0,2,Apto
+Matías,Ramírez,3,1,0,4,No Apto
+Felipe,Torres,4,0,3,5,No Apto
+Ignacio,Morales,7,2,3,3,No Apto
+Marcos,Rodríguez,2,0,0,2,No Apto
+Darío,Medina,1,2,3,1,No Apto
+Leonardo,Torres,7,1,3,4,No Apto
+Gabriel,Medina,11,2,0,2,Apto
+Álvaro,Quiroz,4,1,2,5,No Apto
+Ignacio,Fernández,10,2,2,5,Apto
+Gerardo,Silva,0,2,2,1,No Apto
+Federico,Morales,12,1,0,4,Apto
+Simón,Morales,14,1,2,4,Apto
+Enzo,Rodríguez,1,0,3,3,No Apto
+Benjamin,López,7,1,3,5,No Apto
+Emanuel,Vega,5,1,0,1,No Apto
+Ricardo,Gómez,9,2,2,4,Apto
+Gerardo,Quiroz,7,0,0,3,No Apto
+Ricardo,Escobar,3,1,0,1,No Apto
+Matías,Álvarez,14,0,1,3,Apto
+Marcos,Ortiz,5,1,0,5,No Apto
+Jorge,Ortiz,12,0,1,5,Apto
+Hernán,Fernández,10,2,0,4,Apto
+Gerardo,García,12,2,2,4,Apto
+Gabriel,Pérez,10,2,0,0,Apto
+Esteban,Rodríguez,11,2,0,2,Apto
+Benjamin,Martínez,14,0,1,1,Apto
+Damián,Castillo,1,0,3,2,No Apto
+Ignacio,Ramírez,10,2,2,1,Apto
+Hernán,Gómez,7,0,0,3,No Apto
+Hernán,Castillo,11,1,2,0,Apto
+Patricio,Martínez,7,0,0,3,No Apto
+Emanuel,Pérez,14,1,2,5,Apto
+Leonardo,Acosta,0,2,2,5,No Apto
+Álvaro,García,6,2,2,0,Apto
+Gerardo,Escobar,13,2,3,0,Apto
+Álvaro,Acosta,9,2,2,1,Apto
+Ricardo,Martínez,0,2,2,0,No Apto
+Alejandro,Montoya,5,0,1,2,No Apto
+Cristóbal,Cabrera,7,0,0,2,No Apto
+Cristóbal,Ortiz,11,2,1,1,Apto
+Ricardo,Ortiz,10,2,2,5,Apto
+Adrián,Pérez,4,2,2,4,No Apto
+Adrián,Álvarez,3,1,0,5,No Apto
+Antonio,Peña,6,0,2,0,Apto
+Ricardo,Sánchez,4,0,3,0,No Apto
+Emanuel,Sánchez,10,2,0,5,Apto
+Ricardo,Montoya,6,0,2,0,Apto
+Álvaro,Morales,12,0,1,5,Apto
+Matías,Martínez,4,0,3,4,No Apto
+Damián,Gómez,10,2,2,4,Apto
+Ignacio,Cabrera,7,2,2,3,Apto
+Esteban,Domínguez,7,2,3,4,No Apto
+Leonardo,García,14,1,3,3,Apto
+Ignacio,Vega,5,2,3,0,No Apto
+Damián,Fernández,13,1,0,1,Apto
+Simón,Silva,8,2,3,2,Apto
+Ignacio,Sánchez,6,2,2,0,Apto
+Alejandro,Mendoza,11,2,2,3,Apto
+Gabriel,Cabrera,10,2,2,2,Apto
+Matías,Rodríguez,13,2,0,0,Apto
+Simón,Peña,10,2,0,2,Apto
+Luis,Ramírez,0,2,2,5,No Apto
+Damián,Sánchez,13,2,1,2,Apto
+Patricio,Castillo,6,0,2,5,Apto
+Gerardo,Peña,13,1,0,1,Apto
+Gabriel,Guzmán,11,2,0,3,Apto
+Simón,Acosta,2,1,3,1,No Apto
+Gabriel,Fernández,13,2,1,3,Apto
+Esteban,Morales,2,0,0,1,No Apto
+Felipe,Domínguez,11,0,3,2,Apto
+Luis,Morales,0,2,2,0,No Apto
+Benjamin,Mendoza,11,2,0,4,Apto
+Gerardo,Martínez,0,2,2,2,No Apto
+Felipe,Montoya,10,2,2,4,Apto
+Alejandro,Álvarez,9,2,2,4,Apto
+Damián,García,9,0,2,5,Apto
+Victor,Montoya,12,2,2,1,Apto
+Bruno,Vega,14,1,2,4,Apto
+Luis,Peña,11,2,1,5,Apto
+Leonardo,Mendoza,8,2,3,1,Apto

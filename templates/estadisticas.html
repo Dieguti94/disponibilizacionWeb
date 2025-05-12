@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas del Modelo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StylesCrear.css') }}">
+</head>
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+    </div>
+    <div class="nav">
+        <a href="{{ url_for('predecir') }}">Inicio</a>
+    </div>
+</header>
+<body>
+    <!-- CAMBIOOOOOOOOOOOOOOOO -->
+    <h1 class="titulo">Estadísticas del Modelo</h1>
+            <!-- CAMBIOOOOOOOOOOOOOOOO -->
+    <h2 class="accuracy">Precisión calculada a través de accuracy score: {{ precision }}</h2>
+
+
+    <h2 class="titulo2">Clases del encoder:</h2>
+    <div class="tablas-flex">
+        <!-- Educación -->
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>EDUCACIÓN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for clase in clases_educacion %}
+                    <tr>
+                        <td>{{ clase }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Tecnologías -->
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>TECNOLOGÍAS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for clase in clases_tecnologias %}
+                    <tr>
+                        <td>{{ clase }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Habilidades -->
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>HABILIDADES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for clase in clases_habilidades %}
+                    <tr>
+                        <td>{{ clase }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+
+        <h2 class="titulo2">Árbol de decisión</h2>
+        <div class="tabla-container" style="text-align: center; border-radius: 120px; background: rgba(24, 24, 24, 0.76); box-shadow: 0 4px 10px rgb(73, 194, 250); max-width: 80%;">
+            <img src="data:image/png;base64,{{ imagen_arbol }}" alt="Árbol de decisión" style="max-width: 100%; height : auto; ">
+        </div>
+
+        <br><br>
+        <form action="/predecir" method="get" style=" box-shadow: 0 4px 10px rgb(73, 194, 250); border-radius: 34px; background: rgba(24, 24, 24, 0.76);">
+            <button type="submit" >Continuar</button>
+        </form>
+    </div>
+</body>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+        </div>
+        <div class="footer-description">
+            <p>
+                Abal, Fernando Gabriel<br>
+                Bianciotto, Matías Felipe<br>
+                Gutiérrez, Diego Germán<br>
+                Roldan, Guadalupe <br>
+                Sotelo, Evelyn Romina
+
+            </p>
+        </div>
+        <div class="footer-contacts">
+            <div class="footer-country">
+                <div class="address">
+                    <img src="{{ url_for('static', filename='images/ArgentinaS.png') }}" alt="Argentina Flag">
+                    <p>Argentina</p>
+                    <p>Buenos Aires</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
+    </div>
+</footer>
+</html>

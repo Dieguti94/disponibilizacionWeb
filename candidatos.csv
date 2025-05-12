@@ -1,0 +1,121 @@
+Nombre,Apellido,Experiencia,Educacion,Tecnologías,Habilidades,Apto
+Luis,Sánchez,11,Postgrado,SQL,Empatía,Apto
+Luis,Escobar,11,Universitario,Java,Trabajo en equipo,Apto
+Gerardo,Rodríguez,4,Universitario,Python,Comunicación efectiva,No Apto
+Ignacio,Acosta,11,Universitario,C++,Liderazgo,Apto
+Ignacio,Acosta,0,Universitario,Python,Resolución de problemas,No Apto
+Patricio,Quiroz,5,Universitario,SQL,Resolución de problemas,No Apto
+Antonio,Pérez,7,Universitario,SQL,Liderazgo,No Apto
+Benjamin,Fernández,4,Universitario,SQL,Empatía,No Apto
+Damián,Cabrera,4,Universitario,SQL,Adaptabilidad,No Apto
+Adrián,Escobar,4,Universitario,SQL,Liderazgo,No Apto
+Mauricio,Peña,14,Secundario,Python,Resolución de problemas,Apto
+Adrián,Vega,10,Universitario,C++,Comunicación efectiva,Apto
+Darío,Barrios,7,Universitario,Python,Empatía,Apto
+Darío,Rodríguez,14,Secundario,Python,Adaptabilidad,Apto
+Luis,López,0,Universitario,Python,Resolución de problemas,No Apto
+Leonardo,Martínez,5,Postgrado,Java,Empatía,No Apto
+Adrián,Martínez,10,Postgrado,C++,Trabajo en equipo,Apto
+Mauricio,Cruz,13,Universitario,SQL,Comunicación efectiva,Apto
+Victor,Sánchez,10,Universitario,C++,Comunicación efectiva,Apto
+Leonardo,Vega,2,Postgrado,C++,Comunicación efectiva,No Apto
+Jorge,Silva,2,Postgrado,C++,Adaptabilidad,No Apto
+Enzo,Álvarez,10,Postgrado,C++,Liderazgo,Apto
+Victor,Ortiz,7,Secundario,SQL,Liderazgo,No Apto
+Esteban,Cruz,6,Postgrado,Python,Comunicación efectiva,Apto
+Gerardo,Acosta,7,Postgrado,C++,Trabajo en equipo,No Apto
+Jorge,Morales,9,Postgrado,Python,Liderazgo,Apto
+Jorge,Álvarez,14,Secundario,SQL,Adaptabilidad,Apto
+Alejandro,Silva,7,Secundario,SQL,Resolución de problemas,No Apto
+Federico,Sánchez,4,Universitario,Python,Trabajo en equipo,Apto
+Jorge,Cruz,3,Secundario,C++,Adaptabilidad,No Apto
+Jorge,Acosta,10,Universitario,C++,Resolución de problemas,Apto
+Antonio,Montoya,11,Universitario,Python,Adaptabilidad,Apto
+Gabriel,Acosta,2,Postgrado,C++,Adaptabilidad,No Apto
+Federico,Montoya,12,Secundario,C++,Empatía,Apto
+Mauricio,Escobar,13,Universitario,Java,Trabajo en equipo,Apto
+Bruno,Sánchez,13,Universitario,C++,Liderazgo,Apto
+Hernán,Reyes,12,Secundario,C++,Resolución de problemas,Apto
+Darío,Pérez,6,Postgrado,Python,Comunicación efectiva,Apto
+Adrián,Cruz,9,Secundario,SQL,Resolución de problemas,Apto
+Sergio,Gómez,11,Universitario,C++,Empatía,Apto
+Matías,Ramírez,3,Secundario,C++,Resolución de problemas,No Apto
+Felipe,Torres,4,Postgrado,SQL,Trabajo en equipo,No Apto
+Ignacio,Morales,7,Universitario,SQL,Liderazgo,No Apto
+Marcos,Rodríguez,2,Postgrado,C++,Empatía,No Apto
+Darío,Medina,1,Universitario,SQL,Comunicación efectiva,No Apto
+Leonardo,Torres,7,Secundario,SQL,Resolución de problemas,No Apto
+Gabriel,Medina,11,Universitario,C++,Empatía,Apto
+Álvaro,Quiroz,4,Secundario,Python,Trabajo en equipo,No Apto
+Ignacio,Fernández,10,Universitario,Python,Trabajo en equipo,Apto
+Gerardo,Silva,0,Universitario,Python,Comunicación efectiva,No Apto
+Federico,Morales,12,Secundario,C++,Resolución de problemas,Apto
+Simón,Morales,14,Secundario,Python,Resolución de problemas,Apto
+Enzo,Rodríguez,1,Postgrado,SQL,Liderazgo,No Apto
+Benjamin,López,7,Secundario,SQL,Trabajo en equipo,No Apto
+Emanuel,Vega,5,Secundario,C++,Comunicación efectiva,No Apto
+Ricardo,Gómez,9,Universitario,Python,Resolución de problemas,Apto
+Gerardo,Quiroz,7,Postgrado,C++,Liderazgo,No Apto
+Ricardo,Escobar,3,Secundario,C++,Comunicación efectiva,No Apto
+Matías,Álvarez,14,Postgrado,Java,Liderazgo,Apto
+Marcos,Ortiz,5,Secundario,C++,Trabajo en equipo,No Apto
+Jorge,Ortiz,12,Postgrado,Java,Trabajo en equipo,Apto
+Hernán,Fernández,10,Universitario,C++,Resolución de problemas,Apto
+Gerardo,García,12,Universitario,Python,Resolución de problemas,Apto
+Gabriel,Pérez,10,Universitario,C++,Adaptabilidad,Apto
+Esteban,Rodríguez,11,Universitario,C++,Empatía,Apto
+Benjamin,Martínez,14,Postgrado,Java,Comunicación efectiva,Apto
+Damián,Castillo,1,Postgrado,SQL,Empatía,No Apto
+Ignacio,Ramírez,10,Universitario,Python,Comunicación efectiva,Apto
+Hernán,Gómez,7,Postgrado,C++,Liderazgo,No Apto
+Hernán,Castillo,11,Secundario,Python,Adaptabilidad,Apto
+Patricio,Martínez,7,Postgrado,C++,Liderazgo,No Apto
+Emanuel,Pérez,14,Secundario,Python,Trabajo en equipo,Apto
+Leonardo,Acosta,0,Universitario,Python,Trabajo en equipo,No Apto
+Álvaro,García,6,Universitario,Python,Adaptabilidad,Apto
+Gerardo,Escobar,13,Universitario,SQL,Adaptabilidad,Apto
+Álvaro,Acosta,9,Universitario,Python,Comunicación efectiva,Apto
+Ricardo,Martínez,0,Universitario,Python,Adaptabilidad,No Apto
+Alejandro,Montoya,5,Postgrado,Java,Empatía,No Apto
+Cristóbal,Cabrera,7,Postgrado,C++,Empatía,No Apto
+Cristóbal,Ortiz,11,Universitario,Java,Comunicación efectiva,Apto
+Ricardo,Ortiz,10,Universitario,Python,Trabajo en equipo,Apto
+Adrián,Pérez,4,Universitario,Python,Resolución de problemas,No Apto
+Adrián,Álvarez,3,Secundario,C++,Trabajo en equipo,No Apto
+Antonio,Peña,6,Postgrado,Python,Adaptabilidad,Apto
+Ricardo,Sánchez,4,Postgrado,SQL,Adaptabilidad,No Apto
+Emanuel,Sánchez,10,Universitario,C++,Trabajo en equipo,Apto
+Ricardo,Montoya,6,Postgrado,Python,Adaptabilidad,Apto
+Álvaro,Morales,12,Postgrado,Java,Trabajo en equipo,Apto
+Matías,Martínez,4,Postgrado,SQL,Resolución de problemas,No Apto
+Damián,Gómez,10,Universitario,Python,Resolución de problemas,Apto
+Ignacio,Cabrera,7,Universitario,Python,Liderazgo,Apto
+Esteban,Domínguez,7,Universitario,SQL,Resolución de problemas,No Apto
+Leonardo,García,14,Secundario,SQL,Liderazgo,Apto
+Ignacio,Vega,5,Universitario,SQL,Adaptabilidad,No Apto
+Damián,Fernández,13,Secundario,C++,Comunicación efectiva,Apto
+Simón,Silva,8,Universitario,SQL,Empatía,Apto
+Ignacio,Sánchez,6,Universitario,Python,Adaptabilidad,Apto
+Alejandro,Mendoza,11,Universitario,Python,Liderazgo,Apto
+Gabriel,Cabrera,10,Universitario,Python,Empatía,Apto
+Matías,Rodríguez,13,Universitario,C++,Adaptabilidad,Apto
+Simón,Peña,10,Universitario,C++,Empatía,Apto
+Luis,Ramírez,0,Universitario,Python,Trabajo en equipo,No Apto
+Damián,Sánchez,13,Universitario,Java,Empatía,Apto
+Patricio,Castillo,6,Postgrado,Python,Trabajo en equipo,Apto
+Gerardo,Peña,13,Secundario,C++,Comunicación efectiva,Apto
+Gabriel,Guzmán,11,Universitario,C++,Liderazgo,Apto
+Simón,Acosta,2,Secundario,SQL,Comunicación efectiva,No Apto
+Gabriel,Fernández,13,Universitario,Java,Liderazgo,Apto
+Esteban,Morales,2,Postgrado,C++,Comunicación efectiva,No Apto
+Felipe,Domínguez,11,Postgrado,SQL,Empatía,Apto
+Luis,Morales,0,Universitario,Python,Adaptabilidad,No Apto
+Benjamin,Mendoza,11,Universitario,C++,Resolución de problemas,Apto
+Gerardo,Martínez,0,Universitario,Python,Empatía,No Apto
+Felipe,Montoya,10,Universitario,Python,Resolución de problemas,Apto
+Alejandro,Álvarez,9,Universitario,Python,Resolución de problemas,Apto
+Damián,García,9,Postgrado,Python,Trabajo en equipo,Apto
+Victor,Montoya,12,Universitario,Python,Comunicación efectiva,Apto
+Bruno,Vega,14,Secundario,Python,Resolución de problemas,Apto
+Luis,Peña,11,Universitario,Java,Trabajo en equipo,Apto
+Leonardo,Mendoza,8,Universitario,SQL,Comunicación efectiva,Apto

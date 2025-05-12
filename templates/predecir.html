@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>IA de PREDICCION de Aptitud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StylesIndex.css') }}">
+</head>
+
+<header>
+    
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+    </div>
+    
+    <div class="nav">
+        <a href="{{ url_for('enviar_correos') }}">Enviar mails</a>
+        <a href="{{ url_for('mostrar_etiquetas') }}">Configurar Etiquetas</a>
+        <a href="{{ url_for('crear_csv') }}">Crear CSV</a>
+        <a href="{{ url_for('postulantes') }}">Ver Postulantes</a>
+    </div>
+</header>
+
+<body>
+    
+    <h1 id="typewriter"></h1>
+    
+    <form action="/predecir" method="post" enctype="multipart/form-data">
+        <h3>Sube un archivo CSV para hacer predicciones:</h3>
+        <label class="file-label">
+            <input type="file" name="archivo_csv" id="archivo_csv" accept=".csv" required>
+            Subir archivo
+        </label>
+        <p id="nombre-archivo"></p>
+        <button class="Highbutton" type="submit">Predecir</button>
+    </form>
+    
+    <form action="/estadisticas" method="get" style=" box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); border-radius: 25px; background-color: rgba(255, 255, 255, 0.2)">
+        <button style="background-color: rgba(255, 255, 255, 0.2);border: 10px solid #fefefe; border-radius: 32px; "  type="submit" >Estadísticas</button>
+    </form>
+
+    <h2>Ejemplo</h2>
+    
+    <div class="tabla-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo electrónico</th>
+                    <th>Teléfono</th>
+                    <th>Ubicación</th>
+                    <th>Experiencia</th>
+                    <th>Educación</th>
+                    <th>Tecnologías</th>
+                    <th>Habilidades</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                    <td>perezjuan@gmail.com</td>
+                    <td>1154326789</td>
+                    <td>Buenos Aires</td>
+                    <td>5 años</td>
+                    <td>Universitario</td>
+                    <td>Python</td>
+                    <td>Resolución de problemas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <script src="{{ url_for('static', filename='js/nombreArchivo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/typewriter.js') }}"></script> <!-- Script del efecto de máquina de escribir -->
+</body>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+        </div>
+        <div class="footer-description">
+            <p>
+                Abal, Fernando Gabriel<br>
+                Bianciotto, Matías Felipe<br>
+                Gutiérrez, Diego Germán<br>
+                Roldan, Guadalupe <br>
+                Sotelo, Evelyn Romina
+            </p>
+        </div>
+        <div class="footer-contacts">
+            <div class="footer-country">
+                <div class="address">
+                    <img src="{{ url_for('static', filename='images/ArgentinaS.png') }}" alt="Argentina Flag">
+                    <p>Argentina</p>
+                    <p>Buenos Aires</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
+    </div>
+</footer>
+</html>
