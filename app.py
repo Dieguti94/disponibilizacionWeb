@@ -35,7 +35,6 @@ email = Mail(app)
 
 
 
-
 class Candidato(db.Model):
     id = db.Column(db.String, primary_key=True)  # Usamos el correo como ID único
     nombre = db.Column(db.String(100), nullable=False)
