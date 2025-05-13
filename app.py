@@ -864,7 +864,7 @@ def postulacion():
             print(f"Error al guardar el candidato: {e}")
             return "Error al guardar el candidato.", 500
 
-        return redirect("/")
+        return redirect("/postulacionIT")
 
     return render_template(
         "postulacion.html",
