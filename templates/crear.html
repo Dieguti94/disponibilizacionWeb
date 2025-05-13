@@ -18,8 +18,8 @@
 </header>
 
 <body>
-    <h1>Crear un nuevo archivo CSV</h1>
-    <form method="post" action="/crear">
+    <h1>Carga el CV del candidato</h1>
+    <form method="post" action="/postulacion">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre" required>
         
@@ -85,52 +85,7 @@
             {% endfor %}
         </select>
         
-        <button type="submit">Agregar Candidato</button>
-    </form>
-
-    <h2>Candidatos Agregados</h2>
-
-    <div id="tabla-container" class="tabla-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Correo eléctronico</th>
-                    <th>Teléfono</th>
-                    <th>Ubicación</th>
-                    <th>Experiencia</th>
-                    <th>Educación</th>
-                    <th>Tecnologías</th>
-                    <th>Habilidades</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for candidato in candidatos %}
-                <tr>
-                    <td>{{ candidato["Nombre"] }}</td>
-                    <td>{{ candidato["Apellido"] }}</td>
-                    <td>{{ candidato["Correo electrónico"] }}</td>
-                    <td>{{ candidato["Teléfono"] }}</td>
-                    <td>{{ candidato["Ubicación"] }}</td>
-                    <td>{{ candidato["Experiencia"] }}</td>
-                    <td>{{ candidato["Educacion"] }}</td>
-                    <td>{{ candidato["Tecnologías"] }}</td>
-                    <td>{{ candidato["Habilidades"] }}</td>
-                    <td>
-                        <form class="formTransparent" action="/eliminar_candidato/{{ loop.index0 }}" method="post" style="display: inline;">
-                            <button type="submit" class="btnEliminar">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <form class="formTransparent" action="/guardar_csv" method="post">
-        <button type="submit">Guardar CSV</button>
+        <button type="submit">Enviar CV</button>
     </form>
 </body>
 
@@ -142,7 +97,6 @@
         <div class="footer-description">
             <p>
                 Abal, Fernando Gabriel<br>
-                Ábalos, Lucas Gabriel<br>
                 Bianciotto, Matías Felipe<br>
                 Gutiérrez, Diego Germán<br>
                 Roldan, Guadalupe<br>
