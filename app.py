@@ -718,6 +718,7 @@ def guardar_csv():
 
 
 @app.route("/etiquetas")
+@login_required()
 def mostrar_etiquetas():
     educaciones = Educacion.query.all()
     tecnologias = Tecnologia.query.all()
