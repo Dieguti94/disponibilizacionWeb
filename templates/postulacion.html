@@ -18,10 +18,10 @@
     <h1>Completa los datos de tu CV</h1>
     <form method="post" action="/postulacion">
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" required>
+        <input type="text" name="nombre" id="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}" title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
         
         <label for="apellido">Apellido</label>
-        <input type="text" name="apellido" id="apellido" required>
+        <input type="text" name="apellido" id="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}" title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
 
         <label for="email">Correo eléctronico</label>
         <input type="email" name="email" id="email" required>

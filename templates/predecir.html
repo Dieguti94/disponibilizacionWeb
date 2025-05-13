@@ -9,7 +9,6 @@
 </head>
 
 <header>
-    
     <div class="logo">
         <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
     </div>
@@ -18,7 +17,7 @@
         <a href="{{ url_for('logout') }}">Cerrar sesión</a>
         <a href="{{ url_for('enviar_correos') }}">Enviar mails</a>
         <a href="{{ url_for('mostrar_etiquetas') }}">Configurar Etiquetas</a>
-        <a href="{{ url_for('crear_csv') }}">Crear CSV</a>
+        <a href="{{ url_for('crear_csv') }}">Cargar CV</a>
         <a href="{{ url_for('postulantes') }}">Ver Postulantes</a>
     </div>
 </header>
@@ -73,7 +72,6 @@
             </tbody>
         </table>
     </div>
-
     
     <script src="{{ url_for('static', filename='js/nombreArchivo.js') }}"></script>
     <script src="{{ url_for('static', filename='js/typewriter.js') }}"></script> <!-- Script del efecto de máquina de escribir -->
