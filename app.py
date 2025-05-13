@@ -17,6 +17,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 from flask import Flask
 from flask_mail import Mail, Message
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "MiraQueSéQueMeVes"  # Necesario para sesiones
@@ -190,6 +191,17 @@ except Exception as e:
     print("Error al cargar los encoders:", e)
     raise e
 
+def login_required(roles=None):
+    def decorator(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            if 'username' not in session:
+                return redirect(url_for('login'))
+            if roles and session.get('type') not in roles:
+                return "Acceso no autorizado"
+            return f(*args, **kwargs)
+        return wrapped
+    return decorator
 
 # Página principal
 @app.route('/')
@@ -224,6 +236,7 @@ def login():
 
 
 @app.route('/admin_rrhh')
+@login_required(roles=["Admin_RRHH"])
 def admin_rrhh():
     #if 'username' in session and session.get('type') == "Admin_RRHH":
         #return f"Bienvenido {session.get('username')} al panel de Administrador de RRHH."
@@ -309,6 +322,7 @@ def entrenar_inicio():
 
 # Página de estadísticas
 @app.route("/estadisticas", methods=["GET", "POST"])
+@login_required(roles=["Admin_RRHH"])
 def estadisticas():
     if request.method == "POST":
         return render_template("predecir.html")
@@ -362,6 +376,7 @@ def estadisticas():
 
 # Ruta para predecir con un archivo CSV
 @app.route("/predecir", methods=["GET", "POST"])
+@login_required(roles=["Admin_RRHH"])
 def predecir():
     if request.method == "POST":
 
@@ -432,6 +447,7 @@ def predecir():
 
 
 @app.route("/postulantes")
+@login_required(roles=["Admin_RRHH"])
 def postulantes():
     candidatos = Candidato.query.order_by(Candidato.puntaje.desc()).all()
     #candidatos = Candidato.query.all()
@@ -473,6 +489,7 @@ def postulantes():
 
 
 @app.route("/limpiar_postulantes", methods=["POST"])
+@login_required(roles=["Admin_RRHH"])
 def limpiar_postulantes():
     try:
         # Eliminar todos los registros de la tabla "Candidato"
@@ -490,6 +507,7 @@ def limpiar_postulantes():
 
 
 @app.route("/predecir_postulantes", methods=["POST"])
+@login_required(roles=["Admin_RRHH"])
 def predecir_postulantes():
     try:
         # Cargar los candidatos existentes
@@ -553,6 +571,7 @@ def predecir_postulantes():
 
 
 @app.route('/asignar_puntajes', methods=["GET", "POST"])
+@login_required(roles=["Admin_RRHH"])
 def asignar_puntajes():
     candidatos = Candidato.query.filter_by(aptitud=True).all()
     for c in candidatos:
@@ -585,6 +604,7 @@ def calcular_puntaje(candidato):
 
 
 @app.route("/crear", methods=["GET", "POST"])
+@login_required(roles=["Admin_RRHH"])
 def crear_csv():
     # Inicializar valores dinámicos para los inputs select
     encoder_educacion_path = get_path("encoder_educacion.pkl")
@@ -658,6 +678,7 @@ def crear_csv():
 
 
 @app.route("/eliminar_candidato/<int:indice>", methods=["POST"])
+@login_required(roles=["Admin_RRHH"])
 def eliminar_candidato(indice):
     if "candidatos" in session:
         try:
@@ -671,6 +692,7 @@ def eliminar_candidato(indice):
 
 
 @app.route("/guardar_csv", methods=["POST"])
+@login_required(roles=["Admin_RRHH"])
 def guardar_csv():
     # Obtener los datos de la sesión
     candidatos = session.get("candidatos", [])
