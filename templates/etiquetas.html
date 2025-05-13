@@ -16,8 +16,7 @@
     </div>
 </header>
 
-<body class="container mt-4">
-  
+<body class="container mt-4">  
     <h1 class="mb-4">Etiquetas de Evaluación</h1>
     <h3>Educación</h3>
     {{ tabla_edu|safe }}
@@ -26,8 +25,8 @@
     <h3>Habilidades</h3>
     {{ tabla_hab|safe }}
     
-    <hr class="my-4">
-    <h3>Asignar nueva importancia (de 0 a 3)</h3>
+    <!--<hr class="my-4">-->
+    <h3 style="text-align: center; display: block; margin-left: auto; margin-right: auto;">Asignar nueva importancia (de 0 a 3)</h3>
     <form method="POST" action="{{ url_for('asignar_valores') }}">
         <div class="row mb-3">
             <div class="col-md-4">
@@ -65,7 +64,7 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+            <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
         </div>
         <div class="footer-description">
             <p>

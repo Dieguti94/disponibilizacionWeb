@@ -12,7 +12,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f2b61, #002369, #2a0047, #2f23d5);
+    background: linear-gradient(135deg, #001847, #011d55, #2a0047, #390061);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
@@ -149,7 +149,7 @@ h1 {
     border: 10px solid #fefefe;
     background: transparent;
     color: #fefefe;
-    text-shadow: -5px 5px 0px #b15fe8, -10px 10px 0px #7420e3, -15px 15px 0px #49007e;
+    text-shadow: -3px 3px 0px #49007e;
     box-shadow: 0 8px 20px -4px #ffffff;
     transition: all 0.3s ease-in-out;
     margin-top: 40px;     
@@ -181,7 +181,8 @@ h2 {
     border: 6px solid #fefefe;
     background: transparent;
     color: #fefefe;
-    text-shadow: -5px 5px 0px #b15fe8, -10px 10px 0px #7420e3, -15px 15px 0px #49007e;    box-shadow: 0 6px 16px -4px #ffffff;
+    text-shadow: -3px 3px 0px #49007e; 
+    box-shadow: 0 6px 16px -4px #ffffff;
     transition: all 0.3s ease-in-out;
     margin-left: 140px;
     margin-top: 60px;
@@ -390,6 +391,7 @@ table tr:hover {
     transition: all 0.3s ease-in-out;
 }
 
+
 .footer {
     background-color: #130047;
     color: #fff;
@@ -429,7 +431,7 @@ table tr:hover {
 
 .footer-logo img {
     margin-top: 1rem;
-    max-height: 90px;
+    max-height: 130px;
 }
 
 @media (max-width: 768px) {
@@ -504,13 +506,12 @@ table tr:hover {
 }
 
 .footer-country img {
-    
     width: 25px;
     margin-right: 5px;
 }
 
 .footer-bottom {
-    background-color: #27214b;
+    background-color: #0c0036;
     text-align: center;
     padding: 5px 0;
     margin-top: 5px;
@@ -518,7 +519,7 @@ table tr:hover {
 
 .footer-bottom p {
     font-size: 0.9rem;
-    color: #d1d1d1;
+    color: #02a1b6;
 }
 
 @media (max-width: 468px) {

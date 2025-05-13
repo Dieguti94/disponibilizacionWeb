@@ -6,16 +6,17 @@
     <title>Postulantes Predicción</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='StylesIndex.css') }}">
 </head>
+
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Logo">
+    </div>
+    <div class="nav">
+        <a href="{{ url_for('predecir') }}">Inicio</a>
+    </div>
+</header>
+
 <body>
-    <header>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Logo">
-        </div>
-        <div class="nav">
-            <a href="{{ url_for('predecir') }}">Inicio</a>
-        </div>
-    </header>
-    
     <h1>Postulados en la Web</h1>
     <div class="tabla-container">
         {{ tabla|safe }}
@@ -35,11 +36,11 @@
             <button type="submit">Ver todos</button>
         </form>
         <form method="get" action="{{ url_for('asignar_puntajes') }}" style="display:inline;">
-            <button type="submit">Asignar Puntajes</button>
+            <button type="submit" style="white-space: nowrap;">Asignar Puntajes</button>
         </form>
-        <form method="post" action="{{ url_for('limpiar_postulantes') }}" style="display:inline;">
+        <!--<form method="post" action="{{ url_for('limpiar_postulantes') }}" style="display:inline;">
             <button type="submit">Limpiar</button>
-        </form>
+        </form>-->
     </div>
 
 </body>
@@ -47,7 +48,7 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+            <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
         </div>
         <div class="footer-description">
             <p>
