@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, send_file, session, url_for, flash
+from flask import Flask, redirect, render_template, request, send_file, session, url_for, flash, has_request_context
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeClassifier, export_text, plot_tree
@@ -604,8 +604,9 @@ def asignar_puntajes():
     for c in candidatos:
         c.puntaje = calcular_puntaje(c)
     db.session.commit()
-    flash('Puntajes asignados correctamente.', 'success')
-    return redirect(url_for('postulantes'))
+    if has_request_context():
+        flash('Puntajes asignados correctamente.', 'success')
+        return redirect(url_for('postulantes'))
 
 def calcular_puntaje(candidato):
     puntaje = 0
