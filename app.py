@@ -203,6 +203,8 @@ def login_required(roles=None):
         return wrapped
     return decorator
 
+
+
 # Página principal
 @app.route('/')
 def index():
@@ -233,6 +235,12 @@ def login():
         else:
             return "Credenciales inválidas"
     return render_template("auth/login.html")
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 
 @app.route('/admin_rrhh')
@@ -718,7 +726,7 @@ def guardar_csv():
 
 
 @app.route("/etiquetas")
-@login_required()
+@login_required(roles=["Admin_RRHH"])
 def mostrar_etiquetas():
     educaciones = Educacion.query.all()
     tecnologias = Tecnologia.query.all()
@@ -742,6 +750,7 @@ def mostrar_etiquetas():
 
 
 @app.route("/asignar_valores", methods=["POST"])
+@login_required(roles=["Admin_RRHH"])
 def asignar_valores():
     # Educación
     educacion_id = request.form.get("educacion_id")
