@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postulantes Predicción</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='StylesIndex.css') }}">
+    <title>Métricas por oferta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='metricas.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <header>
@@ -17,26 +19,37 @@
 </header>
 
 <body>
-    <h1>Postulados en la Web</h1>
+    <h1>Métricas por oferta laboral</h1>
 
-    <form method="get" action="{{ url_for('postulantes') }}">
-        <label for="idOfer">Filtrar por oferta laboral:</label>
-        <select name="idOfer" onchange="this.form.submit()">
-            <option style="background-color: #3815b8 !important; color: white;" value="">-- Ver todos --</option>
-            {% for oferta in ofertas %}
-                <option style="background-color: #3815b8 !important; color: white;" value="{{ oferta.idOfer }}" {% if oferta.idOfer == idOfer %}selected{% endif %}>
-                    {{ oferta.nombre }}
-                </option>
-            {% endfor %}
-        </select>
-    </form>
+    <select id="ofertaSelect" style="background-color: #3815b8; color: white;">
+        <option style="background-color: #3815b8; color: white;" value="">-- Seleccionar oferta --</option>
+        {% for oferta in ofertas %}
+            <option style="background-color: #3815b8; color: white;" value="{{ oferta.idOfer }}">
+                {{ oferta.nombre }}
+            </option>
+        {% endfor %}
+    </select>
+    
+    <div style="width: 80%; margin: 0 auto;">
+        <canvas id="grafico_total_candidatos" width="400" height="200"></canvas>
+    </div>
 
-    <div class="tabla-container">
-        {{ tabla|safe }}
+    <div style="width: 80%; margin: 0 auto;">
+        <canvas id="grafico_candidatos_etiquetas" width="400" height="200"></canvas>
     </div>
     
-    
+    <div style="width: 80%; margin: 0 auto;">
+        <canvas id="grafico_experiencia_etiquetas" width="400" height="200"></canvas>
+    </div>
 
+    <div id="map-container">
+        <h2>Distribución de candidatos por provincia</h2>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script src="{{ url_for('static', filename='js/metricas.js') }}"></script>
 </body>
 
 <footer class="footer">
@@ -68,4 +81,5 @@
         <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
     </div>
 </footer>
+
 </html>

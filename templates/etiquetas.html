@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etiquetas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='StylesCrear.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='etiquetas.css') }}">
 </head>
 
 <header>
@@ -16,43 +16,72 @@
     </div>
 </header>
 
-<body class="container mt-4">  
-    <h1 class="mb-4">Etiquetas de Evaluación</h1>
-    <h3>Educación</h3>
-    {{ tabla_edu|safe }}
-    <h3>Tecnologías</h3>
-    {{ tabla_tec|safe }}
-    <h3>Habilidades</h3>
-    {{ tabla_hab|safe }}
+<body class="container mt-4">
+    <form method="GET" action="{{ url_for('mostrar_etiquetas') }}">
+        <label for="idOfer">Selecciona una oferta laboral:</label>
+        <select name="idOfer" onchange="this.form.submit()">
+            {% for ofer in ofertas %}
+                <option value="{{ ofer.idOfer }}" {% if ofer.idOfer|string == idOfer|string %}selected{% endif %}>
+                    {{ ofer.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+
+    {% if oferta %}
+        <h1>Etiquetas para "{{ oferta.nombre }}"</h1>
+        
+        <h3>Educación</h3>
+        {{ tabla_edu|safe }}
+        <h3>Tecnologías</h3>
+        {{ tabla_tec|safe }}
+        <h3>Habilidades</h3>
+        {{ tabla_hab|safe }}
+    {% else %}
+        <p>No hay ofertas laborales disponibles.</p>
+    {% endif %}
     
     <!--<hr class="my-4">-->
     <h3 style="text-align: center; display: block; margin-left: auto; margin-right: auto;">Asignar nueva importancia (de 0 a 3)</h3>
-    <form method="POST" action="{{ url_for('asignar_valores') }}" style="background-color: transparent !important; border: 0 !important; box-shadow: 0 !important;">
+    <form method="POST" action="{{ url_for('asignar_valores', idOfer=idOfer) }}">
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="educacion_id" class="form-label">Educación:</label>
                 <select name="educacion_id" class="form-select">
-                    {% for e in educaciones %}
-                        <option value="{{ e.idedu }}">{{ e.nombre }}</option>
-                    {% endfor %}
+                    {% if educaciones %}
+                        {% for e in educaciones %}
+                            <option value="{{ e.idEdu }}">{{ e.educacion.nombre }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option disabled>No hay etiquetas de educación</option>
+                    {% endif %}
                 </select>
                 <input type="number" name="valor_educacion" class="form-control mt-2" min="0" max="3" placeholder="Importancia">
             </div>
             <div class="col-md-4">
                 <label for="tecnologia_id" class="form-label">Tecnología:</label>
                 <select name="tecnologia_id" class="form-select">
-                    {% for t in tecnologias %}
-                        <option value="{{ t.idtec }}">{{ t.nombre }}</option>
-                    {% endfor %}
+                    {% if tecnologias %}
+                        {% for t in tecnologias %}
+                            <option value="{{ t.idTec }}">{{ t.tecnologia.nombre }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option disabled>No hay etiquetas de tecnología</option>
+                    {% endif %}
                 </select>
                 <input type="number" name="valor_tecnologia" class="form-control mt-2" min="0" max="3" placeholder="Importancia">
             </div>
             <div class="col-md-4">
                 <label for="habilidad_id" class="form-label">Habilidad:</label>
                 <select name="habilidad_id" class="form-select">
-                    {% for h in habilidades %}
-                        <option value="{{ h.idhab }}">{{ h.nombre }}</option>
-                    {% endfor %}
+                    {% if habilidades %}
+                        {% for h in habilidades %}
+                            <option value="{{ h.idHab }}">{{ h.habilidad.nombre }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option disabled>No hay etiquetas de habilidades</option>
+                    {% endif %}
                 </select>
                 <input type="number" name="valor_habilidad" class="form-control mt-2" min="0" max="3" placeholder="Importancia">
             </div>
@@ -64,7 +93,7 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
+             <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
         </div>
         <div class="footer-description">
             <p>

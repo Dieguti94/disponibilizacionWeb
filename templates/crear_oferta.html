@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nueva Oferta Laboral</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StylesCrear.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Logo">
+        </div>
+        <div class="nav">
+            <a href="{{ url_for('predecir') }}">Volver al Inicio</a>
+        </div>
+    </header>
+
+    <h1>Crear Nueva Oferta Laboral</h1>
+    
+    <form method="POST" action="{{ url_for('crear_oferta') }}">
+        <label for="nombre">Nombre de la oferta:</label>
+        <input type="text" name="nombre" required>
+
+        <label for="fecha_cierre">Fecha de cierre:</label>
+        <input type="date" name="fecha_cierre" required>
+
+        <label for="max_candidatos">Cantidad máxima de candidatos:</label>
+        <input type="number" name="max_candidatos" min="1" required>
+
+        <label for="remuneracion">Remuneración:</label>
+        <input type="number" name="remuneracion" placeholder="Ej: 4000" required>
+
+        <label for="beneficio">Beneficio:</label>
+        <input type="text" name="beneficio" placeholder="Ej: Home office" required>
+
+        <p>Usuario responsable: <strong>{{ session.get('username') }}</strong></p>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+            {% for message in messages %}
+                <div class="alert">{{ message|safe }}</div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <button type="submit">Crear Oferta</button>
+    </form>
+
+    <footer>
+        <p>©2025 IA para la Predicción de Candidatos</p>
+    </footer>
+</body>
+</html>

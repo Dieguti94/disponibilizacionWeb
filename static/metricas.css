@@ -3,6 +3,20 @@ html {
     background: #5A189A;
 }
 
+#map-container {
+    display: none; /* Ocultar hasta que se seleccione una oferta */
+    width: 40%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/*INCOMPLETO*/
 body {
     display: flex;
     flex-direction: column;
@@ -103,39 +117,6 @@ header .nav a:hover {
     }
 }
 
-#language-dropdown {
-    justify-content: center;
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 20px;
-    background-color: #1a1a1a;
-    padding: 0.3rem 0;
-    list-style: none;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(160, 0, 0, 0.4);
-}
-
-#language-dropdown button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    height: 35px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    border: none;
-    background-color: #2a2a2a;
-    color: #fff;
-    cursor: pointer;
-}
-
-#language-dropdown button img {
-    margin-right: 6px;
-    width: 20px;
-    height: 14px;
-}
 
 h1 {
     font-family: "Erica One", sans-serif;
@@ -184,7 +165,6 @@ h2 {
     text-shadow: -3px 3px 0px #49007e; 
     box-shadow: 0 6px 16px -4px #ffffff;
     transition: all 0.3s ease-in-out;
-    margin-left: 140px;
     margin-top: 60px;
     margin-bottom: 5px;
 }
@@ -204,70 +184,7 @@ form h3 {
     margin-bottom: 10px;
 }
 
-form {
-    animation: elevar 2s ease-out forwards;
-    margin: 3rem auto 4rem auto;
-    padding: 25px;
-    border-radius: 25px;
-    width: 50%;
-    text-align: center;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.267);
-    background-size: 400% 400%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 20px  rgba(255, 255, 255, 0.4);
-    margin-bottom: 5px;
-}
 
-input,
-select,
-button {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);  
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 10px auto;
-    padding: 12px 14px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.2); 
-    border: none;  
-    transition: all 0.3s ease-in-out;
-    width: 180px;
-}
-
-input:focus,
-select:focus,
-button:hover {
-   
-    color: #ffffff;  
-    text-shadow: 0 0 10px #ffffff;
-    transform: scale(1.1);  
-    outline: none;
-}
-
-button {
-    background-color: transparent;
-    color: #fdfdfd;
-    border: none;
-    font-weight: 600;
-    padding: 1rem 1rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-    margin: 1rem; 
-}
-
-button:hover {
-    transform: scale(1.05);  
-}
-
-form p {
-    color: #ffd6d6;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
 
 .Highbutton {
     background: linear-gradient(135deg, #b950ff);

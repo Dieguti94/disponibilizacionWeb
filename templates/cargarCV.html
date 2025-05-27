@@ -19,7 +19,15 @@
 
 <body>
     <h1>Carga el CV del candidato</h1>
-    <form method="post" action="/postulacion">
+    <form method="post" action="/cargarCV">
+
+        <label for="idOfer">Selecciona una oferta laboral:</label>
+        <select name="idOfer" required>
+            <option value="">-- Selecciona una oferta --</option>
+            {% for oferta in opciones_ofertas if oferta.estado != "Cerrada" %}
+                <option value="{{ oferta.idOfer }}">{{ oferta.nombre }}</option>
+            {% endfor %}
+        </select>
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}" title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
         
@@ -84,8 +92,19 @@
             <option value="{{ opcion }}">{{ opcion }}</option>
             {% endfor %}
         </select>
-        
+       
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+            {% for message in messages %}
+                <div class="alert">{{ message|safe }}</div>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
         <button type="submit">Enviar CV</button>
+        
+
     </form>
 </body>
 

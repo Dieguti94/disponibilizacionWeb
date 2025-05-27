@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Ofertas Laborales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='StylesIndex.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Logo">
+        </div>
+        <div class="nav">
+            <a href="{{ url_for('predecir') }}">Volver al Inicio</a>
+        </div>
+    </header>
+
+    <h1>Ofertas Laborales</h1>
+
+    <div class="tabla-container">
+        {{ tabla|safe }}
+    </div>
+
+    {% if not mensaje %}
+        <div class="acciones">
+            {% for oferta in ofertas %}
+                {% if oferta.estado == "Activa" %}
+                    <form method="POST" action="{{ url_for('cerrar_oferta', idOfer=oferta.idOfer) }}" style="display:inline;">
+                        <button type="submit">Cerrar oferta</button>
+                    </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+</body>
+</html>
