@@ -1,72 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
 html {
-    background: #5A189A;
+    background: linear-gradient(to bottom, #000000, #353535);
 }
 
-#map-container {
-    display: none; /* Ocultar hasta que se seleccione una oferta */
-    width: 40%;
-    margin: 20px auto;
-    text-align: center;
-}
 
-#map {
-    height: 500px;
-    width: 100%;
-    margin-top: 10px;
-}
-
-form {
-    animation: elevar 2s ease-out forwards;
-    margin: 3rem auto 4rem auto;
-    padding: 25px;
-    border-radius: 25px;
-    width: 50%;
-    text-align: center;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.267);
-    background-size: 400% 400%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 20px  rgba(255, 255, 255, 0.4);
-    margin-bottom: 5px;
-}
-
-select {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);  
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 10px auto;
-    padding: 12px 14px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.2); 
-    border: none;  
-    transition: all 0.3s ease-in-out;
-    width: 300px;
-    text-align: center;
-}
-
-select:focus {
-    color: #ffffff;  
-    text-shadow: 0 0 10px #ffffff;
-    transform: scale(1.1);  
-    outline: none
-}
-
-/*INCOMPLETO*/
+/*cambioooo*/
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
     min-height: 100vh; 
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
     background: linear-gradient(135deg, #001847, #011d55, #2a0047, #390061);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
+	
 }
 
 @keyframes gradient {
@@ -79,6 +30,12 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.seccion-tabla {
+    background: white; 
+    background-size: cover; 
+    
 }
 
 header {
@@ -106,53 +63,6 @@ header .nav {
     display: flex;
     align-items: center;
     height: 100%;
-}
-
-header .nav a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8); 
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-right: 2rem;
-    padding: 8px 14px;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.2);  
-    border: 2px solid #fff;  
-    transition: all 0.3s ease-in-out;  
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);  
-}
-
-header .nav a:hover {
-    background-color: rgba(255, 255, 255, 0.4);  
-    color: #ffffff;  
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);  
-    transform: scale(1.1);  
-}
-
-@media (max-width: 800px) {
-    header .nav a {
-        font-size: 0.7rem;
-        margin-right: 0.5rem;
-    }
-
-    header .logo img {
-        margin-left: 5px;
-        max-height: 50px; 
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 460px) {
-    header .nav a {
-        font-size: 0.4rem;
-        margin-right: 0.3rem;
-    }
-
-    header .logo img {
-        margin-left: 5px;
-        max-height: 40px;
-        max-width: 100%;
-    }
 }
 
 h1 {
@@ -189,115 +99,35 @@ h1 .subtitulo {
 }
 
 
-
-
-h2 {
-    font-family: "Erica One", sans-serif;
+.titulo2{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; 
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); 
+    background: rgba(94, 36, 255, 0.76); 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgb(164, 73, 250); 
+    width: fit-content; 
+    margin: 20px auto; 
     animation: elevar 2s ease-out forwards;
-    font-size: 2rem;  
-    padding: 1rem;
-    margin: 1rem auto;
-    width: fit-content;
+}
+
+.accuracy {
+    animation: elevar 2s ease-out forwards;
     text-align: center;
-    border-radius: 24px;
-    border: 6px solid #fefefe;
-    background: transparent;
-    color: #fefefe;
-    text-shadow: -3px 3px 0px #49007e; 
-    box-shadow: 0 6px 16px -4px #ffffff;
-    transition: all 0.3s ease-in-out;
-    margin-top: 60px;
-    margin-bottom: 5px;
-}
-
-form h3 {
-    font-family: "Erica One", sans-serif;
-    font-size: 2rem;
-    padding: 2rem;
-    margin: 1rem auto;
-    width: fit-content;
-    text-align: center;
-    border-radius: 32px;
-    background: transparent;
-    color: #fefefe;
-    text-shadow: 0 0 10px #ffffff;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(to right,  #be4dff, #2f00ff);
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 
 
-
-.Highbutton {
-    background: linear-gradient(135deg, #b950ff);
-    border: blue;
-    padding: 1rem 2rem; 
-    font-size: 1.2rem;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-    width: 100%;  
-    max-width: 480px; 
-    text-align: center; 
-    box-sizing: border-box;  
-    margin: 0 auto;  
-}
-
-.Highbutton:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(153, 0, 255, 0.6);
-}
-
-@media (max-width: 768px) {
-    .Highbutton {
-        padding: 1rem; 
-        font-size: 1rem; 
-    }
-    .file-label {
-        padding: 1rem; 
-        font-size: 1rem; 
-    }
-}
-
-@media (max-width: 460px) {
-    .Highbutton {
-        padding: 0.8rem; 
-        font-size: 0.9rem; 
-    }
-    .file-label {
-        padding: 0.8rem; 
-        font-size: 0.9rem; 
-    }
-}
-
-.file-label {
-    display: inline-block;
-    font-weight: 700;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    color: #fff;
-    background: rgb(39, 7, 158);
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;  
-    max-width: 480px;
-    text-align: center;
-    box-sizing: border-box; 
-    margin: 0 auto; 
-}
-
-.file-label:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 4, 255, 0.6);
-}
-
-.file-label input[type="file"] {
-    display: none;
-}
 
 .tabla-container {
     overflow-x: auto;
@@ -308,46 +138,56 @@ form h3 {
 }
 
 table {
-    max-width: 80%;  
-    width: 100%;  
+    max-width: 80%;
+    width: 100%;
     border-collapse: separate;
-    background-color: rgba(255, 255, 255, 0.1);  
-    color: rgba(255, 255, 255, 0.85);
-    border-radius: 2px;
-    border: 2px solid #fff; 
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);  
+    border-spacing: 0;
+    background-color: rgba(106, 90, 205); 
+    color: rgba(255, 240, 250, 0.9);
+    border-radius: none;
+    border: 2px solid rgb(156, 18, 248);
+    box-shadow: 0 0 12px rgb(137, 18, 248);
     transition: all 0.3s ease-in-out;
-    animation: elevar 2s ease-out forwards;
-    margin-bottom: 30px;
-    margin-left: auto; 
-    margin-right: auto; 
-    margin-top: 20px;
+    animation: elevar 1.5s ease-out forwards;
+    margin: 20px auto 30px auto;
+    backdrop-filter: blur(8px);
 }
 
 table th, table td {
-    padding: 10px 14px;
+    padding: 14px 18px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(4px);  
+     border: 2px solid rgb(156, 18, 248);
+    backdrop-filter: blur(6px);
 }
 
 table th {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(72, 61, 139); 
     color: #fff;
     font-weight: bold;
 }
 
-table tr:nth-child(even),
-table tr:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.1);
+table tr:nth-child(odd),
+table tr:nth-child(even) {
+    background-color: rgba(255, 192, 240, 0.08);  
 }
 
 table tr:hover {
-    background-color: rgba(255, 0, 212, 0.3);
+    background-color: rgba(76, 0, 255, 0.3); 
     color: #ffffff;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 20px rgba(162, 23, 255, 0.4);
     transform: scale(1.01);
-    transition: all 0.3s ease-in-out;
+}
+
+.formTransparent {
+    background-color: transparent;
+    border: none;
+    padding: 1rem;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
 }
 
 

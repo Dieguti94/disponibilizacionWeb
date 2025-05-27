@@ -2,36 +2,32 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de Predicción</title>
+    <title>Entrenamiento Inicial</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='StylesIndex.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Logo">
-        </div>
-        <div class="nav">
-            <a href="{{ url_for('predecir') }}">Inicio</a>
-        </div>
-    </header>
-    
-    <h1>Resultados de Predicción</h1>
-    <div class="tabla-container">
-        {{ tabla|safe }}
-    </div>
 
+
+
+<body>
+    <h1 style="margin-top: 7rem; margin-bottom: 2rem;font-size: 3rem;">Entrenar Modelo</h1>
+    <form style="margin-bottom: 7rem;" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="archivo_entrenamiento" class="form-label">Archivo CSV de entrenamiento</label>
+            <input class="form-control" type="file" id="archivo_entrenamiento" name="archivo_entrenamiento" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Entrenar modelo</button>
+    </form>
 </body>
 
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
+            <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Image">
         </div>
         <div class="footer-description">
             <p>
                 Abal, Fernando Gabriel<br>
-                Ábalos, Lucas Gabriel<br>
                 Bianciotto, Matías Felipe<br>
                 Gutiérrez, Diego Germán<br>
                 Roldan, Guadalupe <br>
@@ -53,4 +49,5 @@
         <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
     </div>
 </footer>
+
 </html>

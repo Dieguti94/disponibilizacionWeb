@@ -38,7 +38,7 @@ header {
     box-sizing: border-box;
     top: 0;
     z-index: 10;
-    position: relative;
+    position: fixed;
     padding: 10px 20px;
     background-color: transparent; 
 }
@@ -82,6 +82,8 @@ h1 {
 
 
 .footer {
+   position: relative;
+  
     background-color: #130047;
     color: #fff;
     font-family: "Roboto", sans-serif;
@@ -119,8 +121,29 @@ h1 {
 }
 
 .footer-logo img {
-    margin-top: 1rem;
-    max-height: 130px;
+    margin-top: 1.5rem;
+    max-height: 100px;
+}
+
+
+.social-media {
+  display: flex;
+  gap: 20px;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-media a {
+  color: #ffffff; /* color base gris */
+  transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  color: #6e0ff5; /* púrpura/neón, puedes cambiar por el color que quieras */
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 6px #6e0ff5);
 }
 
 @media (max-width: 768px) {
@@ -318,8 +341,6 @@ h1 {
   filter: drop-shadow(0 0 20px var(--clr));
 }
 
-
-
 /* MENU DE USUARIO */
 
 .user-menu-wrapper {
@@ -372,7 +393,6 @@ h1 {
   z-index: 0;
 }
 
-
 .user-menu-wrapper input[type="checkbox"]:checked ~ .user-menu-container {
   clip-path: inset(0% 0% 0% 0% round 10px);
   opacity: 1;
@@ -382,15 +402,7 @@ h1 {
   z-index: 100;
 }
 
-
-
-
-
-
-
 /*MENU DESPLEGABLE LATERAL*/
-
-
 .menu-icon {
   font-size: 2rem;
   cursor: pointer;
@@ -412,20 +424,23 @@ h1 {
 
 /* Menú lateral */
 .side-menu {
-  position: fixed;
+ position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
   width: 280px;
-  height: 100%;
   background-color: rgb(23, 6, 99);
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.4);
   transform: translateX(-100%);
   transition: transform 0.4s ease-in-out;
-  z-index: 100;
+  z-index: 5; 
   padding: 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+ 
+  overflow: visible !important; /* Asegura que no recorte el tooltip */
+  
 }
 
 
@@ -438,9 +453,13 @@ h1 {
 
 
 .menu-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
+  padding-right: 8px;
 }
 
 
@@ -471,7 +490,6 @@ details:hover {
   background-color: rgba(183, 0, 255, 0.3);
 }
 
-
 summary {
   cursor: pointer;
   font-weight: bold;
@@ -485,7 +503,6 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-
 .arrow {
   font-size: 1.4rem;
   color: #ccc;
@@ -494,7 +511,6 @@ summary::-webkit-details-marker {
 details[open] .arrow {
   transform: rotate(180deg);
 }
-
 
 .submenu {
   padding: 10px 20px;
@@ -516,7 +532,6 @@ details[open] .arrow {
   box-shadow: 0 0 30px 5px rgb(80, 61, 255);
   border: 2px solid rgb(80, 61, 255);
 }
-
 
 .menu-list {
   padding: 10px 12px;
@@ -542,8 +557,6 @@ details[open] .arrow {
   background-color: #100db6;
   width: 95%;
 }
-
-
 .inp:checked ~ label .bar > .top {
   transform-origin: top right;
   transform: rotate(-35deg) translateX(-0.5px);
@@ -562,16 +575,10 @@ details[open] .arrow {
 .inp:not(:checked) ~ label .bar > .middle {
   opacity: 1;
 }
-
-
-
-
-
 .support-button-wrapper {
-  position: absolute;
-  top: 1.4rem;
-  right: 120px;
-  
+  margin-top: auto;
+  padding-top: 1rem;
+  position: relative; /* Necesario para posicionar absolutamente dentro */
 }
 
 .support-button {
@@ -595,35 +602,22 @@ details[open] .arrow {
 }
 
 .tooltip {
-  position: absolute;
-  top: 105%; 
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px); 
+   position: absolute;
+  top: 50%;
+  left: 90%; /* Lo coloca a la derecha del botón */
+  transform: translateY(-50%) translateX(10px); /* Ajusta separación del botón */
   min-width: 200px;
   opacity: 0;
   pointer-events: none;
   transition: 0.4s ease;
-  z-index: 1001;
+  z-index: 30; /* Muy alto para que quede por encima de todo */
   padding-left: 0;
 }
 
 .support-button:hover > .tooltip {
-  opacity: 1;
+   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0); 
-}
-
-
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: -6px; 
-  left: 50%;
-  transform: translateX(-50%) rotate(0deg);
-  width: 12px;
-  height: 12px;
-  background: #7644ff;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: translateY(-75%) translateX(10px); /* Debe coincidir */
 }
 
 .tooltip-link {
@@ -656,19 +650,6 @@ details[open] .arrow {
 .tooltip-menu-with-icon i {
   color: #ffffff;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.user-name {
+  text-align: center;
+}

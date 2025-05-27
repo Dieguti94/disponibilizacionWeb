@@ -23,6 +23,21 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+.flash-messages {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    max-width: 500px;
+}
+
+.alert {
+    background-color: #a56ae9;
+    color: #921010;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #941b1b;
+    font-weight: bold;
+}
+
 .container {
   position: relative;
   width: 850px;
@@ -209,6 +224,26 @@ body {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
+.contact-info {
+    max-width: 45%;
+    padding: 2rem;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+    
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: #c3a6ff;
+}
+
+.d-none {
+    display: none !important;
+}
 
 
 

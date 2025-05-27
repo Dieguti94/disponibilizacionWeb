@@ -1,6 +1,5 @@
 import pytest
-from FlaskLocal import app as app_local  # Cambiar a una importación relativa
-from FlaskCandidatos import app as app_candidatos
+from app import app as app_local  # Cambiar a una importación relativa
 
 # Fixture de pytest que configura un cliente de prueba de Flask
 # Se usa para simular solicitudes HTTP en un entorno controlado (modo TESTING)

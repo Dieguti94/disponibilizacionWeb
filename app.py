@@ -41,10 +41,10 @@ email = Mail(app)
 # Base de datos
     
 class Candidato(db.Model):
-    id = db.Column(db.String, primary_key=True)  # Usamos el correo como ID único
+    id = db.Column(db.String(150), primary_key=True)  # Usamos el correo como ID único
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
-    mail = db.Column(db.String(100), nullable=False, unique=True)
+    mail = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.String(50), nullable=False)
     ubicacion = db.Column(db.String(100), nullable=False)
     experiencia = db.Column(db.Integer, nullable=False)
@@ -149,7 +149,7 @@ def get_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
-'''
+"""
 # Crear la base de datos y agregar usuarios ficticios si no existen
 #if not os.path.exists("erp_rrhh.db"):
 with app.app_context():
@@ -196,7 +196,7 @@ with app.app_context():
     db.session.add(usuario_analista)
     db.session.commit()
     print("Usuarios ficticios creados con éxito.")
-'''
+"""
 # Cargar el modelo correctamente
 modelo_path = get_path("modelo_candidatos.pkl")
 
@@ -253,19 +253,24 @@ def login():
         password = request.form['password']
         user = Usuario.query.filter_by(username=username).first()
         
-        if user and check_password_hash(user.password, password):
-            session['username'] = user.username
-            session['type'] = user.type
-            # Redirige según el rol usando url_for
-            if user.type == "Admin_RRHH":
-                return redirect(url_for('admin_rrhh'))
-            elif user.type == "Supervisor":
-                return redirect(url_for('supervisor'))
-            elif user.type == "Analista_Datos":
-                return redirect(url_for('analista'))
+        if user:
+            if (check_password_hash(user.password, password)):
+                session['username'] = user.username
+                session['type'] = user.type
+                # Redirige según el rol usando url_for
+                if user.type == "Admin_RRHH":
+                    return redirect(url_for('admin_rrhh'))
+                elif user.type == "Supervisor":
+                    return redirect(url_for('supervisor'))
+                elif user.type == "Analista_Datos":
+                    return redirect(url_for('analista'))
+                else:
+                    return "Rol no reconocido"
             else:
-                return "Rol no reconocido"
+                flash("Contraseña incorrecta")
+                return render_template("auth/login.html")
         else:
+            flash("Usuario no existente")
             return render_template("auth/login.html")
     return render_template("auth/login.html")
 
@@ -330,16 +335,19 @@ def enviar_correos():
 @app.route("/postulacionIT")
 def postulacionIT():
     # Las opciones ya están en la base de datos, no necesitamos encoders aquí
+    opciones_ofertas = [{"idOfer": oferta.idOfer, "nombre": oferta.nombre} for oferta in OfertaLaboral.query.filter(OfertaLaboral.estado != "Cerrada").all()]
     opciones_educacion = [educacion.nombre for educacion in Educacion.query.all()]
     opciones_tecnologias = [tecnologia.nombre for tecnologia in Tecnologia.query.all()]
     opciones_habilidades = [habilidad.nombre for habilidad in Habilidad.query.all()]
 
+    session["opciones_ofertas"] = opciones_ofertas
     session["opciones_educacion"] = opciones_educacion
     session["opciones_tecnologias"] = opciones_tecnologias
     session["opciones_habilidades"] = opciones_habilidades
 
     return render_template(
         "postulacion.html",
+        opciones_ofertas=session["opciones_ofertas"],
         opciones_educacion=session["opciones_educacion"],
         opciones_tecnologias=session["opciones_tecnologias"],
         opciones_habilidades=session["opciones_habilidades"]
@@ -377,6 +385,7 @@ def postulacion():
         educacion = request.form["educacion"]
         tecnologias = request.form["tecnologias"]
         habilidades = request.form["habilidades"]
+        idOfer = request.form.get("idOfer")
 
         try:
             # Buscar el ID correspondiente en las tablas
@@ -394,7 +403,7 @@ def postulacion():
 
             # Crear y guardar el candidato
             nuevo_candidato_db = Candidato(
-                id=email,
+                id=email + idOfer,
                 nombre=nombre,
                 apellido=apellido,
                 mail=email,
@@ -404,18 +413,20 @@ def postulacion():
                 idedu=idedu,
                 idtec=idtec,
                 idhab=idhab,
+                idOfer=idOfer,
                 aptitud=None
             )
             db.session.add(nuevo_candidato_db)
             db.session.commit()
-            flash(f"{nombre}, tu CV ha sido correctamente enviado.")
+            flash(f"{nombre}, tu CV ha sido correctamente enviado a la oferta laboral de: '{OfertaLaboral.query.get(idOfer).nombre}'.")
         except Exception as e:
-            flash(f"Error al guardar el candidato: {e}")
+            flash(f"Este mail ya había sido registrado en esta postulación")
             return redirect("/postulacion")
 
     return render_template(
         "postulacion.html",
         #es_admin=es_admin,
+        opciones_ofertas=session["opciones_ofertas"],
         opciones_educacion=session["opciones_educacion"],
         opciones_tecnologias=session["opciones_tecnologias"],
         opciones_habilidades=session["opciones_habilidades"]
@@ -425,48 +436,58 @@ def postulacion():
 @login_required(roles=["Admin_RRHH"])
 def crear_oferta():
     if request.method == "POST":
-        nombre = request.form.get("nombre")
-        fecha_cierre_str = request.form.get("fecha_cierre")
-        max_candidatos = int(request.form.get("max_candidatos"))
-        remuneracion = "$" + request.form.get("remuneracion")  # 💰 Agregar "$"
-        beneficio = request.form.get("beneficio")  # 🎁 Recibir beneficio
-        usuario_responsable = session.get("username")  # 👤 Obtener usuario logueado
+        try:
+            nombre = request.form.get("nombre")
+            fecha_cierre_str = request.form.get("fecha_cierre")
+            max_candidatos = int(request.form.get("max_candidatos"))
+            remuneracion = "$" + request.form.get("remuneracion")  # 💰 Agregar "$"
+            beneficio = request.form.get("beneficio")  # 🎁 Recibir beneficio
+            usuario_responsable = session.get("username")  # 👤 Obtener usuario logueado
+            fecha_cierre = datetime.strptime(fecha_cierre_str, "%Y-%m-%d")
 
-        fecha_cierre = datetime.strptime(fecha_cierre_str, "%Y-%m-%d")
+            # 🔹 Verificar si el nombre ya existe
+            if OfertaLaboral.query.filter_by(nombre=nombre).first():
+                flash(f"Error: La oferta '{nombre}' ya existe. Elige un nombre diferente.")
+                return redirect("/crear_oferta")
 
-        nueva_oferta = OfertaLaboral(
-            nombre=nombre,
-            fecha_cierre=fecha_cierre,
-            max_candidatos=max_candidatos,
-            remuneracion=remuneracion,
-            beneficio=beneficio,
-            estado="Activa",  # 🔄 Siempre comienza como "Activa"
-            usuario_responsable=usuario_responsable
-        )
-        db.session.add(nueva_oferta)
-        db.session.flush()  # 🔹 Garantizar que obtenemos el ID antes de insertar etiquetas
+            nueva_oferta = OfertaLaboral(
+                nombre=nombre,
+                fecha_cierre=fecha_cierre,
+                max_candidatos=max_candidatos,
+                remuneracion=remuneracion,
+                beneficio=beneficio,
+                estado="Activa",  # 🔄 Siempre comienza como "Activa"
+                usuario_responsable=usuario_responsable
+            )
+            db.session.add(nueva_oferta)
+            db.session.flush()  # 🔹 Garantizar que obtenemos el ID antes de insertar etiquetas
 
-        # 🔹 Cargar encoders
-        encoder_educacion = joblib.load(get_path("encoder_educacion.pkl"))
-        encoder_tecnologias = joblib.load(get_path("encoder_tecnologias.pkl"))
-        encoder_habilidades = joblib.load(get_path("encoder_habilidades.pkl"))
+            # 🔹 Cargar encoders
+            encoder_educacion = joblib.load(get_path("encoder_educacion.pkl"))
+            encoder_tecnologias = joblib.load(get_path("encoder_tecnologias.pkl"))
+            encoder_habilidades = joblib.load(get_path("encoder_habilidades.pkl"))
 
-        # 🔹 Asignar etiquetas en las tablas intermedias con importancia = 0
-        for idx, clase in enumerate(encoder_educacion.classes_):
-            nueva_relacion = OfertaEducacion(idOfer=nueva_oferta.idOfer, idEdu=idx, importancia=0)
-            db.session.add(nueva_relacion)
+            # 🔹 Asignar etiquetas en las tablas intermedias con importancia = 0
+            for idx, clase in enumerate(encoder_educacion.classes_):
+                nueva_relacion = OfertaEducacion(idOfer=nueva_oferta.idOfer, idEdu=idx, importancia=0)
+                db.session.add(nueva_relacion)
 
-        for idx, clase in enumerate(encoder_tecnologias.classes_):
-            nueva_relacion = OfertaTecnologia(idOfer=nueva_oferta.idOfer, idTec=idx, importancia=0)
-            db.session.add(nueva_relacion)
+            for idx, clase in enumerate(encoder_tecnologias.classes_):
+                nueva_relacion = OfertaTecnologia(idOfer=nueva_oferta.idOfer, idTec=idx, importancia=0)
+                db.session.add(nueva_relacion)
 
-        for idx, clase in enumerate(encoder_habilidades.classes_):
-            nueva_relacion = OfertaHabilidad(idOfer=nueva_oferta.idOfer, idHab=idx, importancia=0)
-            db.session.add(nueva_relacion)
+            for idx, clase in enumerate(encoder_habilidades.classes_):
+                nueva_relacion = OfertaHabilidad(idOfer=nueva_oferta.idOfer, idHab=idx, importancia=0)
+                db.session.add(nueva_relacion)
 
-        db.session.commit()  # 🔹 Guardar todas las asociaciones
-        flash(f"Oferta '{nombre}' creada con éxito 🎉 con estado '{nueva_oferta.estado}' y etiquetas asignadas")
-        return redirect("/crear_oferta")
+            db.session.commit()  # 🔹 Guardar todas las asociaciones
+            flash(f"Oferta '{nombre}' creada con éxito 🎉 con estado '{nueva_oferta.estado}' y etiquetas asignadas", "success")
+            return redirect("/crear_oferta")
+
+        except Exception as e:
+            db.session.rollback()  # 🔄 Revierte cambios si hay error
+            flash(f"Error al crear la oferta: {str(e)}")
+            return redirect("/crear_oferta")
 
     return render_template("crear_oferta.html")
 
@@ -504,23 +525,15 @@ def ver_ofertas():
 @login_required(roles=["Admin_RRHH"])
 def cerrar_oferta(idOfer):
     oferta = OfertaLaboral.query.get(idOfer)
-
-    if not oferta or oferta.fecha_cierre <= datetime.now():
-        flash("La oferta ya está cerrada o no existe.", "error")
-        return redirect(url_for("ver_ofertas"))
-
     oferta.fecha_cierre = datetime.now()  # 🔹 Fecha de cierre en el momento actual
     oferta.estado = "Cerrada"
     
-
     predecir_postulantes_automatica(oferta.idOfer)
     asignar_puntajes_automatica(oferta.idOfer)
-
     enviar_correos_automatica(oferta.idOfer)
     
     db.session.commit()
 
-    flash(f"La oferta '{oferta.nombre}' ha sido cerrada correctamente.", "success")
     return redirect(url_for("ver_ofertas"))
 
 
@@ -652,9 +665,14 @@ def predecir():
 
 @app.route("/postulantes")
 @login_required(roles=["Admin_RRHH"])
-def postulantes():
-    idOfer = request.args.get("idOfer")  # Capturar la oferta seleccionada
+def postulantes(idOfer=None):
     filtro = request.args.get("filtro")
+    
+    ofertas = OfertaLaboral.query.all()
+    if not idOfer:
+        idOfer = request.form.get("idOfer") if request.method == "POST" else request.args.get("idOfer")
+        if not idOfer and ofertas:
+            idOfer = ofertas[0].idOfer  # Primera oferta como default
 
     # 🔹 Detectar ofertas cerradas automáticamente
     ofertas_cerradas = OfertaLaboral.query.filter(OfertaLaboral.fecha_cierre <= datetime.now(), OfertaLaboral.estado == "Activa").all()
@@ -685,7 +703,7 @@ def postulantes():
     dataSet = pd.DataFrame([{
         "Nombre": c.nombre,
         "Apellido": c.apellido,
-        "Email": c.id,
+        "Email": c.mail,
         "Telefono": c.telefono,
         "Ubicacion": c.ubicacion,
         "Experiencia": c.experiencia,
@@ -938,7 +956,7 @@ def cargarCV():
 
             # Crear y guardar el candidato con la oferta laboral seleccionada
             nuevo_candidato_db = Candidato(
-                id=email,
+                id=email + idOfer,
                 nombre=nombre,
                 apellido=apellido,
                 mail=email,
@@ -955,7 +973,7 @@ def cargarCV():
             db.session.commit()
             flash(f"Candidato {nombre} guardado correctamente y asociado a la oferta laboral '{OfertaLaboral.query.get(idOfer).nombre}'.")
         except Exception as e:
-            flash(f"Error al guardar el candidato: {e}")
+            flash(f"Este mail ya había sido registrado en esta postulación")
             return redirect("/cargarCV")
 
     return render_template(
@@ -970,6 +988,8 @@ def cargarCV():
 @app.route("/etiquetas", methods=["GET", "POST"])
 @login_required(roles=["Admin_RRHH"])
 def mostrar_etiquetas(idOfer=None):
+
+    ofertas_activas = [{"idOfer": oferta.idOfer, "nombre": oferta.nombre} for oferta in OfertaLaboral.query.filter(OfertaLaboral.estado != "Cerrada").all()]
     ofertas = OfertaLaboral.query.all()
     if not idOfer:
         idOfer = request.form.get("idOfer") if request.method == "POST" else request.args.get("idOfer")
@@ -998,6 +1018,7 @@ def mostrar_etiquetas(idOfer=None):
 
     return render_template("etiquetas.html",
                            ofertas=ofertas,
+                           ofertas_activas=ofertas_activas,
                            oferta=oferta,
                            idOfer=idOfer,  # 🔹 Pasar la oferta seleccionada al HTML
                            tabla_edu=tabla_edu,

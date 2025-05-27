@@ -1,6 +1,7 @@
+from typing import Literal
+from flask.testing import FlaskClient
 import pytest
-from FlaskLocal import Candidato,db
-from FlaskCandidatos import app as app_candidatos
+from app import app as app_candidatos,Candidato,db
 
 # Fixture para eliminar candidatos específicos antes de ejecutar los tests
 @pytest.fixture(scope="function", autouse=True)
@@ -36,7 +37,8 @@ def client_Candidatos():
         ('Jose', 'Perez', 'correoDePueba4123@gmail.com', '1343567856', 'Buenos Aires', '2', 'Secundario', 'Python', 'Trabajo en equipo'),
     ]
 )
-def test_valid_agregar_postulacion(client_Candidatos, nombre, apellido, email, telefono, ubicacion, experiencia, educacion, tecnologias, habilidades):
+def test_valid_agregar_postulacion(client_Candidatos: FlaskClient, nombre: Literal['Lucas'] | Literal['Jose'], apellido: Literal['Abalos'] | Literal['Perez'], email: Literal['correoDePueba123@gmail.com'] | Literal['correoDePueba4123@gmail.com'], telefono: Literal['1135356456'] | Literal['1343567856'], ubicacion: Literal['Buenos Aires'], experiencia: Literal['2'], educacion: Literal['Secundario'], tecnologias: Literal['Python'], habilidades: Literal['Trabajo en equipo']):
+    client_Candidatos.get('/postulacionIT')
     response = client_Candidatos.post('/postulacion', data={
         'nombre': nombre,
         'apellido': apellido,
@@ -46,7 +48,8 @@ def test_valid_agregar_postulacion(client_Candidatos, nombre, apellido, email, t
         'experiencia': experiencia, 
         'educacion': educacion,  
         'tecnologias': tecnologias,        
-        'habilidades': habilidades    
+        'habilidades': habilidades,
+        'puntaje': 0
     })
     assert response.status_code in [200, 302]
 
@@ -69,7 +72,9 @@ def test_valid_agregar_postulacion(client_Candidatos, nombre, apellido, email, t
          ('Agustin', 'Martinez', 'agusmartinez@hotmail.com','1123432345', 'Formosa', '3' ,'Postgrado', 'SQL', 'Liderazgo')
      ]
 )
-def test_postulantes_duplicados(client_Candidatos,nombre, apellido, email, telefono, ubicacion, experiencia, educacion, tecnologias, habilidades):
+def test_postulantes_duplicados(client_Candidatos: FlaskClient,nombre: Literal['Martin'] | Literal['Agustin'], apellido: Literal['Gonzales'] | Literal['Martinez'], email: Literal['tincho462@gmail.com'] | Literal['agusmartinez@hotmail.com'], telefono: Literal['1125432354'] | Literal['1123432345'], ubicacion: Literal['Buenos Aires'] | Literal['Formosa'], experiencia: Literal['6'] | Literal['3'], educacion: Literal['Universitario'] | Literal['Postgrado'], tecnologias: Literal['Java'] | Literal['SQL'], habilidades: Literal['Trabajo en equipo'] | Literal['Liderazgo']):
+    client_Candidatos.get('/postulacionIT')
+
     data = {
         'nombre': nombre,
         'apellido': apellido,
@@ -79,9 +84,10 @@ def test_postulantes_duplicados(client_Candidatos,nombre, apellido, email, telef
         'experiencia': experiencia, 
         'educacion': educacion,  
         'tecnologias': tecnologias,        
-        'habilidades': habilidades
+        'habilidades': habilidades,
+        'puntaje': 0
     }
-    
+
     response1 = client_Candidatos.post('/postulacion', data=data)
     assert response1.status_code in [200,302]
 
@@ -103,7 +109,7 @@ def test_postulantes_duplicados(client_Candidatos,nombre, apellido, email, telef
     ]
 
 )
-def test_campos_inexistentes(client_Candidatos,nombre, apellido, email, telefono, ubicacion, experiencia, educacion, tecnologias, habilidades):
+def test_campos_inexistentes(client_Candidatos: FlaskClient,nombre: Literal['Pepe'], apellido: Literal['Argento'], email: Literal['pepeargento1903@hotmail.com'], telefono: Literal['1535674323'], ubicacion: Literal['Buenos Aires'], experiencia: Literal['7'], educacion: Literal['Primario'] | Literal['Postgrado'], tecnologias: Literal['Java'] | Literal['Assembler'], habilidades: Literal['Empatia'] | Literal['Vender zapatos']):
     response = client_Candidatos.post('/postulacion', data = {
         'nombre': nombre,
         'apellido': apellido,
@@ -113,57 +119,8 @@ def test_campos_inexistentes(client_Candidatos,nombre, apellido, email, telefono
         'experiencia': experiencia, 
         'educacion': educacion,  
         'tecnologias': tecnologias,        
-        'habilidades': habilidades
+        'habilidades': habilidades,
+        'puntaje': 0
     })
 
     assert response.status_code == 400
-
-
-
-
-# # ❓Consultar este test❓
-# @pytest.mark.parametrize(
-#      "nombre, apellido, email, telefono, ubicacion, experiencia, educacion, tecnologias, habilidades",
-#      [
-#          ("","","","","","","","",""),
-#          ("","Garcia","DanielaGar@gmail.com","1123321212","Chaco","3","Postgrado","C++","Liderazgo"),
-#          ("Daniela","","DanielaGar@gmail.com","1123321212","Chaco","3","Postgrado","C++","Liderazgo"),
-#          ("Daniela","Garcia","","1123321212","Chaco","3","Postgrado","C++","Liderazgo"),
-#          ("Daniela","Garcia","DanielaGar@gmail.com","","Chaco","3","Postgrado","C++","Liderazgo"),
-#          ("Daniela","Garcia","DanielaGar@gmail.com","1123321212","","3","Postgrado","C++","Liderazgo"),
-#          ("Daniela","Garcia","DanielaGar@gmail.com","1123321212","Chaco","","Postgrado","C++","Liderazgo"),
-#          ("Daniela","Garcia","DanielaGar@gmail.com","1123321212","Chaco","3","","C++","Liderazgo"),
-#          ("Daniela","Garcia","DanielaGar@gmail.com","1123321212","Chaco","3","Postgrado","","Liderazgo"),
-#          ("Daniela","Garcia","DanielaGar@gmail.com","1123321212","Chaco","3","Postgrado","C++","")
-#      ]
-# )
-# def test_caracteres_vacios(client_Candidatos,nombre, apellido, email, telefono, ubicacion, experiencia, educacion, tecnologias, habilidades):
-#     response = client_Candidatos.post('/postulacion', data = {
-#         'nombre': nombre,
-#         'apellido': apellido,
-#         'email': email, 
-#         'telefono': telefono,
-#         'ubicacion': ubicacion,
-#         'experiencia': experiencia, 
-#         'educacion': educacion,  
-#         'tecnologias': tecnologias,        
-#         'habilidades': habilidades
-#     })
-
-#     assert response.status_code == 400
-
-#Sprint 1
-#test de integracion: 
-# postulacion de lado a lado (funcione, repetidos(id), casos invalidos) (✅,✅)
-# validar que el candidato agregado este en la base de datos ✅
-# para despues ver lo del modelo de prediccion ✅
-# #testear que el mail no este repetido ✅
- 
-
-#Sprint 2
-# etiquetas cargadas en base de datos
-# testear algoritmo de ranking
-# Validacion de emails
-
-
-# ❌Problema: hay que borrar de forma manual la base de datos cada vez que se testea❌

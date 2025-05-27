@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>IA de PREDICCION de Aptitud</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='StylesCrear.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cargarCV.css') }}">
 </head>
 
 <header>
     <div class="logo">
-        <img src="{{ url_for('static', filename='images/logo_ungs_512.png') }}" alt="AI Image">
+        <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Image">
     </div>
     {% if es_admin %}
         <div class="nav">
@@ -22,6 +23,15 @@
 <body>
     <h1>Completa los datos de tu CV</h1>
     <form method="post" action="/postulacion">
+
+        <label for="idOfer">Selecciona una oferta laboral:</label>
+        <select name="idOfer" required>
+            <option value="">-- Selecciona una oferta --</option>
+            {% for oferta in opciones_ofertas if oferta.estado != "Cerrada" %}
+                <option value="{{ oferta.idOfer }}">{{ oferta.nombre }}</option>
+            {% endfor %}
+        </select>
+        
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}" title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
         

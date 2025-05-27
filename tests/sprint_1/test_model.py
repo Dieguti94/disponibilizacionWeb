@@ -11,6 +11,7 @@ def loadModel():
     except FileNotFoundError:
         pytest.fail(f"No se encontro el arhivo del modelo")
 
+#Test que verifica que un candidato es apto
 def test_model_prediction_apto():
     # Se carga el modelo
     modelo = loadModel()
@@ -27,7 +28,7 @@ def test_model_prediction_apto():
 
     assert prediccion[0] == 1
 
-
+#Test que verifica que un candidato es no apto
 def test_model_prediction_no_apto():
     # Se carga el modelo
     modelo = loadModel()
