@@ -1,23 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
-
 html {
-    background: linear-gradient(to bottom, #000000, #353535);
+    background: #5A189A;
 }
 
-/*cambioooo*/
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
     min-height: 100vh; 
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #001847, #011d55, #2a0047, #390061);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
-	
 }
 
 @keyframes gradient {
@@ -30,12 +28,6 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
-}
-
-.seccion-tabla {
-    background: white; 
-    background-size: cover; 
-    
 }
 
 header {
@@ -58,35 +50,37 @@ header .logo img {
     max-width: 100%;
 }
 
-header .nav {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    height: 100%;
+
+
+
+@media (max-width: 800px) {
+    header .nav a {
+        font-size: 0.7rem;
+        margin-right: 0.5rem;
+    }
+
+    header .logo img {
+        margin-left: 5px;
+        max-height: 50px; 
+        max-width: 100%;
+    }
 }
 
-.input-importancia {
-  width: 90px;
-  height: 44px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  margin: 6px 8px;
-  padding-right: 10px;
+@media (max-width: 460px) {
+    header .nav a {
+        font-size: 0.4rem;
+        margin-right: 0.3rem;
+    }
+
+    header .logo img {
+        margin-left: 5px;
+        max-height: 40px;
+        max-width: 100%;
+    }
 }
 
-.input-importancia::-webkit-inner-spin-button {
-  transform: scale(1.5);
-  margin-top: -2px;
-  margin-right: 10px;
-  margin-bottom: -2px;
-}
 
-/* Para mejorar visibilidad en general */
-td:first-child {
-  font-size: 1.1rem;
-  font-weight: bold;
-}
+
 
 h1 {
     font-family: 'Anton', sans-serif;
@@ -123,8 +117,6 @@ h1 .subtitulo {
 
 
 
-
-
 form h3 {
     font-family: "Erica One", sans-serif;
     font-size: 2rem;
@@ -140,293 +132,119 @@ form h3 {
     margin-bottom: 10px;
 }
 
-
-
 form {
-    position: relative; /* 👈 IMPORTANTE para que los span no se salgan */
     animation: elevar 2s ease-out forwards;
-    margin: 30px auto;
-    padding: 20px;
-    
-    background: linear-gradient(
-  to right,
-  rgba(255, 255, 255, 0.1),
-  rgba(255, 255, 255, 0.05)
-);
-    color: #ffffff ;
-    
-    width: 40%;
+    margin: 3rem auto 4rem auto;
+    padding: 25px;
+    border-radius: 25px;
+    width: 50%;
     text-align: center;
-    
-    margin-bottom: 80px;
-    overflow: hidden; /* También ayuda a mantener los spans dentro */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Animaciones de los bordes */
-form span {
-    position: absolute;
-    display: block;
-}
-
-/* Línea superior */
-form span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #a200ff 20%, #7b2ff7 50%, #64008b 80%, transparent 100%);
-    animation: animate-top 1.5s linear infinite;
-}
-
-/* Línea derecha */
-form span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-  background: linear-gradient(180deg, transparent 0%, #a200ff 20%, #7b2ff7 50%, #64008b 80%, transparent 100%);
-
-    animation: animate-right 1s linear infinite;
-    animation-delay: 1s;
-}
-
-/* Línea inferior */
-form span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent 0%, #a200ff 20%, #7b2ff7 50%, #64008b 80%, transparent 100%);
-
-
-    animation: animate-bottom 1s linear infinite;
-    animation-delay: 1.5s;
-}
-
-/* Línea izquierda */
-form span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent 0%, #a200ff 20%, #7b2ff7 50%, #64008b 80%, transparent 100%);
-
-    animation: animate-left 1s linear infinite;
-    animation-delay: 1s;
-}
-
-/* Keyframes */
-@keyframes animate-top {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-@keyframes animate-right {
-    0% { top: -100%; }
-    100% { top: 100%; }
-}
-
-@keyframes animate-bottom {
-    0% { right: -100%; }
-    100% { right: 100%; }
-}
-
-@keyframes animate-left {
-    0% { bottom: -100%; }
-    100% { bottom: 100%; }
-}
-
-
-
-.titulo-centrado {
-    font-family: 'Space Grotesk', sans-serif;
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 600;
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(162, 89, 255, 0.8);
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    padding: 0.5rem 1rem;
-    border-bottom: 2px solid #a259ff;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    animation: elevar 2s ease-out forwards;
+    background-color: rgba(255, 255, 255, 0.267);
+    background-size: 400% 400%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 20px  rgba(255, 255, 255, 0.4);
+    margin-bottom: 5px;
 }
 
-
-
-.form-label {
-    
-    margin-top: 2rem;
-}
-
-.form-select {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    background-color: rgb(13, 28, 103);
-    color: rgb(85, 203, 223);
-    border-color: rgb(5, 101, 155);
-    border-width: 0.15rem;
-}
-
-.form-control {
-    background-color: rgb(3, 13, 66);
-    border-color: rgb(5, 101, 155);
-    border-width: 0.15rem;
-}
-
-.form-control::placeholder {
-    color: rgb(85, 203, 223);
-}
-
-.label-crear {
-    color: rgb(85, 203, 223);
-}
-
-form input,
-form select,
-form textarea {
-    width: 100%;
-    font-weight: 300;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    box-sizing: border-box;
-    max-width: 500px;
-    min-width: 250px;
-    margin: 0 auto;
-    display: block;
-    background-color: rgb(3, 13, 66);
-    border-color: rgb(5, 101, 155);
-}
-
-input, select, button {
-    outline: none;
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid  #ffffff;
+input,
+select,
+button {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);  
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px auto;
+    padding: 12px 14px;
     border-radius: 8px;
-    background-color: rgba(2, 180, 204, 0.747);
-    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2); 
+    border: none;  
+    transition: all 0.3s ease-in-out;
+    width: 180px;
 }
 
-
-
-
-input:hover,
-select:hover,
-textarea:hover {
-  box-shadow: inset 50em 0 0 0 #580b7c; /* O el color que quieras */
-  transition: box-shadow 1.5s ease;
-   border-color: #7b2ff7;     
-  
+input:focus,
+select:focus,
+button:hover {
+   
+    color: #ffffff;  
+    text-shadow: 0 0 10px #ffffff;
+    transform: scale(1.1);  
+    outline: none;
 }
-
-
-
-@media (max-width: 768px) {
-    form {
-        padding: 80px;
-    }
-
-    input, select, button, textarea {
-        font-size: 20px;
-        padding: 18px;
-    }
-}
-
-@media (max-width: 460px) {
-    form {
-        padding: 25px;
-    }
-
-    input, select, button, textarea {
-        font-size: 10px;
-        padding: 8px;
-    }
-}
-
 
 button {
-  font-size: 18px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  display: inline-block;
-  text-align: center;
-  font-weight: bold;
-  padding: 0.7em 2em;
-  border: 3px solid #080074;
-  border-radius: 2px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
-  text-decoration: none;
-  transition: 0.3s ease all;
-  z-index: 1;
-  
-}
-
-button:before {
-  transition: 0.5s all ease;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  opacity: 0;
-  content: '';
-  background-color: #080074;
-  z-index: -1;
-}
-
-button:hover, button:focus {
-  color: white;
-}
-
-button:hover:before, button:focus:before {
-  transition: 0.5s all ease;
-  left: 0;
-  right: 0;
-  opacity: 1;
-}
-
-button:active {
-  transform: scale(0.9);
-}
-
-
-.formTransparent {
     background-color: transparent;
+    color: #fdfdfd;
     border: none;
-    padding: 1rem;
+    font-weight: 600;
+    padding: 1rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin: 1rem; 
 }
 
-label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
+button:hover {
+    transform: scale(1.05);  
 }
+
+form p {
+    color: #ffd6d6;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+.filtro-label {
+    display: block;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #ffffff; /* violeta moderno */
+    margin-bottom: 0.5rem;
+    padding-left: 4px;
+    transition: color 0.3s ease;
+    
+}
+
+.custom-select {
+    background-color: #8415b8;
+    color: white;
+    border: 2px solid #a18cff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    text-align: center; /* CENTRA el texto */
+    text-align-last: center; /* CENTRA la opción seleccionada (más efectivo en Firefox y Edge) */
+    box-shadow: 0 0 10px rgba(56, 21, 184, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-select:hover,
+.custom-select:focus {
+    background-color: #4a2dd4;
+    box-shadow: 0 0 15px rgba(161, 140, 255, 0.7);
+    outline: none;
+}
+
+.custom-select option {
+    background-color: #3815b8;
+    color: white;
+    text-align: center;
+}
+
 
 
 
@@ -440,56 +258,46 @@ label {
 }
 
 table {
-    max-width: 60%;
-    width: 100%;
+    max-width: 80%;  
+    width: 100%;  
     border-collapse: separate;
-    border-spacing: 0;
-    background-color: rgba(106, 90, 205); 
-    color: rgba(255, 240, 250, 0.9);
-    border-radius: none;
-    border: 2px solid rgb(156, 18, 248);
-    box-shadow: 0 0 12px rgb(137, 18, 248);
+    background-color: rgba(255, 255, 255, 0.1);  
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+    border: 2px solid #fff; 
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);  
     transition: all 0.3s ease-in-out;
-    animation: elevar 1.5s ease-out forwards;
-    margin: 20px auto 30px auto;
-    backdrop-filter: blur(8px);
+    animation: elevar 2s ease-out forwards;
+    margin-bottom: 30px;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: 20px;
 }
 
 table th, table td {
-    padding: 14px 18px;
+    padding: 10px 14px;
     text-align: center;
-     border: 2px solid rgb(156, 18, 248);
-    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);  
 }
 
 table th {
-    background-color: rgba(72, 61, 139); 
+    background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-weight: bold;
 }
 
-table tr:nth-child(odd),
-table tr:nth-child(even) {
-    background-color: rgba(255, 192, 240, 0.08);  
+table tr:nth-child(even),
+table tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 table tr:hover {
-    background-color: rgba(76, 0, 255, 0.3); 
+    background-color: rgba(255, 0, 212, 0.3);
     color: #ffffff;
-    box-shadow: 0 0 20px rgba(162, 23, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
     transform: scale(1.01);
-}
-
-.formTransparent {
-    background-color: transparent;
-    border: none;
-    padding: 1rem;
-}
-
-label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 
 

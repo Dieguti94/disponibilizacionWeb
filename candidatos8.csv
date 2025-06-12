@@ -1,0 +1,701 @@
+Nombre,Apellido,Experiencia,Educacion,Tecnologías,Habilidades,Tecnologías2,Habilidades2,Apto
+Luis,Sánchez,11,Postgrado,SQL,Empatía,Java,Adaptabilidad,Apto
+Luis,Escobar,11,Universitario,Java,Trabajo en equipo,Python,Comunicación efectiva,Apto
+Gerardo,Rodríguez,4,Universitario,Python,Comunicación efectiva,SQL,Trabajo en equipo,No Apto
+Ignacio,Acosta,11,Universitario,C++,Liderazgo,SQL,Adaptabilidad,Apto
+Ignacio,Acosta,0,Universitario,Python,Resolución de problemas,Java,Liderazgo,No Apto
+Patricio,Quiroz,5,Universitario,SQL,Resolución de problemas,Java,Comunicación efectiva,No Apto
+Antonio,Pérez,7,Universitario,SQL,Liderazgo,Java,Resolución de problemas,No Apto
+Benjamin,Fernández,4,Universitario,SQL,Empatía,C++,Adaptabilidad,No Apto
+Damián,Cabrera,4,Universitario,SQL,Adaptabilidad,C++,Empatía,No Apto
+Adrián,Escobar,4,Universitario,SQL,Liderazgo,Python,Comunicación efectiva,No Apto
+Mauricio,Peña,14,Secundario,Python,Resolución de problemas,C++,Liderazgo,Apto
+Adrián,Vega,10,Universitario,C++,Comunicación efectiva,Java,Empatía,Apto
+Darío,Barrios,7,Universitario,Python,Empatía,Java,Comunicación efectiva,Apto
+Darío,Rodríguez,14,Secundario,Python,Adaptabilidad,C++,Trabajo en equipo,Apto
+Luis,López,0,Universitario,Python,Resolución de problemas,C++,Comunicación efectiva,Apto
+Leonardo,Martínez,5,Postgrado,Java,Empatía,C++,Adaptabilidad,No Apto
+Adrián,Martínez,10,Postgrado,C++,Trabajo en equipo,SQL,Liderazgo,Apto
+Mauricio,Cruz,13,Universitario,SQL,Comunicación efectiva,Python,Liderazgo,Apto
+Victor,Sánchez,10,Universitario,C++,Comunicación efectiva,SQL,Adaptabilidad,Apto
+Leonardo,Vega,2,Postgrado,C++,Comunicación efectiva,Python,Adaptabilidad,No Apto
+Jorge,Silva,2,Postgrado,C++,Adaptabilidad,Python,Empatía,No Apto
+Enzo,Álvarez,10,Postgrado,C++,Liderazgo,SQL,Resolución de problemas,No Apto
+Victor,Ortiz,7,Secundario,SQL,Liderazgo,C++,Resolución de problemas,No Apto
+Esteban,Cruz,6,Postgrado,Python,Comunicación efectiva,C++,Trabajo en equipo,Apto
+Gerardo,Acosta,7,Postgrado,C++,Trabajo en equipo,SQL,Resolución de problemas,No Apto
+Jorge,Morales,9,Postgrado,Python,Liderazgo,C++,Adaptabilidad,Apto
+Jorge,Álvarez,14,Secundario,SQL,Adaptabilidad,Python,Resolución de problemas,Apto
+Alejandro,Silva,7,Secundario,SQL,Resolución de problemas,C++,Adaptabilidad,No Apto
+Federico,Sánchez,4,Universitario,Python,Trabajo en equipo,Java,Adaptabilidad,Apto
+Jorge,Cruz,3,Secundario,C++,Adaptabilidad,SQL,Liderazgo,No Apto
+Jorge,Acosta,10,Universitario,C++,Resolución de problemas,Java,Liderazgo,Apto
+Antonio,Montoya,11,Universitario,Python,Adaptabilidad,Java,Empatía,Apto
+Gabriel,Acosta,2,Postgrado,C++,Adaptabilidad,Python,Comunicación efectiva,No Apto
+Federico,Montoya,12,Secundario,C++,Empatía,SQL,Liderazgo,Apto
+Mauricio,Escobar,13,Universitario,Java,Trabajo en equipo,SQL,Empatía,Apto
+Bruno,Sánchez,13,Universitario,C++,Liderazgo,Python,Adaptabilidad,Apto
+Hernán,Reyes,12,Secundario,C++,Resolución de problemas,Python,Empatía,Apto
+Darío,Pérez,6,Postgrado,Python,Comunicación efectiva,SQL,Liderazgo,Apto
+Adrián,Cruz,9,Secundario,SQL,Resolución de problemas,Java,Adaptabilidad,Apto
+Sergio,Gómez,11,Universitario,C++,Empatía,SQL,Comunicación efectiva,Apto
+Matías,Ramírez,3,Secundario,C++,Resolución de problemas,Python,Trabajo en equipo,No Apto
+Felipe,Torres,4,Postgrado,SQL,Trabajo en equipo,C++,Adaptabilidad,No Apto
+Ignacio,Morales,7,Universitario,SQL,Liderazgo,Python,Adaptabilidad,No Apto
+Marcos,Rodríguez,2,Postgrado,C++,Empatía,Java,Resolución de problemas,No Apto
+Darío,Medina,1,Universitario,SQL,Comunicación efectiva,Java,Resolución de problemas,No Apto
+Leonardo,Torres,7,Secundario,SQL,Resolución de problemas,Java,Empatía,No Apto
+Gabriel,Medina,11,Universitario,C++,Empatía,Java,Resolución de problemas,Apto
+Álvaro,Quiroz,4,Secundario,Python,Trabajo en equipo,Java,Empatía,No Apto
+Ignacio,Fernández,10,Universitario,Python,Trabajo en equipo,SQL,Empatía,Apto
+Gerardo,Silva,0,Universitario,Python,Comunicación efectiva,Java,Resolución de problemas,No Apto
+Federico,Morales,12,Secundario,C++,Resolución de problemas,Java,Liderazgo,Apto
+Simón,Morales,14,Secundario,Python,Resolución de problemas,SQL,Trabajo en equipo,Apto
+Enzo,Rodríguez,1,Postgrado,SQL,Liderazgo,Java,Comunicación efectiva,No Apto
+Benjamin,López,7,Secundario,SQL,Trabajo en equipo,Python,Adaptabilidad,No Apto
+Emanuel,Vega,5,Secundario,C++,Comunicación efectiva,Java,Empatía,No Apto
+Ricardo,Gómez,9,Universitario,Python,Resolución de problemas,C++,Comunicación efectiva,Apto
+Gerardo,Quiroz,7,Postgrado,C++,Liderazgo,Python,Empatía,No Apto
+Ricardo,Escobar,3,Secundario,C++,Comunicación efectiva,Java,Liderazgo,No Apto
+Matías,Álvarez,14,Postgrado,Java,Liderazgo,Python,Adaptabilidad,Apto
+Marcos,Ortiz,5,Secundario,C++,Trabajo en equipo,Python,Resolución de problemas,No Apto
+Jorge,Ortiz,12,Postgrado,Java,Trabajo en equipo,Python,Resolución de problemas,Apto
+Hernán,Fernández,10,Universitario,C++,Resolución de problemas,SQL,Liderazgo,Apto
+Gerardo,García,12,Universitario,Python,Resolución de problemas,SQL,Empatía,Apto
+Gabriel,Pérez,10,Universitario,C++,Adaptabilidad,Java,Comunicación efectiva,Apto
+Esteban,Rodríguez,11,Universitario,C++,Empatía,Java,Liderazgo,Apto
+Benjamin,Martínez,14,Postgrado,Java,Comunicación efectiva,C++,Resolución de problemas,Apto
+Damián,Castillo,1,Postgrado,SQL,Empatía,C++,Resolución de problemas,No Apto
+Ignacio,Ramírez,10,Universitario,Python,Comunicación efectiva,C++,Trabajo en equipo,Apto
+Hernán,Gómez,7,Postgrado,C++,Liderazgo,Java,Comunicación efectiva,No Apto
+Hernán,Castillo,11,Secundario,Python,Adaptabilidad,C++,Comunicación efectiva,Apto
+Patricio,Martínez,7,Postgrado,C++,Liderazgo,SQL,Resolución de problemas,No Apto
+Emanuel,Pérez,14,Secundario,Python,Trabajo en equipo,SQL,Liderazgo,Apto
+Leonardo,Acosta,0,Universitario,Python,Trabajo en equipo,C++,Liderazgo,Apto
+Álvaro,García,6,Universitario,Python,Adaptabilidad,SQL,Trabajo en equipo,Apto
+Gerardo,Escobar,13,Universitario,SQL,Adaptabilidad,C++,Comunicación efectiva,Apto
+Álvaro,Acosta,9,Universitario,Python,Comunicación efectiva,C++,Resolución de problemas,Apto
+Ricardo,Martínez,0,Universitario,Python,Adaptabilidad,SQL,Comunicación efectiva,No Apto
+Alejandro,Montoya,5,Postgrado,Java,Empatía,C++,Comunicación efectiva,No Apto
+Cristóbal,Cabrera,7,Postgrado,C++,Empatía,Java,Liderazgo,No Apto
+Cristóbal,Ortiz,11,Universitario,Java,Comunicación efectiva,SQL,Empatía,Apto
+Ricardo,Ortiz,10,Universitario,Python,Trabajo en equipo,C++,Liderazgo,Apto
+Adrián,Pérez,4,Universitario,Python,Resolución de problemas,C++,Comunicación efectiva,Apto
+Adrián,Álvarez,3,Secundario,C++,Trabajo en equipo,Python,Comunicación efectiva,No Apto
+Antonio,Peña,6,Postgrado,Python,Adaptabilidad,Java,Liderazgo,Apto
+Ricardo,Sánchez,4,Postgrado,SQL,Adaptabilidad,Python,Empatía,No Apto
+Emanuel,Sánchez,10,Universitario,C++,Trabajo en equipo,Java,Liderazgo,Apto
+Ricardo,Montoya,6,Postgrado,Python,Adaptabilidad,SQL,Liderazgo,Apto
+Álvaro,Morales,12,Postgrado,Java,Trabajo en equipo,SQL,Liderazgo,Apto
+Matías,Martínez,4,Postgrado,SQL,Resolución de problemas,C++,Adaptabilidad,No Apto
+Damián,Gómez,10,Universitario,Python,Resolución de problemas,SQL,Trabajo en equipo,Apto
+Ignacio,Cabrera,7,Universitario,Python,Liderazgo,Java,Adaptabilidad,Apto
+Esteban,Domínguez,7,Universitario,SQL,Resolución de problemas,C++,Empatía,No Apto
+Leonardo,García,14,Secundario,SQL,Liderazgo,Java,Adaptabilidad,Apto
+Ignacio,Vega,5,Universitario,SQL,Adaptabilidad,Java,Resolución de problemas,No Apto
+Damián,Fernández,13,Secundario,C++,Comunicación efectiva,SQL,Liderazgo,Apto
+Simón,Silva,8,Universitario,SQL,Empatía,Python,Liderazgo,Apto
+Ignacio,Sánchez,6,Universitario,Python,Adaptabilidad,C++,Empatía,Apto
+Alejandro,Mendoza,11,Universitario,Python,Liderazgo,SQL,Adaptabilidad,Apto
+Gabriel,Cabrera,10,Universitario,Python,Empatía,Java,Comunicación efectiva,Apto
+Matías,Rodríguez,13,Universitario,C++,Adaptabilidad,SQL,Trabajo en equipo,Apto
+Simón,Peña,10,Universitario,C++,Empatía,Python,Resolución de problemas,Apto
+Luis,Ramírez,0,Universitario,Python,Trabajo en equipo,C++,Adaptabilidad,No Apto
+Damián,Sánchez,13,Universitario,Java,Empatía,Python,Liderazgo,Apto
+Patricio,Castillo,6,Postgrado,Python,Trabajo en equipo,Java,Liderazgo,Apto
+Gerardo,Peña,13,Secundario,C++,Comunicación efectiva,Java,Empatía,No Apto
+Gabriel,Guzmán,11,Universitario,C++,Liderazgo,SQL,Resolución de problemas,Apto
+Simón,Acosta,2,Secundario,SQL,Comunicación efectiva,Python,Adaptabilidad,No Apto
+Gabriel,Fernández,13,Universitario,Java,Liderazgo,SQL,Adaptabilidad,Apto
+Esteban,Morales,2,Postgrado,C++,Comunicación efectiva,Java,Empatía,No Apto
+Felipe,Domínguez,11,Postgrado,SQL,Empatía,C++,Adaptabilidad,Apto
+Luis,Morales,0,Universitario,Python,Adaptabilidad,Java,Empatía,Apto
+Benjamin,Mendoza,11,Universitario,C++,Resolución de problemas,SQL,Empatía,Apto
+Gerardo,Martínez,0,Universitario,Python,Empatía,Java,Resolución de problemas,No Apto
+Felipe,Montoya,10,Universitario,Python,Resolución de problemas,Java,Trabajo en equipo,Apto
+Alejandro,Álvarez,9,Universitario,Python,Resolución de problemas,SQL,Comunicación efectiva,Apto
+Damián,García,9,Postgrado,Python,Trabajo en equipo,Java,Liderazgo,Apto
+Victor,Montoya,12,Universitario,Python,Comunicación efectiva,SQL,Liderazgo,Apto
+Bruno,Vega,14,Secundario,Python,Resolución de problemas,Java,Adaptabilidad,Apto
+Luis,Peña,11,Universitario,Java,Trabajo en equipo,SQL,Resolución de problemas,Apto
+Leonardo,Mendoza,8,Universitario,SQL,Comunicación efectiva,Python,Liderazgo,Apto
+Mateo,Molina,4,Universitario,Azure,Autonomía,CSS,Creatividad,No Apto
+Mateo,Ramírez,11,Secundario,Go,Autonomía,JavaScript,Organizado,No Apto
+Carla,Vega,14,Secundario,Docker,Orientación a resultados,JavaScript,Autonomía,Apto
+Mateo,Suárez,11,Secundario,Docker,Orientación a resultados,Node,Organizado,Apto
+Bruno,Vega,2,Secundario,Go,Orientación a resultados,Docker,Autonomía,Apto
+Sofía,Ortega,12,Secundario,Node,Organizado,HTML,Orientación a resultados,No Apto
+Agustina,Nuñez,12,Universitario,HTML,Autodidacta,TypeScript,Autonomía,No Apto
+Felipe,Vega,1,Secundario,HTML,Organizado,CSS,Autodidacta,No Apto
+Valentina,Ortega,11,Universitario,TypeScript,Creatividad,Azure,Autodidacta,No Apto
+Agustina,Nuñez,8,Postgrado,TypeScript,Organizado,Node,Autonomía,No Apto
+Bruno,Gómez,6,Universitario,Node,Orientación a resultados,HTML,Autonomía,Apto
+Tomás,Paz,1,Postgrado,JavaScript,Autodidacta,Docker,Autonomía,No Apto
+Martín,Ortega,10,Postgrado,HTML,Organizado,Go,Orientación a resultados,No Apto
+Carla,Ortega,11,Secundario,Node,Orientación a resultados,HTML,Creatividad,No Apto
+Julián,Molina,12,Postgrado,Docker,Orientación a resultados,Go,Organizado,Apto
+Mateo,Nuñez,9,Universitario,Azure,Autonomía,JavaScript,Creatividad,No Apto
+Tomás,Nuñez,5,Postgrado,CSS,Orientación a resultados,AWS,Organizado,Apto
+Camila,Vega,4,Secundario,HTML,Orientación a resultados,Node,Autodidacta,No Apto
+Martín,Vega,12,Universitario,TypeScript,Creatividad,Go,Autonomía,No Apto
+Mateo,Ortega,11,Postgrado,HTML,Organizado,Azure,Autodidacta,No Apto
+Agustina,Sosa,9,Universitario,Go,Autonomía,Node,Creatividad,No Apto
+Lucía,Molina,3,Universitario,Docker,Orientación a resultados,HTML,Autonomía,Apto
+Mateo,Ortega,12,Secundario,Azure,Creatividad,JavaScript,Organizado,No Apto
+Tomás,Sosa,5,Universitario,Docker,Organizado,CSS,Autodidacta,No Apto
+Carla,Torres,9,Postgrado,Azure,Organizado,Go,Orientación a resultados,No Apto
+Tomás,Molina,5,Postgrado,Node,Organizado,JavaScript,Autodidacta,No Apto
+Agustina,Vega,10,Universitario,AWS,Orientación a resultados,Node,Creatividad,Apto
+Carla,Paz,15,Postgrado,Go,Autodidacta,Azure,Orientación a resultados,No Apto
+Agustina,Ramírez,1,Secundario,JavaScript,Orientación a resultados,HTML,Autodidacta,No Apto
+Bruno,Ferreyra,4,Secundario,CSS,Orientación a resultados,TypeScript,Autodidacta,No Apto
+Agustina,Luna,6,Postgrado,JavaScript,Organizado,Node,Autodidacta,No Apto
+Valentina,Molina,5,Secundario,Azure,Autonomía,TypeScript,Autodidacta,No Apto
+Mateo,Nuñez,10,Universitario,JavaScript,Creatividad,HTML,Orientación a resultados,No Apto
+Tomás,Ortega,11,Postgrado,Node,Autodidacta,CSS,Autonomía,No Apto
+Martín,Sosa,8,Universitario,JavaScript,Autonomía,Azure,Creatividad,No Apto
+Martín,Ramírez,3,Postgrado,HTML,Autodidacta,Docker,Creatividad,No Apto
+Camila,Molina,1,Secundario,CSS,Organizado,Azure,Autodidacta,No Apto
+Mateo,Sosa,9,Universitario,TypeScript,Orientación a resultados,AWS,Organizado,Apto
+Tomás,Ortega,15,Postgrado,Docker,Autonomía,HTML,Organizado,Apto
+Julián,Nuñez,5,Universitario,Docker,Creatividad,Node,Autodidacta,No Apto
+Tomás,Gómez,1,Postgrado,Azure,Autonomía,AWS,Organizado,No Apto
+Lucía,Molina,1,Secundario,AWS,Autonomía,TypeScript,Autodidacta,No Apto
+Tomás,Torres,11,Universitario,HTML,Creatividad,AWS,Orientación a resultados,Apto
+Agustina,Paz,15,Universitario,CSS,Autodidacta,Azure,Creatividad,No Apto
+Valentina,Vega,9,Postgrado,Azure,Creatividad,TypeScript,Organizado,No Apto
+Lucía,Suárez,5,Postgrado,Go,Orientación a resultados,Node,Autodidacta,No Apto
+Bruno,Luna,6,Postgrado,HTML,Organizado,Node,Autodidacta,No Apto
+Tomás,Sosa,7,Secundario,HTML,Autodidacta,JavaScript,Autonomía,No Apto
+Valentina,Ferreyra,5,Universitario,JavaScript,Orientación a resultados,CSS,Autodidacta,No Apto
+Julián,Ramírez,9,Postgrado,HTML,Autonomía,CSS,Orientación a resultados,Apto
+Sofía,Sosa,10,Postgrado,CSS,Organizado,JavaScript,Autodidacta,No Apto
+Valentina,Sosa,3,Secundario,Azure,Creatividad,Node,Autonomía,No Apto
+Bruno,Sosa,2,Secundario,CSS,Orientación a resultados,Docker,Organizado,No Apto
+Julián,Nuñez,5,Universitario,AWS,Organizado,HTML,Autodidacta,No Apto
+Camila,Vega,9,Postgrado,Go,Organizado,Docker,Creatividad,No Apto
+Julián,Vega,12,Secundario,Azure,Organizado,TypeScript,Orientación a resultados,No Apto
+Felipe,Paz,8,Secundario,AWS,Autodidacta,Node,Orientación a resultados,Apto
+Camila,Ortega,9,Secundario,JavaScript,Orientación a resultados,Azure,Organizado,No Apto
+Felipe,Ferreyra,13,Secundario,Node,Autodidacta,Go,Creatividad,No Apto
+Felipe,Sosa,6,Secundario,JavaScript,Orientación a resultados,AWS,Organizado,Apto
+Mateo,Vega,14,Secundario,AWS,Creatividad,TypeScript,Autodidacta,No Apto
+Bruno,Gómez,6,Postgrado,AWS,Autonomía,Docker,Organizado,Apto
+Valentina,Vega,4,Secundario,Node,Autodidacta,HTML,Autonomía,No Apto
+Mateo,Torres,4,Postgrado,TypeScript,Autonomía,AWS,Organizado,Apto
+Valentina,Luna,10,Secundario,Azure,Organizado,TypeScript,Autodidacta,No Apto
+Agustina,Luna,4,Secundario,TypeScript,Organizado,HTML,Creatividad,No Apto
+Tomás,Ferreyra,2,Postgrado,AWS,Creatividad,HTML,Autodidacta,No Apto
+Felipe,Ortega,11,Secundario,Azure,Orientación a resultados,JavaScript,Organizado,No Apto
+Agustina,Suárez,1,Postgrado,JavaScript,Orientación a resultados,Docker,Creatividad,No Apto
+Sofía,Nuñez,7,Universitario,CSS,Creatividad,Azure,Orientación a resultados,No Apto
+Tomás,Ramírez,11,Secundario,Node,Creatividad,CSS,Autonomía,No Apto
+Felipe,Vega,13,Postgrado,AWS,Autodidacta,Node,Orientación a resultados,Apto
+Felipe,Nuñez,3,Universitario,HTML,Autonomía,Docker,Orientación a resultados,Apto
+Felipe,Ramírez,11,Secundario,TypeScript,Organizado,JavaScript,Creatividad,No Apto
+Camila,Gómez,9,Universitario,TypeScript,Orientación a resultados,CSS,Autonomía,Apto
+Camila,Nuñez,12,Universitario,Azure,Orientación a resultados,Go,Organizado,No Apto
+Camila,Ramírez,13,Secundario,Azure,Autonomía,Node,Creatividad,No Apto
+Sofía,Ramírez,7,Postgrado,Azure,Creatividad,CSS,Organizado,No Apto
+Mateo,Vega,6,Universitario,Docker,Autonomía,JavaScript,Autodidacta,Apto
+Camila,Luna,1,Secundario,Go,Creatividad,JavaScript,Autodidacta,No Apto
+Mateo,Sosa,9,Postgrado,Node,Organizado,JavaScript,Autonomía,No Apto
+Carla,Suárez,1,Universitario,Node,Orientación a resultados,HTML,Autonomía,Apto
+Lucía,Suárez,8,Universitario,HTML,Autonomía,Docker,Creatividad,Apto
+Carla,Vega,10,Secundario,CSS,Autonomía,Azure,Creatividad,No Apto
+Bruno,Ramírez,4,Postgrado,Azure,Autonomía,JavaScript,Autodidacta,No Apto
+Julián,Luna,15,Secundario,JavaScript,Creatividad,Docker,Autonomía,Apto
+Lucía,Paz,7,Universitario,Node,Organizado,AWS,Orientación a resultados,Apto
+Felipe,Torres,10,Universitario,AWS,Autodidacta,CSS,Organizado,No Apto
+Mateo,Ramírez,8,Postgrado,Azure,Organizado,JavaScript,Creatividad,No Apto
+Mateo,Suárez,8,Universitario,AWS,Autodidacta,Docker,Autonomía,Apto
+Sofía,Torres,6,Postgrado,Docker,Organizado,AWS,Creatividad,Apto
+Tomás,Molina,10,Universitario,Node,Orientación a resultados,HTML,Creatividad,No Apto
+Valentina,Sosa,11,Secundario,CSS,Orientación a resultados,Azure,Autonomía,Apto
+Camila,Torres,2,Universitario,Azure,Orientación a resultados,Node,Organizado,No Apto
+Sofía,Torres,6,Universitario,Docker,Autodidacta,Node,Orientación a resultados,Apto
+Valentina,Molina,14,Postgrado,CSS,Autodidacta,Azure,Autonomía,No Apto
+Valentina,Torres,3,Postgrado,HTML,Autodidacta,Azure,Autonomía,No Apto
+Mateo,Gómez,10,Postgrado,JavaScript,Creatividad,Docker,Orientación a resultados,Apto
+Martín,Suárez,7,Secundario,JavaScript,Autonomía,Azure,Creatividad,No Apto
+Mateo,Sosa,10,Postgrado,Docker,Orientación a resultados,CSS,Autodidacta,Apto
+Mateo,Ramírez,10,Postgrado,TypeScript,Autonomía,Node,Organizado,No Apto
+Bruno,Luna,4,Secundario,Docker,Creatividad,JavaScript,Orientación a resultados,Apto
+Tomás,Luna,4,Postgrado,Azure,Creatividad,HTML,Autonomía,No Apto
+Sofía,Molina,14,Postgrado,TypeScript,Creatividad,JavaScript,Orientación a resultados,No Apto
+Martín,Nuñez,2,Secundario,Docker,Creatividad,JavaScript,Autonomía,No Apto
+Felipe,Torres,9,Postgrado,Azure,Organizado,Node,Autodidacta,No Apto
+Agustina,Gómez,15,Universitario,Docker,Creatividad,JavaScript,Autodidacta,No Apto
+Martín,Luna,14,Postgrado,AWS,Organizado,Azure,Orientación a resultados,Apto
+Valentina,Ortega,4,Universitario,CSS,Orientación a resultados,Azure,Creatividad,No Apto
+Martín,Vega,5,Secundario,CSS,Autonomía,Go,Autodidacta,No Apto
+Carla,Torres,13,Universitario,JavaScript,Orientación a resultados,Go,Organizado,No Apto
+Mateo,Sosa,14,Postgrado,HTML,Autodidacta,Docker,Creatividad,No Apto
+Carla,Gómez,1,Postgrado,Node,Autodidacta,AWS,Creatividad,No Apto
+Mateo,Molina,4,Secundario,TypeScript,Creatividad,AWS,Autodidacta,No Apto
+Tomás,Gómez,3,Postgrado,Node,Creatividad,CSS,Orientación a resultados,No Apto
+Julián,Sosa,8,Universitario,Azure,Organizado,CSS,Autodidacta,No Apto
+Valentina,Suárez,14,Secundario,Azure,Orientación a resultados,Go,Organizado,No Apto
+Felipe,Ferreyra,13,Universitario,Docker,Autodidacta,HTML,Autonomía,Apto
+Mateo,Suárez,7,Postgrado,CSS,Autonomía,JavaScript,Organizado,No Apto
+Bruno,Suárez,13,Postgrado,Node,Creatividad,Go,Autonomía,No Apto
+Agustina,Nuñez,14,Postgrado,Azure,Orientación a resultados,HTML,Organizado,No Apto
+Mateo,Ramírez,14,Secundario,Go,Autodidacta,AWS,Orientación a resultados,Apto
+Martín,Ferreyra,10,Secundario,Azure,Orientación a resultados,HTML,Autonomía,Apto
+Mateo,Ramírez,3,Secundario,Go,Organizado,AWS,Orientación a resultados,No Apto
+Felipe,Molina,11,Postgrado,Docker,Orientación a resultados,AWS,Autonomía,Apto
+Agustina,Paz,1,Universitario,TypeScript,Creatividad,Go,Orientación a resultados,No Apto
+Carla,Ramírez,1,Universitario,HTML,Creatividad,CSS,Organizado,No Apto
+Camila,Paz,2,Secundario,Docker,Autodidacta,Node,Creatividad,No Apto
+Felipe,Nuñez,7,Universitario,TypeScript,Organizado,Docker,Autodidacta,No Apto
+Agustina,Ortega,15,Secundario,Go,Orientación a resultados,JavaScript,Autodidacta,No Apto
+Valentina,Ramírez,10,Universitario,Azure,Autodidacta,TypeScript,Organizado,No Apto
+Tomás,Gómez,15,Secundario,JavaScript,Creatividad,Azure,Orientación a resultados,No Apto
+Felipe,Suárez,2,Universitario,CSS,Organizado,Node,Autodidacta,No Apto
+Mateo,Luna,2,Universitario,AWS,Autonomía,Go,Orientación a resultados,Apto
+Martín,Ramírez,7,Secundario,Azure,Autodidacta,HTML,Organizado,No Apto
+Sofía,Luna,9,Postgrado,HTML,Autodidacta,JavaScript,Organizado,No Apto
+Felipe,Molina,15,Secundario,CSS,Organizado,Node,Autonomía,No Apto
+Julián,Ferreyra,3,Universitario,Go,Autodidacta,CSS,Creatividad,No Apto
+Camila,Molina,11,Postgrado,Node,Orientación a resultados,JavaScript,Autodidacta,No Apto
+Felipe,Sosa,3,Secundario,JavaScript,Creatividad,CSS,Autonomía,No Apto
+Lucía,Nuñez,8,Universitario,CSS,Organizado,Docker,Autonomía,Apto
+Martín,Nuñez,14,Postgrado,Docker,Organizado,Azure,Autonomía,Apto
+Camila,Ferreyra,1,Universitario,JavaScript,Organizado,Docker,Creatividad,No Apto
+Bruno,Vega,8,Secundario,CSS,Orientación a resultados,Node,Autodidacta,No Apto
+Camila,Sosa,13,Universitario,Go,Autodidacta,Node,Organizado,No Apto
+Mateo,Luna,1,Postgrado,TypeScript,Organizado,AWS,Autonomía,No Apto
+Sofía,Suárez,7,Postgrado,TypeScript,Autodidacta,CSS,Creatividad,No Apto
+Lucía,Suárez,5,Postgrado,TypeScript,Autonomía,CSS,Orientación a resultados,Apto
+Bruno,Sosa,2,Universitario,AWS,Orientación a resultados,Azure,Organizado,No Apto
+Lucía,Molina,11,Universitario,TypeScript,Creatividad,Go,Autonomía,No Apto
+Carla,Nuñez,6,Secundario,CSS,Creatividad,Docker,Orientación a resultados,Apto
+Mateo,Nuñez,2,Universitario,Go,Orientación a resultados,CSS,Autodidacta,No Apto
+Agustina,Gómez,8,Postgrado,Docker,Autonomía,Node,Organizado,Apto
+Carla,Sosa,11,Postgrado,CSS,Creatividad,Go,Organizado,No Apto
+Valentina,Suárez,14,Secundario,AWS,Creatividad,CSS,Organizado,No Apto
+Julián,Torres,14,Secundario,AWS,Orientación a resultados,Azure,Autodidacta,Apto
+Agustina,Suárez,7,Secundario,Go,Autonomía,AWS,Orientación a resultados,Apto
+Lucía,Ferreyra,1,Postgrado,Go,Creatividad,AWS,Autodidacta,No Apto
+Martín,Nuñez,13,Universitario,Docker,Creatividad,TypeScript,Autodidacta,No Apto
+Carla,Gómez,14,Postgrado,HTML,Autodidacta,Azure,Organizado,No Apto
+Lucía,Nuñez,3,Universitario,AWS,Autodidacta,JavaScript,Orientación a resultados,No Apto
+Valentina,Ortega,6,Secundario,TypeScript,Orientación a resultados,AWS,Autodidacta,Apto
+Agustina,Ortega,14,Universitario,CSS,Autodidacta,Node,Creatividad,No Apto
+Julián,Gómez,9,Postgrado,JavaScript,Autonomía,TypeScript,Orientación a resultados,Apto
+Tomás,Nuñez,2,Secundario,Docker,Creatividad,Azure,Autonomía,No Apto
+Sofía,Vega,14,Postgrado,HTML,Orientación a resultados,Go,Organizado,No Apto
+Tomás,Torres,11,Secundario,Node,Autonomía,Azure,Organizado,No Apto
+Lucía,Ramírez,6,Universitario,Go,Autonomía,JavaScript,Orientación a resultados,Apto
+Tomás,Torres,6,Secundario,CSS,Autodidacta,Node,Organizado,No Apto
+Julián,Gómez,13,Universitario,Docker,Creatividad,JavaScript,Organizado,No Apto
+Martín,Torres,5,Universitario,TypeScript,Orientación a resultados,Docker,Autonomía,Apto
+Martín,Ortega,1,Postgrado,CSS,Organizado,TypeScript,Autodidacta,No Apto
+Sofía,Ortega,13,Postgrado,TypeScript,Autodidacta,JavaScript,Autonomía,No Apto
+Martín,Ferreyra,15,Universitario,Node,Orientación a resultados,HTML,Autonomía,Apto
+Felipe,Molina,2,Secundario,TypeScript,Creatividad,HTML,Organizado,No Apto
+Julián,Luna,10,Secundario,Azure,Autonomía,Go,Organizado,No Apto
+Camila,Luna,8,Postgrado,Azure,Autonomía,TypeScript,Autodidacta,No Apto
+Martín,Ortega,7,Postgrado,AWS,Autonomía,TypeScript,Orientación a resultados,No Apto
+Bruno,Molina,15,Postgrado,Docker,Autonomía,AWS,Creatividad,Apto
+Mateo,Gómez,7,Universitario,TypeScript,Autodidacta,AWS,Organizado,No Apto
+Valentina,Torres,1,Secundario,CSS,Organizado,Node,Creatividad,No Apto
+Martín,Luna,3,Universitario,TypeScript,Autonomía,Node,Organizado,No Apto
+Mateo,Gómez,8,Secundario,HTML,Autonomía,TypeScript,Autodidacta,No Apto
+Valentina,Sosa,2,Universitario,Go,Autodidacta,AWS,Organizado,No Apto
+Camila,Molina,3,Universitario,HTML,Creatividad,TypeScript,Orientación a resultados,No Apto
+Agustina,Nuñez,10,Secundario,TypeScript,Creatividad,Node,Autodidacta,No Apto
+Martín,Luna,15,Universitario,Docker,Autodidacta,CSS,Orientación a resultados,Apto
+Martín,Ortega,2,Postgrado,Docker,Creatividad,Azure,Orientación a resultados,Apto
+Bruno,Gómez,5,Universitario,HTML,Orientación a resultados,CSS,Creatividad,No Apto
+Tomás,Molina,2,Universitario,Node,Autonomía,AWS,Autodidacta,No Apto
+Mateo,Sosa,11,Secundario,Go,Organizado,Node,Orientación a resultados,No Apto
+Felipe,Ferreyra,9,Secundario,AWS,Orientación a resultados,Node,Organizado,Apto
+Mateo,Gómez,8,Universitario,HTML,Creatividad,JavaScript,Orientación a resultados,No Apto
+Martín,Paz,15,Postgrado,Docker,Creatividad,CSS,Orientación a resultados,Apto
+Tomás,Vega,5,Secundario,CSS,Autonomía,AWS,Organizado,Apto
+Mateo,Gómez,7,Postgrado,JavaScript,Organizado,HTML,Autodidacta,No Apto
+Julián,Sosa,14,Postgrado,AWS,Autonomía,TypeScript,Autodidacta,Apto
+Lucía,Suárez,8,Secundario,AWS,Autonomía,TypeScript,Creatividad,Apto
+Sofía,Luna,13,Secundario,TypeScript,Autodidacta,HTML,Orientación a resultados,No Apto
+Valentina,Vega,14,Secundario,Azure,Creatividad,Node,Organizado,No Apto
+Carla,Molina,10,Secundario,TypeScript,Creatividad,CSS,Autonomía,No Apto
+Lucía,Vega,12,Universitario,HTML,Organizado,Go,Autonomía,No Apto
+Mateo,Torres,9,Secundario,Azure,Orientación a resultados,Docker,Creatividad,Apto
+Mateo,Vega,1,Universitario,Go,Autodidacta,TypeScript,Organizado,No Apto
+Valentina,Torres,15,Universitario,CSS,Autodidacta,Go,Creatividad,No Apto
+Sofía,Sosa,10,Secundario,Azure,Autonomía,CSS,Orientación a resultados,Apto
+Valentina,Ferreyra,6,Secundario,Node,Organizado,JavaScript,Orientación a resultados,No Apto
+Sofía,Sosa,7,Universitario,TypeScript,Autodidacta,Node,Organizado,No Apto
+Mateo,Gómez,14,Secundario,Go,Creatividad,CSS,Autodidacta,No Apto
+Valentina,Gómez,7,Postgrado,Docker,Creatividad,JavaScript,Orientación a resultados,Apto
+Agustina,Gómez,4,Universitario,HTML,Autonomía,CSS,Orientación a resultados,Apto
+Julián,Luna,5,Secundario,CSS,Creatividad,Azure,Autonomía,No Apto
+Lucía,Suárez,3,Postgrado,CSS,Orientación a resultados,Docker,Autodidacta,No Apto
+Agustina,Gómez,14,Secundario,TypeScript,Autodidacta,Go,Creatividad,No Apto
+Martín,Luna,7,Secundario,Node,Orientación a resultados,Go,Organizado,No Apto
+Valentina,Nuñez,15,Postgrado,Azure,Organizado,Go,Creatividad,No Apto
+Bruno,Ortega,9,Postgrado,TypeScript,Orientación a resultados,AWS,Organizado,Apto
+Camila,Paz,14,Postgrado,CSS,Autodidacta,TypeScript,Organizado,No Apto
+Agustina,Sosa,2,Universitario,AWS,Organizado,Go,Autonomía,No Apto
+Felipe,Nuñez,15,Universitario,TypeScript,Autonomía,HTML,Orientación a resultados,Apto
+Agustina,Suárez,11,Postgrado,Go,Orientación a resultados,JavaScript,Autonomía,Apto
+Tomás,Ortega,14,Postgrado,TypeScript,Autodidacta,AWS,Orientación a resultados,Apto
+Bruno,Molina,11,Universitario,JavaScript,Organizado,Node,Creatividad,No Apto
+Felipe,Sosa,15,Postgrado,Docker,Autonomía,CSS,Creatividad,Apto
+Bruno,Ortega,12,Universitario,HTML,Autodidacta,JavaScript,Creatividad,No Apto
+Felipe,Vega,13,Postgrado,Docker,Autodidacta,CSS,Autonomía,Apto
+Julián,Luna,4,Universitario,Docker,Autodidacta,CSS,Creatividad,No Apto
+Valentina,Ortega,7,Postgrado,Go,Organizado,Azure,Autonomía,No Apto
+Bruno,Sosa,6,Universitario,JavaScript,Organizado,TypeScript,Autodidacta,No Apto
+Tomás,Ferreyra,10,Secundario,JavaScript,Autonomía,CSS,Orientación a resultados,Apto
+Tomás,Sosa,14,Postgrado(EnCurso),Node,Autodidacta,HTML,Orientación a resultados,No Apto
+Tomás,Paz,12,Secundario(EnCurso),Docker,Creatividad,AWS,Autonomía,Apto
+Tomás,Suárez,13,Secundario(EnCurso),Node,Creatividad,JavaScript,Orientación a resultados,No Apto
+Bruno,Sosa,9,Universitario(EnCurso),Docker,Autonomía,TypeScript,Orientación a resultados,Apto
+Bruno,Ramírez,10,Universitario(EnCurso),TypeScript,Autonomía,Docker,Autodidacta,Apto
+Lucía,Luna,6,Postgrado(EnCurso),TypeScript,Orientación a resultados,AWS,Organizado,Apto
+Felipe,Nuñez,1,Secundario(EnCurso),TypeScript,Orientación a resultados,CSS,Autodidacta,No Apto
+Bruno,Ferreyra,5,Universitario(EnCurso),CSS,Creatividad,Docker,Organizado,No Apto
+Felipe,Ramírez,1,Universitario(EnCurso),Docker,Orientación a resultados,Go,Autodidacta,No Apto
+Sofía,Ferreyra,1,Secundario(EnCurso),TypeScript,Autonomía,HTML,Orientación a resultados,No Apto
+Bruno,Molina,2,Universitario(EnCurso),HTML,Orientación a resultados,Docker,Organizado,No Apto
+Tomás,Vega,2,Secundario(EnCurso),CSS,Organizado,JavaScript,Orientación a resultados,No Apto
+Mateo,Vega,15,Postgrado(EnCurso),Docker,Creatividad,Azure,Organizado,No Apto
+Bruno,Ferreyra,1,Postgrado(EnCurso),Go,Autodidacta,HTML,Orientación a resultados,No Apto
+Valentina,Vega,15,Secundario(EnCurso),TypeScript,Organizado,Node,Autodidacta,No Apto
+Carla,Suárez,4,Secundario(EnCurso),JavaScript,Creatividad,CSS,Autonomía,No Apto
+Lucía,Torres,13,Postgrado(EnCurso),AWS,Organizado,Go,Autodidacta,No Apto
+Valentina,Ortega,6,Universitario(EnCurso),Go,Creatividad,Node,Organizado,No Apto
+Julián,Ortega,15,Postgrado(EnCurso),AWS,Orientación a resultados,Docker,Autonomía,Apto
+Agustina,Paz,3,Secundario(EnCurso),Docker,Autonomía,Go,Organizado,No Apto
+Carla,Ferreyra,2,Secundario(EnCurso),HTML,Autodidacta,Node,Autonomía,No Apto
+Bruno,Suárez,4,Universitario(EnCurso),TypeScript,Autonomía,Go,Creatividad,No Apto
+Martín,Gómez,7,Secundario(EnCurso),HTML,Creatividad,Node,Autonomía,No Apto
+Lucía,Sosa,6,Postgrado(EnCurso),Node,Creatividad,TypeScript,Orientación a resultados,No Apto
+Sofía,Vega,9,Postgrado(EnCurso),Azure,Organizado,Go,Autonomía,No Apto
+Mateo,Suárez,5,Universitario(EnCurso),Go,Organizado,AWS,Autodidacta,No Apto
+Bruno,Suárez,10,Secundario(EnCurso),Node,Autodidacta,JavaScript,Autonomía,No Apto
+Martín,Torres,13,Postgrado(EnCurso),HTML,Organizado,Go,Autonomía,No Apto
+Lucía,Torres,8,Secundario(EnCurso),TypeScript,Orientación a resultados,AWS,Autonomía,Apto
+Julián,Ramírez,14,Postgrado(EnCurso),TypeScript,Autonomía,CSS,Organizado,No Apto
+Martín,Ortega,10,Postgrado(EnCurso),JavaScript,Orientación a resultados,AWS,Organizado,No Apto
+Valentina,Torres,8,Secundario(EnCurso),Azure,Organizado,Node,Orientación a resultados,No Apto
+Camila,Paz,5,Postgrado(EnCurso),JavaScript,Organizado,Docker,Creatividad,No Apto
+Lucía,Sosa,10,Universitario(EnCurso),Node,Autonomía,Azure,Orientación a resultados,Apto
+Mateo,Ortega,4,Secundario(EnCurso),HTML,Orientación a resultados,Go,Autodidacta,No Apto
+Carla,Vega,7,Postgrado(EnCurso),Node,Organizado,Docker,Creatividad,No Apto
+Sofía,Suárez,8,Universitario(EnCurso),Go,Orientación a resultados,CSS,Organizado,No Apto
+Carla,Nuñez,8,Secundario(EnCurso),Azure,Autodidacta,HTML,Creatividad,No Apto
+Mateo,Ramírez,11,Secundario(EnCurso),JavaScript,Autonomía,Docker,Organizado,Apto
+Julián,Sosa,12,Postgrado(EnCurso),HTML,Autonomía,TypeScript,Creatividad,No Apto
+Tomás,Vega,1,Universitario(EnCurso),Docker,Orientación a resultados,Go,Organizado,No Apto
+Sofía,Torres,6,Postgrado(EnCurso),AWS,Autodidacta,Azure,Orientación a resultados,Apto
+Lucía,Vega,3,Secundario(EnCurso),HTML,Autodidacta,Go,Autonomía,No Apto
+Martín,Vega,2,Postgrado(EnCurso),Docker,Orientación a resultados,Azure,Autodidacta,No Apto
+Lucía,Nuñez,2,Universitario(EnCurso),AWS,Creatividad,HTML,Orientación a resultados,No Apto
+Bruno,Torres,7,Postgrado(EnCurso),HTML,Orientación a resultados,Node,Autodidacta,No Apto
+Felipe,Vega,13,Universitario(EnCurso),Node,Autodidacta,AWS,Organizado,No Apto
+Lucía,Ferreyra,10,Universitario(EnCurso),Docker,Organizado,AWS,Creatividad,Apto
+Julián,Ferreyra,6,Postgrado(EnCurso),Azure,Autonomía,JavaScript,Creatividad,No Apto
+Martín,Luna,3,Universitario(EnCurso),AWS,Orientación a resultados,HTML,Creatividad,No Apto
+Sofía,Luna,7,Secundario(EnCurso),TypeScript,Organizado,HTML,Autodidacta,No Apto
+Bruno,Ferreyra,14,Secundario(EnCurso),TypeScript,Organizado,Go,Creatividad,No Apto
+Agustina,Ramírez,14,Postgrado(EnCurso),Azure,Creatividad,JavaScript,Autonomía,No Apto
+Camila,Sosa,14,Postgrado(EnCurso),HTML,Creatividad,Azure,Autodidacta,No Apto
+Felipe,Suárez,5,Postgrado(EnCurso),Docker,Organizado,JavaScript,Autonomía,Apto
+Carla,Sosa,1,Universitario(EnCurso),Azure,Creatividad,Docker,Organizado,No Apto
+Carla,Torres,1,Universitario(EnCurso),Azure,Organizado,TypeScript,Orientación a resultados,No Apto
+Valentina,Molina,1,Postgrado(EnCurso),HTML,Autodidacta,JavaScript,Autonomía,No Apto
+Tomás,Ferreyra,9,Universitario(EnCurso),JavaScript,Organizado,Docker,Creatividad,No Apto
+Martín,Sosa,5,Universitario(EnCurso),Azure,Organizado,AWS,Autodidacta,No Apto
+Bruno,Gómez,14,Postgrado(EnCurso),AWS,Organizado,TypeScript,Orientación a resultados,Apto
+Felipe,Molina,15,Universitario(EnCurso),Node,Autodidacta,CSS,Orientación a resultados,No Apto
+Julián,Suárez,10,Universitario(EnCurso),JavaScript,Orientación a resultados,Go,Organizado,No Apto
+Julián,Sosa,7,Postgrado(EnCurso),JavaScript,Autonomía,Docker,Autodidacta,Apto
+Bruno,Molina,1,Universitario(EnCurso),JavaScript,Creatividad,CSS,Organizado,No Apto
+Julián,Suárez,11,Universitario(EnCurso),Node,Creatividad,TypeScript,Autodidacta,No Apto
+Felipe,Gómez,2,Postgrado(EnCurso),HTML,Orientación a resultados,JavaScript,Organizado,No Apto
+Bruno,Sosa,11,Postgrado(EnCurso),TypeScript,Autodidacta,CSS,Orientación a resultados,No Apto
+Mateo,Luna,3,Secundario(EnCurso),Azure,Creatividad,Docker,Autonomía,No Apto
+Bruno,Vega,7,Universitario(EnCurso),Go,Orientación a resultados,Azure,Autonomía,Apto
+Tomás,Molina,2,Secundario(EnCurso),CSS,Autonomía,JavaScript,Organizado,No Apto
+Sofía,Torres,9,Universitario(EnCurso),CSS,Autodidacta,Azure,Orientación a resultados,No Apto
+Julián,Nuñez,4,Secundario(EnCurso),HTML,Orientación a resultados,JavaScript,Organizado,No Apto
+Tomás,Ramírez,13,Secundario(EnCurso),Azure,Orientación a resultados,TypeScript,Creatividad,No Apto
+Julián,Ferreyra,11,Postgrado(EnCurso),Docker,Organizado,JavaScript,Creatividad,No Apto
+Carla,Nuñez,9,Postgrado(EnCurso),TypeScript,Autonomía,HTML,Organizado,No Apto
+Julián,Luna,5,Universitario(EnCurso),HTML,Creatividad,Azure,Autodidacta,No Apto
+Valentina,Ramírez,9,Postgrado(EnCurso),Node,Organizado,JavaScript,Autodidacta,No Apto
+Julián,Ramírez,1,Secundario(EnCurso),Docker,Autodidacta,Node,Orientación a resultados,No Apto
+Sofía,Molina,5,Postgrado(EnCurso),HTML,Autonomía,Node,Organizado,No Apto
+Sofía,Ferreyra,15,Secundario(EnCurso),AWS,Organizado,CSS,Autonomía,Apto
+Agustina,Paz,9,Secundario(EnCurso),AWS,Autonomía,Go,Creatividad,Apto
+Julián,Paz,2,Postgrado(EnCurso),Go,Creatividad,JavaScript,Organizado,No Apto
+Agustina,Gómez,2,Secundario(EnCurso),Docker,Organizado,JavaScript,Orientación a resultados,No Apto
+Tomás,Vega,1,Secundario(EnCurso),AWS,Autonomía,Go,Autodidacta,No Apto
+Mateo,Vega,6,Secundario(EnCurso),CSS,Autonomía,TypeScript,Organizado,No Apto
+Valentina,Torres,15,Secundario(EnCurso),Node,Autodidacta,Docker,Organizado,No Apto
+Martín,Torres,4,Postgrado(EnCurso),Azure,Autonomía,AWS,Orientación a resultados,Apto
+Carla,Sosa,1,Postgrado(EnCurso),TypeScript,Autodidacta,Go,Autonomía,No Apto
+Mateo,Vega,13,Postgrado(EnCurso),TypeScript,Autonomía,AWS,Autodidacta,Apto
+Lucía,Luna,9,Postgrado(EnCurso),Azure,Autodidacta,CSS,Organizado,No Apto
+Agustina,Ortega,12,Secundario(EnCurso),CSS,Organizado,AWS,Autodidacta,No Apto
+Mateo,Paz,9,Universitario(EnCurso),Azure,Orientación a resultados,AWS,Autonomía,Apto
+Julián,Ferreyra,15,Universitario(EnCurso),TypeScript,Autonomía,Go,Organizado,No Apto
+Carla,Ferreyra,14,Secundario(EnCurso),CSS,Organizado,Azure,Orientación a resultados,No Apto
+Felipe,Suárez,7,Universitario(EnCurso),CSS,Creatividad,TypeScript,Autodidacta,No Apto
+Camila,Ortega,10,Secundario(EnCurso),Go,Autonomía,TypeScript,Organizado,No Apto
+Tomás,Luna,3,Secundario(EnCurso),AWS,Creatividad,Azure,Orientación a resultados,No Apto
+Julián,Paz,3,Secundario(EnCurso),AWS,Organizado,TypeScript,Creatividad,No Apto
+Sofía,Sosa,4,Postgrado(EnCurso),Node,Autodidacta,HTML,Autonomía,No Apto
+Agustina,Ramírez,2,Secundario(EnCurso),CSS,Creatividad,HTML,Orientación a resultados,No Apto
+Lucía,Paz,8,Secundario(EnCurso),JavaScript,Autodidacta,AWS,Organizado,No Apto
+Bruno,Nuñez,14,Postgrado(EnCurso),Node,Creatividad,Go,Autonomía,No Apto
+Lucía,Ferreyra,6,Universitario(EnCurso),Go,Autodidacta,CSS,Creatividad,No Apto
+Mateo,Nuñez,8,Postgrado(EnCurso),JavaScript,Organizado,AWS,Autonomía,Apto
+Camila,Ramírez,8,Universitario(EnCurso),AWS,Creatividad,Docker,Organizado,Apto
+Tomás,Vega,14,Postgrado(EnCurso),TypeScript,Autonomía,Node,Creatividad,No Apto
+Lucía,Suárez,3,Postgrado(EnCurso),TypeScript,Organizado,Go,Orientación a resultados,No Apto
+Martín,Torres,6,Universitario(EnCurso),HTML,Autonomía,JavaScript,Creatividad,No Apto
+Camila,Vega,14,Universitario(EnCurso),Node,Orientación a resultados,TypeScript,Organizado,No Apto
+Carla,Vega,13,Postgrado(EnCurso),CSS,Organizado,HTML,Creatividad,No Apto
+Julián,Vega,4,Universitario(EnCurso),Docker,Organizado,Azure,Orientación a resultados,Apto
+Mateo,Vega,12,Secundario(EnCurso),AWS,Autonomía,HTML,Orientación a resultados,No Apto
+Agustina,Ramírez,13,Postgrado(EnCurso),AWS,Organizado,CSS,Creatividad,No Apto
+Sofía,Ortega,13,Secundario(EnCurso),Azure,Organizado,CSS,Autodidacta,No Apto
+Bruno,Ortega,12,Secundario(EnCurso),Docker,Autonomía,JavaScript,Orientación a resultados,Apto
+Agustina,Sosa,13,Universitario(EnCurso),HTML,Autonomía,Go,Organizado,No Apto
+Camila,Nuñez,6,Universitario(EnCurso),CSS,Creatividad,AWS,Autonomía,Apto
+Felipe,Ferreyra,5,Secundario(EnCurso),JavaScript,Autodidacta,CSS,Orientación a resultados,No Apto
+Bruno,Molina,11,Postgrado(EnCurso),Azure,Orientación a resultados,Node,Organizado,No Apto
+Carla,Ferreyra,15,Secundario(EnCurso),Azure,Creatividad,CSS,Autonomía,No Apto
+Julián,Torres,6,Postgrado(EnCurso),Azure,Creatividad,TypeScript,Autonomía,No Apto
+Camila,Ortega,10,Universitario(EnCurso),Azure,Creatividad,JavaScript,Organizado,No Apto
+Felipe,Luna,1,Universitario(EnCurso),Docker,Organizado,Node,Creatividad,No Apto
+Felipe,Ramírez,7,Universitario(EnCurso),Azure,Autonomía,Node,Organizado,No Apto
+Carla,Ramírez,2,Postgrado(EnCurso),Go,Orientación a resultados,Azure,Autodidacta,No Apto
+Carla,Sosa,1,Postgrado(EnCurso),JavaScript,Organizado,CSS,Creatividad,No Apto
+Bruno,Ortega,12,Secundario(EnCurso),TypeScript,Creatividad,AWS,Orientación a resultados,Apto
+Felipe,Vega,10,Postgrado(EnCurso),JavaScript,Orientación a resultados,AWS,Creatividad,Apto
+Felipe,Paz,14,Postgrado(EnCurso),JavaScript,Creatividad,HTML,Autonomía,No Apto
+Martín,Sosa,2,Secundario(EnCurso),JavaScript,Orientación a resultados,Node,Organizado,No Apto
+Agustina,Gómez,6,Universitario(EnCurso),CSS,Autodidacta,Node,Autonomía,No Apto
+Agustina,Sosa,15,Secundario(EnCurso),CSS,Autonomía,HTML,Creatividad,No Apto
+Bruno,Ortega,13,Universitario(EnCurso),Go,Autodidacta,HTML,Orientación a resultados,No Apto
+Mateo,Sosa,7,Secundario(EnCurso),AWS,Autonomía,JavaScript,Creatividad,Apto
+Lucía,Torres,13,Postgrado(EnCurso),Azure,Autodidacta,CSS,Organizado,No Apto
+Julián,Ramírez,15,Universitario(EnCurso),HTML,Orientación a resultados,Node,Autonomía,Apto
+Tomás,Sosa,7,Secundario(EnCurso),Docker,Autodidacta,Node,Organizado,No Apto
+Julián,Luna,15,Universitario(EnCurso),HTML,Organizado,AWS,Orientación a resultados,Apto
+Lucía,Suárez,15,Secundario(EnCurso),Azure,Orientación a resultados,AWS,Organizado,Apto
+Agustina,Ortega,10,Universitario(EnCurso),CSS,Orientación a resultados,HTML,Creatividad,No Apto
+Sofía,Nuñez,10,Postgrado(EnCurso),Docker,Autodidacta,Node,Organizado,No Apto
+Camila,Ferreyra,4,Universitario(EnCurso),TypeScript,Orientación a resultados,Docker,Autonomía,Apto
+Felipe,Gómez,15,Postgrado(EnCurso),JavaScript,Autodidacta,Go,Autonomía,No Apto
+Lucía,Ramírez,12,Postgrado(EnCurso),CSS,Creatividad,JavaScript,Autodidacta,No Apto
+Martín,Ramírez,3,Universitario(EnCurso),CSS,Orientación a resultados,JavaScript,Autodidacta,No Apto
+Felipe,Ortega,8,Universitario(EnCurso),Azure,Orientación a resultados,HTML,Organizado,No Apto
+Camila,Sosa,9,Universitario(EnCurso),Docker,Autodidacta,Azure,Organizado,No Apto
+Carla,Paz,6,Secundario(EnCurso),AWS,Autonomía,Node,Orientación a resultados,Apto
+Felipe,Paz,5,Universitario(EnCurso),Go,Orientación a resultados,Node,Creatividad,No Apto
+Martín,Torres,1,Secundario(EnCurso),Go,Creatividad,Docker,Autonomía,No Apto
+Tomás,Luna,12,Postgrado(EnCurso),TypeScript,Autonomía,Docker,Orientación a resultados,Apto
+Valentina,Ramírez,4,Universitario(EnCurso),CSS,Orientación a resultados,Node,Organizado,No Apto
+Tomás,Molina,6,Universitario(EnCurso),TypeScript,Creatividad,Node,Orientación a resultados,No Apto
+Felipe,Gómez,7,Universitario(EnCurso),JavaScript,Organizado,Docker,Autodidacta,No Apto
+Tomás,Ferreyra,1,Postgrado(EnCurso),TypeScript,Organizado,Node,Orientación a resultados,No Apto
+Camila,Luna,6,Secundario(EnCurso),Docker,Organizado,TypeScript,Autodidacta,No Apto
+Camila,Paz,3,Secundario(EnCurso),HTML,Autodidacta,CSS,Orientación a resultados,No Apto
+Felipe,Vega,14,Secundario(EnCurso),Docker,Autonomía,AWS,Organizado,Apto
+Felipe,Molina,8,Postgrado(EnCurso),Azure,Orientación a resultados,JavaScript,Autodidacta,No Apto
+Carla,Suárez,4,Postgrado(EnCurso),Node,Autodidacta,CSS,Creatividad,Apto
+Julián,Paz,14,Postgrado(EnCurso),HTML,Orientación a resultados,JavaScript,Autodidacta,No Apto
+Tomás,Ramírez,8,Postgrado(EnCurso),Go,Autodidacta,CSS,Organizado,No Apto
+Valentina,Paz,12,Universitario(EnCurso),HTML,Organizado,Node,Autonomía,No Apto
+Julián,Gómez,7,Secundario(EnCurso),HTML,Orientación a resultados,Docker,Creatividad,Apto
+Julián,Ferreyra,9,Secundario(EnCurso),Docker,Autodidacta,CSS,Autonomía,Apto
+Camila,Suárez,11,Postgrado(EnCurso),AWS,Autodidacta,Docker,Autonomía,Apto
+Valentina,Molina,7,Universitario(EnCurso),Azure,Orientación a resultados,TypeScript,Organizado,No Apto
+Mateo,Suárez,8,Postgrado(EnCurso),Node,Organizado,HTML,Creatividad,No Apto
+Lucía,Vega,12,Postgrado(EnCurso),Node,Creatividad,Azure,Autonomía,No Apto
+Mateo,Ortega,11,Universitario(EnCurso),Node,Orientación a resultados,Docker,Autodidacta,Apto
+Agustina,Ortega,14,Postgrado(EnCurso),HTML,Autodidacta,AWS,Autonomía,Apto
+Julián,Suárez,12,Secundario(EnCurso),CSS,Creatividad,Go,Organizado,No Apto
+Carla,Sosa,13,Universitario(EnCurso),HTML,Autonomía,CSS,Organizado,No Apto
+Felipe,Ortega,7,Universitario(EnCurso),Docker,Autodidacta,TypeScript,Creatividad,No Apto
+Carla,Molina,2,Secundario(EnCurso),JavaScript,Organizado,Go,Creatividad,No Apto
+Martín,Sosa,7,Secundario(EnCurso),AWS,Orientación a resultados,Azure,Autonomía,Apto
+Sofía,Ferreyra,10,Universitario(EnCurso),CSS,Orientación a resultados,Node,Organizado,No Apto
+Lucía,Luna,1,Postgrado(EnCurso),TypeScript,Creatividad,CSS,Autonomía,No Apto
+Sofía,Molina,4,Universitario(EnCurso),CSS,Autonomía,Docker,Creatividad,Apto
+Agustina,Ferreyra,3,Postgrado(EnCurso),Docker,Creatividad,HTML,Orientación a resultados,No Apto
+Agustina,Ortega,10,Postgrado(EnCurso),Docker,Organizado,TypeScript,Orientación a resultados,Apto
+Julián,Paz,12,Secundario(EnCurso),Docker,Orientación a resultados,JavaScript,Creatividad,Apto
+Felipe,Torres,3,Universitario(EnCurso),HTML,Creatividad,TypeScript,Autonomía,No Apto
+Mateo,Luna,6,Secundario(EnCurso),Go,Orientación a resultados,JavaScript,Organizado,No Apto
+Lucía,Vega,7,Universitario(EnCurso),Docker,Orientación a resultados,Go,Autonomía,Apto
+Sofía,Luna,9,Secundario(EnCurso),Go,Autodidacta,CSS,Orientación a resultados,No Apto
+Martín,Gómez,7,Postgrado(EnCurso),CSS,Orientación a resultados,Go,Autodidacta,No Apto
+Sofía,Suárez,15,Secundario(EnCurso),CSS,Autodidacta,Go,Autonomía,No Apto
+Camila,Paz,7,Secundario(EnCurso),Docker,Creatividad,JavaScript,Orientación a resultados,Apto
+Bruno,Molina,12,Universitario(EnCurso),Azure,Orientación a resultados,AWS,Organizado,Apto
+Tomás,Nuñez,4,Universitario(EnCurso),Node,Creatividad,Azure,Autodidacta,No Apto
+Martín,Vega,4,Universitario(EnCurso),CSS,Autodidacta,JavaScript,Autonomía,No Apto
+Julián,Ortega,14,Universitario(EnCurso),Docker,Autodidacta,JavaScript,Orientación a resultados,Apto
+Mateo,Paz,11,Universitario(EnCurso),AWS,Autodidacta,Docker,Autonomía,Apto
+Martín,Suárez,15,Universitario(EnCurso),Docker,Creatividad,TypeScript,Autodidacta,No Apto
+Carla,Molina,13,Postgrado(EnCurso),AWS,Creatividad,Node,Organizado,No Apto
+Martín,Ferreyra,1,Postgrado(EnCurso),Azure,Creatividad,JavaScript,Organizado,No Apto
+Carla,Paz,7,Postgrado(EnCurso),Node,Orientación a resultados,Go,Creatividad,No Apto
+Tomás,Torres,8,Postgrado(EnCurso),Azure,Organizado,TypeScript,Autonomía,No Apto
+Bruno,Nuñez,4,Postgrado(EnCurso),HTML,Organizado,Go,Creatividad,No Apto
+Camila,Sosa,2,Secundario(EnCurso),JavaScript,Autodidacta,Docker,Creatividad,No Apto
+Sofía,Ramírez,5,Universitario(EnCurso),HTML,Orientación a resultados,AWS,Creatividad,No Apto
+Agustina,Gómez,10,Secundario(EnCurso),CSS,Autonomía,Node,Creatividad,No Apto
+Bruno,Molina,3,Postgrado(EnCurso),JavaScript,Orientación a resultados,AWS,Organizado,No Apto
+Bruno,Ramírez,15,Secundario(EnCurso),HTML,Orientación a resultados,JavaScript,Creatividad,No Apto
+Sofía,Molina,7,Postgrado(EnCurso),Docker,Creatividad,Node,Organizado,No Apto
+Sofía,Torres,15,Postgrado(EnCurso),HTML,Autonomía,CSS,Creatividad,No Apto
+Lucía,Sosa,12,Postgrado(EnCurso),AWS,Orientación a resultados,JavaScript,Autonomía,Apto
+Sofía,Ramírez,6,Postgrado(EnCurso),TypeScript,Orientación a resultados,AWS,Autonomía,Apto
+Camila,Suárez,13,Secundario(EnCurso),Docker,Organizado,AWS,Autonomía,Apto
+Martín,Vega,3,Universitario(EnCurso),CSS,Organizado,Go,Autonomía,No Apto
+Mateo,Paz,11,Universitario(EnCurso),JavaScript,Autonomía,HTML,Orientación a resultados,Apto
+Felipe,Ortega,5,Secundario(EnCurso),JavaScript,Autonomía,HTML,Orientación a resultados,Apto
+Sofía,Vega,14,Secundario(EnCurso),TypeScript,Creatividad,JavaScript,Organizado,No Apto
+Felipe,Gómez,9,Universitario(EnCurso),Go,Organizado,CSS,Orientación a resultados,No Apto
+Agustina,Sosa,9,Universitario(EnCurso),Node,Orientación a resultados,Go,Autonomía,Apto
+Mateo,Suárez,14,Postgrado(EnCurso),AWS,Autodidacta,Node,Creatividad,No Apto
+Julián,Ortega,12,Postgrado(EnCurso),Azure,Organizado,JavaScript,Autodidacta,No Apto
+Agustina,Gómez,4,Postgrado(EnCurso),TypeScript,Creatividad,Azure,Orientación a resultados,No Apto
+Valentina,Torres,10,Postgrado(EnCurso),Node,Organizado,JavaScript,Creatividad,No Apto
+Carla,Ortega,6,Postgrado(EnCurso),CSS,Autonomía,Node,Orientación a resultados,Apto
+Camila,Vega,13,Secundario(EnCurso),Node,Orientación a resultados,AWS,Autodidacta,Apto
+Lucía,Sosa,10,Postgrado(EnCurso),HTML,Autodidacta,TypeScript,Orientación a resultados,No Apto
+Julián,Nuñez,6,Secundario(EnCurso),Azure,Orientación a resultados,HTML,Organizado,No Apto
+Bruno,Ferreyra,12,Universitario(EnCurso),HTML,Autodidacta,JavaScript,Creatividad,No Apto
+Felipe,Gómez,5,Secundario(EnCurso),Docker,Orientación a resultados,CSS,Creatividad,Apto
+Tomás,Ortega,5,Postgrado(EnCurso),Azure,Autodidacta,CSS,Orientación a resultados,No Apto
+Martín,Nuñez,1,Secundario(EnCurso),HTML,Autodidacta,Go,Autonomía,No Apto
+Mateo,Vega,8,Secundario(EnCurso),Azure,Autodidacta,Go,Autonomía,No Apto
+Martín,Suárez,13,Secundario(EnCurso),TypeScript,Organizado,Node,Autodidacta,No Apto
+Agustina,Molina,8,Secundario(EnCurso),TypeScript,Organizado,Docker,Orientación a resultados,Apto
+Felipe,Nuñez,9,Universitario(EnCurso),AWS,Organizado,HTML,Autodidacta,No Apto
+Mateo,Ramírez,7,Secundario(EnCurso),AWS,Orientación a resultados,Azure,Autodidacta,Apto
+Julián,Torres,15,Postgrado(EnCurso),AWS,Organizado,Go,Orientación a resultados,Apto
+Sofía,Ramírez,15,Universitario(EnCurso),JavaScript,Autonomía,Go,Orientación a resultados,Apto
+Mateo,Ortega,2,Universitario(EnCurso),Go,Autodidacta,JavaScript,Orientación a resultados,No Apto
+Sofía,Ramírez,9,Secundario(EnCurso),Azure,Autonomía,CSS,Creatividad,No Apto
+Julián,Ferreyra,12,Universitario(EnCurso),Docker,Organizado,AWS,Autonomía,Apto
+Martín,Paz,9,Universitario(EnCurso),JavaScript,Autonomía,HTML,Creatividad,No Apto
+Camila,Suárez,11,Universitario(EnCurso),Azure,Autodidacta,AWS,Organizado,No Apto
+Agustina,Sosa,9,Postgrado(EnCurso),Azure,Orientación a resultados,HTML,Creatividad,No Apto
+Tomás,Nuñez,15,Secundario(EnCurso),Azure,Orientación a resultados,JavaScript,Autonomía,Apto
+Carla,Torres,2,Secundario(EnCurso),Node,Autonomía,HTML,Creatividad,No Apto
+Bruno,Gómez,15,Secundario(EnCurso),Docker,Organizado,AWS,Autodidacta,Apto
+Agustina,Ferreyra,6,Postgrado(EnCurso),AWS,Autonomía,Docker,Autodidacta,Apto
+Tomás,Sosa,11,Postgrado(EnCurso),AWS,Autonomía,HTML,Organizado,Apto
+Tomás,Paz,5,Secundario(EnCurso),HTML,Orientación a resultados,Docker,Autodidacta,Apto
+Carla,Vega,2,Universitario(EnCurso),AWS,Organizado,Go,Autodidacta,No Apto
+Julián,Ferreyra,6,Postgrado(EnCurso),CSS,Organizado,Node,Autodidacta,No Apto
+Felipe,Ferreyra,2,Universitario(EnCurso),Docker,Creatividad,CSS,Orientación a resultados,No Apto
+Julián,Paz,15,Postgrado(EnCurso),Azure,Creatividad,Node,Organizado,No Apto
+Martín,Ferreyra,10,Secundario(EnCurso),TypeScript,Autonomía,JavaScript,Orientación a resultados,Apto
+Lucía,Molina,2,Secundario(EnCurso),CSS,Orientación a resultados,JavaScript,Organizado,No Apto
+Julián,Nuñez,14,Secundario(EnCurso),JavaScript,Orientación a resultados,CSS,Autonomía,Apto
+Julián,Molina,11,Postgrado(EnCurso),AWS,Autodidacta,TypeScript,Creatividad,No Apto
+Bruno,Ortega,15,Universitario(EnCurso),Node,Orientación a resultados,CSS,Autodidacta,No Apto
+Lucía,Gómez,1,Secundario(EnCurso),Node,Orientación a resultados,TypeScript,Autodidacta,No Apto
+Carla,Sosa,14,Postgrado(EnCurso),HTML,Orientación a resultados,Docker,Creatividad,Apto
+Lucía,Suárez,3,Universitario(EnCurso),HTML,Organizado,TypeScript,Autonomía,No Apto
+Tomás,Sosa,2,Universitario(EnCurso),JavaScript,Autodidacta,TypeScript,Creatividad,No Apto
+Martín,Luna,14,Secundario(EnCurso),AWS,Creatividad,TypeScript,Organizado,No Apto
+Felipe,Molina,5,Secundario(EnCurso),TypeScript,Orientación a resultados,Node,Autodidacta,No Apto
+Sofía,Gómez,4,Secundario(EnCurso),TypeScript,Orientación a resultados,CSS,Organizado,No Apto
+Felipe,Gómez,11,Secundario(EnCurso),CSS,Orientación a resultados,Go,Organizado,No Apto
+Julián,Suárez,4,Postgrado(EnCurso),AWS,Autonomía,Go,Autodidacta,No Apto
+Carla,Torres,10,Postgrado(EnCurso),Docker,Autodidacta,Node,Creatividad,No Apto
+Julián,Ramírez,11,Universitario(EnCurso),HTML,Autodidacta,Azure,Orientación a resultados,No Apto
+Agustina,Sosa,12,Postgrado(EnCurso),JavaScript,Autodidacta,AWS,Orientación a resultados,Apto
+Bruno,Torres,1,Universitario(EnCurso),Go,Autonomía,HTML,Autodidacta,No Apto
+Sofía,Ferreyra,12,Universitario(EnCurso),AWS,Autodidacta,HTML,Creatividad,No Apto
+Carla,Ferreyra,6,Postgrado(EnCurso),Go,Orientación a resultados,CSS,Autonomía,Apto
+Valentina,Sosa,15,Universitario(EnCurso),Node,Organizado,Azure,Autonomía,No Apto
+Camila,Luna,6,Secundario(EnCurso),Node,Creatividad,JavaScript,Autonomía,No Apto
+Felipe,Molina,15,Secundario(EnCurso),TypeScript,Autodidacta,Go,Autonomía,No Apto
+Julián,Molina,10,Postgrado(EnCurso),CSS,Autonomía,JavaScript,Organizado,No Apto
+Carla,Torres,5,Universitario(EnCurso),Node,Orientación a resultados,TypeScript,Autonomía,Apto
+Agustina,Ramírez,5,Universitario(EnCurso),Docker,Orientación a resultados,HTML,Creatividad,Apto
+Camila,Torres,13,Secundario(EnCurso),TypeScript,Creatividad,Azure,Autodidacta,No Apto
+Martín,Paz,1,Universitario(EnCurso),TypeScript,Autodidacta,CSS,Organizado,No Apto
+Mateo,Gómez,3,Universitario(EnCurso),HTML,Organizado,Go,Autodidacta,No Apto
+Valentina,Nuñez,10,Universitario(EnCurso),CSS,Autonomía,Node,Autodidacta,No Apto
+Mateo,Ramírez,3,Universitario(EnCurso),TypeScript,Autodidacta,HTML,Autonomía,No Apto
+Sofía,Suárez,15,Secundario(EnCurso),Node,Autodidacta,AWS,Creatividad,No Apto
+Mateo,Paz,9,Postgrado(EnCurso),JavaScript,Orientación a resultados,Azure,Organizado,No Apto
+Sofía,Molina,13,Secundario(EnCurso),HTML,Organizado,Go,Autonomía,No Apto
+Carla,Luna,9,Secundario(EnCurso),AWS,Creatividad,Node,Organizado,No Apto
+Bruno,Torres,10,Secundario(EnCurso),JavaScript,Autonomía,Go,Organizado,No Apto
+Valentina,Ferreyra,10,Postgrado(EnCurso),Azure,Orientación a resultados,Docker,Creatividad,Apto
+Sofía,Nuñez,9,Universitario(EnCurso),Node,Organizado,Go,Creatividad,No Apto
+Sofía,Sosa,1,Postgrado(EnCurso),Node,Orientación a resultados,AWS,Autodidacta,Apto
+Lucía,Ramírez,10,Universitario(EnCurso),Node,Organizado,CSS,Creatividad,No Apto
+Bruno,Paz,8,Universitario(EnCurso),Node,Organizado,JavaScript,Autodidacta,No Apto
+Julián,Luna,1,Secundario(EnCurso),Node,Orientación a resultados,CSS,Autodidacta,No Apto
+Martín,Molina,9,Secundario(EnCurso),Docker,Creatividad,AWS,Orientación a resultados,Apto
+Felipe,Vega,15,Universitario(EnCurso),Azure,Orientación a resultados,CSS,Autodidacta,No Apto
+Lucía,Suárez,4,Secundario(EnCurso),JavaScript,Autodidacta,CSS,Organizado,No Apto
+Mateo,Sosa,10,Postgrado(EnCurso),AWS,Orientación a resultados,CSS,Autodidacta,Apto
+Bruno,Nuñez,2,Postgrado(EnCurso),HTML,Creatividad,Docker,Autodidacta,No Apto
+Carla,Sosa,5,Secundario(EnCurso),CSS,Creatividad,Go,Orientación a resultados,No Apto
+Lucía,Paz,14,Postgrado(EnCurso),AWS,Creatividad,Node,Autodidacta,No Apto
+Camila,Ramírez,9,Secundario(EnCurso),Azure,Creatividad,AWS,Orientación a resultados,Apto
+Felipe,Sosa,1,Universitario(EnCurso),Azure,Organizado,Docker,Orientación a resultados,No Apto
+Felipe,Ramírez,11,Universitario(EnCurso),Go,Autodidacta,CSS,Orientación a resultados,No Apto
+Mateo,Nuñez,15,Postgrado(EnCurso),Azure,Organizado,JavaScript,Autodidacta,No Apto
+Tomás,Ferreyra,5,Universitario(EnCurso),AWS,Autonomía,TypeScript,Organizado,Apto
+Felipe,Ramírez,2,Postgrado(EnCurso),TypeScript,Creatividad,Node,Autodidacta,No Apto
+Valentina,Nuñez,15,Postgrado(EnCurso),Docker,Creatividad,Node,Autonomía,Apto
+Tomás,Vega,4,Universitario(EnCurso),CSS,Autonomía,Node,Autodidacta,No Apto
+Carla,Suárez,15,Postgrado(EnCurso),Node,Orientación a resultados,HTML,Autodidacta,Apto
+Mateo,Molina,12,Secundario(EnCurso),Docker,Autonomía,TypeScript,Orientación a resultados,Apto
+Lucía,Nuñez,10,Secundario(EnCurso),AWS,Creatividad,TypeScript,Organizado,No Apto
+Carla,Ramírez,8,Postgrado(EnCurso),Azure,Autodidacta,Docker,Orientación a resultados,Apto
+Felipe,Gómez,1,Postgrado(EnCurso),Docker,Organizado,AWS,Orientación a resultados,Apto
+Valentina,Ortega,13,Secundario(EnCurso),TypeScript,Creatividad,HTML,Autodidacta,No Apto
+Bruno,Gómez,12,Secundario(EnCurso),Docker,Autodidacta,TypeScript,Autonomía,Apto
+Carla,Gómez,2,Secundario(EnCurso),HTML,Orientación a resultados,CSS,Autonomía,No Apto
+Lucía,Suárez,11,Secundario(EnCurso),TypeScript,Autodidacta,JavaScript,Creatividad,No Apto
+Carla,Paz,4,Universitario(EnCurso),Azure,Orientación a resultados,TypeScript,Autodidacta,No Apto
+Sofía,Ramírez,6,Postgrado(EnCurso),Go,Orientación a resultados,Node,Creatividad,No Apto
+Camila,Torres,2,Postgrado(EnCurso),Docker,Creatividad,Node,Orientación a resultados,No Apto
+Tomás,Nuñez,1,Secundario(EnCurso),HTML,Creatividad,Azure,Autodidacta,No Apto
+Felipe,Ortega,12,Universitario(EnCurso),Node,Autonomía,Azure,Autodidacta,No Apto
+Agustina,Vega,2,Universitario(EnCurso),JavaScript,Organizado,Azure,Autonomía,No Apto
+Lucía,Torres,9,Secundario(EnCurso),Azure,Autodidacta,HTML,Organizado,No Apto
+Agustina,Luna,10,Secundario(EnCurso),HTML,Autonomía,JavaScript,Autodidacta,No Apto
+Valentina,Gómez,15,Universitario(EnCurso),Azure,Autonomía,Docker,Autodidacta,Apto
+Felipe,Vega,7,Secundario(EnCurso),Node,Autonomía,TypeScript,Autodidacta,No Apto
+Carla,Ramírez,3,Postgrado(EnCurso),HTML,Orientación a resultados,AWS,Creatividad,No Apto
+Lucía,Ferreyra,6,Postgrado(EnCurso),AWS,Organizado,TypeScript,Autodidacta,No Apto
+Carla,Gómez,10,Universitario(EnCurso),HTML,Organizado,Docker,Autonomía,Apto
+Bruno,Suárez,7,Postgrado(EnCurso),JavaScript,Orientación a resultados,Go,Autonomía,Apto
+Agustina,Suárez,11,Postgrado(EnCurso),Node,Orientación a resultados,AWS,Organizado,Apto
+Camila,Ferreyra,11,Secundario(EnCurso),CSS,Autodidacta,TypeScript,Orientación a resultados,No Apto
+Agustina,Luna,10,Postgrado(EnCurso),HTML,Creatividad,Go,Orientación a resultados,No Apto
+Julián,Gómez,1,Secundario(EnCurso),AWS,Organizado,HTML,Orientación a resultados,No Apto
+Tomás,Ortega,1,Postgrado(EnCurso),AWS,Autodidacta,Go,Autonomía,No Apto
+Mateo,Suárez,12,Secundario(EnCurso),HTML,Autonomía,TypeScript,Autodidacta,No Apto
+Agustina,Paz,8,Universitario(EnCurso),HTML,Autonomía,Azure,Creatividad,No Apto
+Martín,Torres,14,Postgrado(EnCurso),Go,Autonomía,Node,Creatividad,No Apto
+Julián,Luna,7,Secundario(EnCurso),JavaScript,Autodidacta,AWS,Creatividad,No Apto
+Tomás,Luna,10,Universitario(EnCurso),JavaScript,Creatividad,Node,Autonomía,No Apto
+Valentina,Torres,7,Universitario(EnCurso),Node,Creatividad,Go,Autonomía,No Apto
+Mateo,Gómez,3,Universitario(EnCurso),JavaScript,Orientación a resultados,Go,Autodidacta,No Apto
+Mateo,Sosa,7,Secundario(EnCurso),JavaScript,Autonomía,CSS,Organizado,No Apto
+Carla,Suárez,6,Postgrado(EnCurso),Docker,Autodidacta,AWS,Orientación a resultados,Apto
+Sofía,Nuñez,1,Postgrado(EnCurso),HTML,Orientación a resultados,JavaScript,Autodidacta,No Apto
+Martín,Gómez,1,Secundario(EnCurso),Node,Creatividad,Azure,Organizado,No Apto
+Julián,Suárez,3,Postgrado(EnCurso),AWS,Autonomía,JavaScript,Autodidacta,No Apto
+Tomás,Paz,13,Universitario(EnCurso),Azure,Orientación a resultados,AWS,Organizado,Apto

@@ -247,4 +247,22 @@ body {
 
 
 
+.boton-violeta-neon {
+  background: none;
+  border: none;
+  color: #b55bfa; /* Violeta neón */
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+  transition: color 0.3s, text-shadow 0.3s;
+  text-shadow: 0 0 8px #311347, 0 0 12px #24023d;
+}
 
+.boton-violeta-neon:hover {
+  color: #e0aaff;
+  text-shadow: 0 0 8px #c77dff, 0 0 12px #c77dff;
+}
