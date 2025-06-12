@@ -19,6 +19,7 @@ from flask_mail import Mail, Message
 from functools import wraps
 from datetime import datetime
 from flask import jsonify
+import fitz
 
 
 app = Flask(__name__)
@@ -219,10 +220,10 @@ def abrir_navegador():
 
 
 def obtener_correos_aptos(idOfer):
-    return [c.mail for c in Candidato.query.filter_by(idOfer=idOfer, aptitud=True).all()]
+    return [(c.nombre, c.mail) for c in Candidato.query.filter_by(idOfer=idOfer, aptitud=True).all()]
 
 def obtener_correos_noaptos(idOfer):
-    return [c.mail for c in Candidato.query.filter_by(idOfer=idOfer, aptitud=False).all()]
+    return [(c.nombre, c.mail) for c in Candidato.query.filter_by(idOfer=idOfer, aptitud=False).all()]
 
 
 
@@ -267,10 +268,10 @@ def login():
                 else:
                     return "Rol no reconocido"
             else:
-                flash("Contraseña incorrecta")
+                flash("❌Contraseña incorrecta", category="login")
                 return render_template("auth/login.html")
         else:
-            flash("Usuario no existente")
+            flash("❌Usuario no existente", category="login")
             return render_template("auth/login.html")
     return render_template("auth/login.html")
 
@@ -309,24 +310,22 @@ def enviar_correos():
     #mails a candidatos aptos
     destinatariosAptos = obtener_correos_aptos()
     with email.connect() as conn:
-        for mail in destinatariosAptos:
+        for nombre, mail in destinatariosAptos:
             mensaje = Message(subject='Oportunidad laboral',
                               sender=app.config['MAIL_USERNAME'],
                               recipients=[mail],
-                              body='Hola, hemos revisado tu curriculum y estamos interesados en tu perfil.')
+                              body=f"Hola {nombre},\n\nHemos revisado tu perfil y estamos interesados en tu candidatura.\n¡Gracias por postularte!")
             conn.send(mensaje)
     #mails a candidatos no aptos
     destinatariosNoAptos = obtener_correos_noaptos()
     with email.connect() as conn:
-        for mail in destinatariosNoAptos:
+        for nombre, mail in destinatariosNoAptos:
             mensaje = Message(subject='Oportunidad laboral',
                                 sender=app.config['MAIL_USERNAME'],
                                 recipients=[mail],
-                                body='Hola, lamentamos que en esta oportunidad tu perfil no se ajusta a lo que buscamos.')
+                                body=f"Hola {nombre},\n\nLamentamos informarte que en esta oportunidad tu perfil no se ajusta a lo que buscamos.\nTe animamos a postularte en futuras oportunidades.")
             conn.send(mensaje)
     return redirect('/predecir')     
-
-
 
 
 
@@ -773,22 +772,20 @@ def enviar_correos_automatica(idOfer):
     destinatariosNoAptos = obtener_correos_noaptos(idOfer)
 
     with email.connect() as conn:
-        for mail in destinatariosAptos:
+        for nombre, mail in destinatariosAptos:
             mensaje = Message(
                 subject="Oportunidad laboral",
                 sender=app.config["MAIL_USERNAME"],
                 recipients=[mail],
-                body="Hola, hemos revisado tu perfil y estamos interesados en tu candidatura."
-            )
+                body=f"Hola {nombre},\n\nHemos revisado tu perfil y estamos interesados en tu candidatura.\n¡Gracias por postularte!")
             conn.send(mensaje)
 
-        for mail in destinatariosNoAptos:
+        for nombre, mail in destinatariosNoAptos:
             mensaje = Message(
                 subject="Oportunidad laboral",
                 sender=app.config["MAIL_USERNAME"],
                 recipients=[mail],
-                body="Hola, lamentamos informarte que en esta oportunidad tu perfil no se ajusta a lo que buscamos."
-            )
+                body=f"Hola {nombre},\n\nLamentamos informarte que en esta oportunidad tu perfil no se ajusta a lo que buscamos.\nTe animamos a postularte en futuras oportunidades.")
             conn.send(mensaje)
 
 
@@ -908,11 +905,147 @@ def calcular_puntaje(candidato):
 
     return puntaje
 
+"""
+
+SPRINT 4
+
+
+"""
+
+def extraer_info_cv_pdf(file_storage):
+    texto = ""
+    with fitz.open(stream=file_storage.read(), filetype="pdf") as doc:
+        for pagina in doc:
+            texto += pagina.get_text()
+
+    info = {}
+
+    # Email
+    email = re.search(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+", texto)
+    if email:
+        info['email'] = email.group().lower()
+
+    # Teléfono
+    telefono = re.search(
+        r"(?:\+54\s?|54\s?|0)?(?:\(?\d{2,4}\)?)[\s.-]{0,2}"      # Prefijo y área
+        r"(?:15[\s.-]{0,2})?"                                     # Prefijo celular
+        r"\d{3,4}[\s.-]?\d{4}",                                   # Número principal
+        texto
+    )
+    if telefono:
+        numero = re.sub(r"\D", "", telefono.group())  # quitar todo lo que no sea dígito
+        if len(numero) >= 8:
+            info["telefono"] = numero
+
+
+    # Nombre y Apellido con validación en una o dos líneas en MAYÚSCULAS
+    def es_nombre_o_apellido_valido(palabra):
+        return palabra.isalpha() and (palabra.istitle() or palabra.isupper())
+
+    lineas = texto.strip().split("\n")
+    primeras_lineas = lineas[:5]  # Priorizamos las primeras líneas
+
+    nombre, apellido = None, None
+
+    # Paso 1: Revisar la primera línea
+    primera_linea = primeras_lineas[0].strip()
+    if primera_linea.isupper() and all(p.isalpha() for p in primera_linea.split()):
+        palabras = primera_linea.split()
+        if len(palabras) >= 2:
+            nombre = " ".join(palabras[:2]).title()
+            apellido = " ".join(palabras[2:4]).title() if len(palabras) > 2 else ""
+
+    # Paso 2: Buscar nombres y apellidos en dos líneas consecutivas si no se encontraron antes
+    if not nombre or not apellido:
+        for i in range(len(primeras_lineas) - 1):
+            palabras_actual = primeras_lineas[i].strip().split()
+            palabras_siguiente = primeras_lineas[i + 1].strip().split()
+
+            validas_actual = [p for p in palabras_actual if es_nombre_o_apellido_valido(p)]
+            validas_siguiente = [p for p in palabras_siguiente if es_nombre_o_apellido_valido(p)]
+
+            if len(validas_actual) >= 1 and len(validas_siguiente) >= 1:
+                nombre = " ".join(validas_actual).title()
+                apellido = " ".join(validas_siguiente).title()
+                break
+
+    # Paso 3: Si sigue sin detectarse, buscar en una sola línea
+    if not nombre or not apellido:
+        for linea in primeras_lineas:
+            palabras = linea.strip().split()
+            validas = [p for p in palabras if es_nombre_o_apellido_valido(p)]
+            if len(validas) >= 2:
+                nombre = " ".join(validas[:2]).title()
+                apellido = " ".join(validas[2:4]).title() if len(validas) > 2 else ""
+                break
+
+    if nombre:
+        info["nombre"] = nombre
+    if apellido:
+        info["apellido"] = apellido
+
+    # Educación
+    niveles_equivalentes = {
+        "Postgrado": ["postgrado", "maestría", "doctorado", "posgrado"],
+        "Universitario": ["universitario", "universidad", "universitaria", "licenciatura", "ingeniería", "ingeniero", "grado"],
+        "Secundario": ["secundario", "bachiller", "escuela secundaria", "nivel medio"]
+    }
+
+    for nivel, palabras_clave in niveles_equivalentes.items():
+        for palabra in palabras_clave:
+            if palabra in texto.lower():
+                info["educacion"] = nivel
+                break
+        if "educacion" in info:
+            break
+
+    # Tecnologías (primer match)
+    tecnologias = [t.nombre for t in Tecnologia.query.all()]
+    for tec in tecnologias:
+        if tec.lower() in texto.lower():
+            info["tecnologias"] = tec
+            break
+
+    # Habilidades (primer match)
+    habilidades = [h.nombre for h in Habilidad.query.all()]
+    for hab in habilidades:
+        if hab.lower() in texto.lower():
+            info["habilidades"] = hab
+            break
+
+    # Ubicación (primera provincia argentina encontrada)
+    provincias = [
+        "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut",
+        "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja",
+        "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis",
+        "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"
+    ]
+    for prov in provincias:
+        if prov.lower() in texto.lower():
+            info["ubicacion"] = prov
+            break
+
+    # Años de experiencia
+    exp_match = re.search(r"(\d+)\s+(años|año)\s+de\s+experiencia", texto.lower())
+    if not exp_match:
+        exp_match = re.search(r"experiencia\s+laboral.*?(\d+)\s+(años|año)", texto.lower())
+    if not exp_match:
+        exp_match = re.search(r"(más de|alrededor de)\s+(\d+)\s+(años|año)", texto.lower())
+
+    if exp_match:
+        anios = exp_match.group(1) if exp_match.lastindex == 2 else exp_match.group(2)
+        try:
+            info["experiencia"] = int(anios)
+        except ValueError:
+            pass
+
+    return info
+
 
 @app.route("/cargarCV", methods=["GET", "POST"])
 @login_required(roles=["Admin_RRHH"])
 def cargarCV():
-    # Obtener todas las ofertas laborales disponibles
+    # Cargar opciones para los dropdowns
     opciones_ofertas = [{"idOfer": oferta.idOfer, "nombre": oferta.nombre} for oferta in OfertaLaboral.query.filter(OfertaLaboral.estado != "Cerrada").all()]
     opciones_educacion = [educacion.nombre for educacion in Educacion.query.all()]
     opciones_tecnologias = [tecnologia.nombre for tecnologia in Tecnologia.query.all()]
@@ -924,7 +1057,40 @@ def cargarCV():
     session["opciones_habilidades"] = opciones_habilidades
 
     if request.method == "POST":
-        # Obtener datos del formulario
+        # Si se sube un CV PDF, extraer datos y volver a mostrar el formulario
+        if "cv_pdf" in request.files:
+            file = request.files["cv_pdf"]
+            
+            if file and file.filename.endswith(".pdf"):
+                # Validar tamaño (máx. 5MB)
+                file.seek(0, os.SEEK_END)
+                size = file.tell()
+                file.seek(0)
+               
+                if size > 5 * 1024 * 1024:
+                    flash("❌El archivo excede el tamaño máximo permitido de 5 MB.", category="pdf")
+                    return redirect("/cargarCV")
+                
+                try:
+                    info = extraer_info_cv_pdf(file)
+                    flash("✔️Información extraída exitosamente del archivo PDF.", category="pdf")
+                    return render_template(
+                        "cargarCV.html",
+                        opciones_ofertas=opciones_ofertas,
+                        opciones_educacion=opciones_educacion,
+                        opciones_tecnologias=opciones_tecnologias,
+                        opciones_habilidades=opciones_habilidades,
+                        precargado=info
+                    )
+                except Exception:
+                    flash("❌El archivo no es un PDF válido o está dañado.", category="pdf")
+                    return redirect("/cargarCV")
+                
+            else:
+                flash("❌Debes seleccionar un archivo PDF válido para continuar.", category="pdf")
+                return redirect("/cargarCV")
+
+        # Si no es carga de PDF, procesar formulario normalmente
         nombre = request.form["nombre"]
         apellido = request.form["apellido"]
         email = request.form["email"]
@@ -934,27 +1100,25 @@ def cargarCV():
         educacion = request.form["educacion"]
         tecnologias = request.form["tecnologias"]
         habilidades = request.form["habilidades"]
-        idOfer = request.form.get("idOfer")  # Nueva variable para oferta laboral
+        idOfer = request.form.get("idOfer")
 
         if not idOfer:
-            flash("Debes seleccionar una oferta laboral.")
+            flash("❌Debes seleccionar una oferta laboral.", category="form")
             return redirect("/cargarCV")
 
         try:
-            # Buscar el ID correspondiente en las tablas
             educacion_obj = Educacion.query.filter_by(nombre=educacion).first()
             tecnologia_obj = Tecnologia.query.filter_by(nombre=tecnologias).first()
             habilidad_obj = Habilidad.query.filter_by(nombre=habilidades).first()
 
             if not educacion_obj or not tecnologia_obj or not habilidad_obj:
-                flash("Error: Valores inválidos seleccionados.")
+                flash("❌Error: Valores inválidos seleccionados.", category="form")
                 return redirect("/cargarCV")
 
             idedu = educacion_obj.idedu
             idtec = tecnologia_obj.idtec
             idhab = habilidad_obj.idhab
 
-            # Crear y guardar el candidato con la oferta laboral seleccionada
             nuevo_candidato_db = Candidato(
                 id=email + idOfer,
                 nombre=nombre,
@@ -966,22 +1130,22 @@ def cargarCV():
                 idedu=idedu,
                 idtec=idtec,
                 idhab=idhab,
-                idOfer=idOfer,  # Asociación con la oferta laboral
+                idOfer=idOfer,
                 aptitud=None
             )
             db.session.add(nuevo_candidato_db)
             db.session.commit()
-            flash(f"Candidato {nombre} guardado correctamente y asociado a la oferta laboral '{OfertaLaboral.query.get(idOfer).nombre}'.")
+            flash(f"✔️Candidato {nombre} guardado correctamente y asociado a la oferta laboral '{OfertaLaboral.query.get(idOfer).nombre}'.", category="form")
         except Exception as e:
-            flash(f"Este mail ya había sido registrado en esta postulación")
+            flash(f"❌Este mail ya estaba registrado en esta postulación", category="form")
             return redirect("/cargarCV")
 
     return render_template(
         "cargarCV.html",
-        opciones_ofertas=session["opciones_ofertas"],  # Pasamos ofertas al HTML
-        opciones_educacion=session["opciones_educacion"],
-        opciones_tecnologias=session["opciones_tecnologias"],
-        opciones_habilidades=session["opciones_habilidades"]
+        opciones_ofertas=opciones_ofertas,
+        opciones_educacion=opciones_educacion,
+        opciones_tecnologias=opciones_tecnologias,
+        opciones_habilidades=opciones_habilidades
     )
 
 
@@ -1079,58 +1243,68 @@ def metricas():
 def obtener_metricas(oferta_id):
     oferta = OfertaLaboral.query.get_or_404(oferta_id)
 
-    etiquetas = []
-    cantidades = []
-    promedios_experiencia = {}
-    # Datos de ubicación
-    provincias_candidatos = {}
-
-    candidatos = Candidato.query.filter_by(idOfer=oferta_id).all()
-    for c in candidatos:
-        provincia = c.ubicacion  # Suponiendo que `ubicacion` es el nombre de la provincia
-        provincias_candidatos[provincia] = provincias_candidatos.get(provincia, 0) + 1
+    def obtener_datos_por_etiqueta(query, nombre_func):
+        etiquetas = []
+        cantidades = []
+        promedios = {}
+        for rel in query:
+            etiqueta = nombre_func(rel)
+            candidatos = Candidato.query.filter_by(idOfer=oferta_id, **etiqueta["filtro"]).all()
+            etiquetas.append(etiqueta["nombre"])
+            cantidades.append(len(candidatos))
+            promedios[etiqueta["nombre"]] = (
+                sum(c.experiencia for c in candidatos) / len(candidatos) if candidatos else 0
+            )
+        return etiquetas, cantidades, promedios
 
     # Educación
-    for edu_rel in oferta.educaciones:
-        etiqueta = edu_rel.educacion.nombre
-        candidatos = Candidato.query.filter_by(idOfer=oferta_id, idedu=edu_rel.idEdu).all()
-        promedio_exp = sum(c.experiencia for c in candidatos) / len(candidatos) if candidatos else 0
-        etiquetas.append(f"Edu: {etiqueta}")
-        cantidades.append(len(candidatos))
-        promedios_experiencia[etiqueta] = promedio_exp
+    edu_etiquetas, edu_cant, edu_exp = obtener_datos_por_etiqueta(
+        oferta.educaciones,
+        lambda rel: {"nombre": rel.educacion.nombre, "filtro": {"idedu": rel.idEdu}}
+    )
 
     # Tecnología
-    for tec_rel in oferta.tecnologias:
-        etiqueta = tec_rel.tecnologia.nombre
-        candidatos = Candidato.query.filter_by(idOfer=oferta_id, idtec=tec_rel.idTec).all()
-        promedio_exp = sum(c.experiencia for c in candidatos) / len(candidatos) if candidatos else 0
-        etiquetas.append(f"Tec: {etiqueta}")
-        cantidades.append(len(candidatos))
-        promedios_experiencia[etiqueta] = promedio_exp
+    tec_etiquetas, tec_cant, tec_exp = obtener_datos_por_etiqueta(
+        oferta.tecnologias,
+        lambda rel: {"nombre": rel.tecnologia.nombre, "filtro": {"idtec": rel.idTec}}
+    )
 
     # Habilidad
-    for hab_rel in oferta.habilidades:
-        etiqueta = hab_rel.habilidad.nombre
-        candidatos = Candidato.query.filter_by(idOfer=oferta_id, idhab=hab_rel.idHab).all()
-        promedio_exp = sum(c.experiencia for c in candidatos) / len(candidatos) if candidatos else 0
-        etiquetas.append(f"Hab: {etiqueta}")
-        cantidades.append(len(candidatos))
-        promedios_experiencia[etiqueta] = promedio_exp
+    hab_etiquetas, hab_cant, hab_exp = obtener_datos_por_etiqueta(
+        oferta.habilidades,
+        lambda rel: {"nombre": rel.habilidad.nombre, "filtro": {"idhab": rel.idHab}}
+    )
 
-    # Datos de candidatos
+    # Provincias
+    provincias_candidatos = {}
+    for c in Candidato.query.filter_by(idOfer=oferta_id).all():
+        prov = c.ubicacion
+        provincias_candidatos[prov] = provincias_candidatos.get(prov, 0) + 1
+
+    # Totales
     total_candidatos = Candidato.query.filter_by(idOfer=oferta_id).count()
     aptos = Candidato.query.filter_by(idOfer=oferta_id, aptitud=True).count()
     no_aptos = Candidato.query.filter_by(idOfer=oferta_id, aptitud=False).count()
     sin_revisar = Candidato.query.filter_by(idOfer=oferta_id, aptitud=None).count()
 
     return jsonify({
-        "etiquetas": etiquetas,
-        "cantidades": cantidades,
-        "promedios_experiencia": promedios_experiencia,
+        "etiquetas_educacion": edu_etiquetas,
+        "cant_educacion": edu_cant,
+        "exp_educacion": edu_exp,
+
+        "etiquetas_tecnologia": tec_etiquetas,
+        "cant_tecnologia": tec_cant,
+        "exp_tecnologia": tec_exp,
+
+        "etiquetas_habilidad": hab_etiquetas,
+        "cant_habilidad": hab_cant,
+        "exp_habilidad": hab_exp,
+
         "total_candidatos": total_candidatos,
         "aptos": aptos,
         "no_aptos": no_aptos,
         "sin_revisar": sin_revisar,
+
         "provincias_candidatos": provincias_candidatos
     })
 

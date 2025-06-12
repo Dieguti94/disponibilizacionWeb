@@ -17,6 +17,24 @@ html {
     margin-top: 10px;
 }
 
+.grid-graficos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+canvas {
+  width: 100% !important;
+  height: 400px !important;
+}
+
+.grafico-titulo {
+  color: white;
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.7);
+}
+
 form {
     animation: elevar 2s ease-out forwards;
     margin: 3rem auto 4rem auto;

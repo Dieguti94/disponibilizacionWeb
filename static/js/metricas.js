@@ -1,29 +1,45 @@
 const select = document.getElementById("ofertaSelect");
 const mapContainer = document.getElementById("map-container");
-const ctx = document.getElementById("grafico_candidatos_etiquetas").getContext("2d");
-const ctxTotales = document.getElementById("grafico_total_candidatos").getContext("2d");
-const ctxExperiencia = document.getElementById("grafico_experiencia_etiquetas").getContext("2d");
 
-let chart = null;
+const ctxTotales = document.getElementById("grafico_total_candidatos").getContext("2d");
+
+const ctxEduCant = document.getElementById("grafico_edu_cant").getContext("2d");
+const ctxTecCant = document.getElementById("grafico_tec_cant").getContext("2d");
+const ctxHabCant = document.getElementById("grafico_hab_cant").getContext("2d");
+
+const ctxEduExp = document.getElementById("grafico_edu_exp").getContext("2d");
+const ctxTecExp = document.getElementById("grafico_tec_exp").getContext("2d");
+const ctxHabExp = document.getElementById("grafico_hab_exp").getContext("2d");
+
 let chartTotales = null;
-let chartExperiencia = null;
-let map = null;  
+let chartEduCant = null;
+let chartTecCant = null;
+let chartHabCant = null;
+let chartEduExp = null;
+let chartTecExp = null;
+let chartHabExp = null;
+
+let map = null;
 
 select.addEventListener("change", () => {
     const id = select.value;
     if (!id) return;
-    
-    // 🔹 Mostrar el mapa solo después de elegir una oferta
+
     mapContainer.style.display = "block";
 
     fetch(`/metricas/${id}`)
         .then(res => res.json())
         .then(data => {
-            if (chart) chart.destroy();
+            // Destruir todos los gráficos si ya existen
             if (chartTotales) chartTotales.destroy();
-            if (chartExperiencia) chartExperiencia.destroy();
+            if (chartEduCant) chartEduCant.destroy();
+            if (chartTecCant) chartTecCant.destroy();
+            if (chartHabCant) chartHabCant.destroy();
+            if (chartEduExp) chartEduExp.destroy();
+            if (chartTecExp) chartTecExp.destroy();
+            if (chartHabExp) chartHabExp.destroy();
 
-            // Primer gráfico: Total de candidatos
+            // =================== GRAFICO DE TOTALES ===================
             chartTotales = new Chart(ctxTotales, {
                 type: 'bar',
                 data: {
@@ -42,6 +58,7 @@ select.addEventListener("change", () => {
                         title: {
                             display: true,
                             text: 'Cantidad de candidatos totales, aptos, no aptos y sin revisar',
+                            color: 'white',
                             font: { size: 18 },
                             padding: { top: 10, bottom: 20 }
                         }
@@ -55,75 +72,17 @@ select.addEventListener("change", () => {
                 }
             });
 
-            // Segundo gráfico: cantidad de candidatos por etiqueta
-            chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: data.etiquetas,
-                    datasets: [{
-                        label: 'Candidatos que cumplen la etiqueta',
-                        data: data.cantidades,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Cantidad de postulantes que cumplen cada etiqueta',
-                            font: { size: 18 },
-                            padding: { top: 10, bottom: 20 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 5 }
-                        }
-                    }
-                }
-            });
+            // =================== GRAFICOS DE CANTIDADES POR TIPO ===================
+            chartEduCant = crearBarChart(ctxEduCant, data.etiquetas_educacion, data.cant_educacion, 'Cantidad de candidatos por educación');
+            chartTecCant = crearBarChart(ctxTecCant, data.etiquetas_tecnologia, data.cant_tecnologia, 'Cantidad de candidatos por tecnología');
+            chartHabCant = crearBarChart(ctxHabCant, data.etiquetas_habilidad, data.cant_habilidad, 'Cantidad de candidatos por habilidad');
 
-            // Tercer gráfico: Promedio de años de experiencia por etiqueta
-            const etiquetasExp = Object.keys(data.promedios_experiencia);
-            const promediosExp = Object.values(data.promedios_experiencia);
+            // =================== GRAFICOS DE PROMEDIO DE EXPERIENCIA ===================
+            chartEduExp = crearBarChart(ctxEduExp, Object.keys(data.exp_educacion), Object.values(data.exp_educacion), 'Promedio de experiencia por educación', 1);
+            chartTecExp = crearBarChart(ctxTecExp, Object.keys(data.exp_tecnologia), Object.values(data.exp_tecnologia), 'Promedio de experiencia por tecnología', 1);
+            chartHabExp = crearBarChart(ctxHabExp, Object.keys(data.exp_habilidad), Object.values(data.exp_habilidad), 'Promedio de experiencia por habilidad', 1);
 
-            chartExperiencia = new Chart(ctxExperiencia, {
-                type: 'bar',
-                data: {
-                    labels: etiquetasExp,
-                    datasets: [{
-                        label: 'Promedio de años de experiencia por etiqueta',
-                        data: promediosExp,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Promedio de años de experiencia por etiqueta',
-                            font: { size: 18 },
-                            padding: { top: 10, bottom: 20 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 1 }
-                        }
-                    }
-                }
-            });
-
-            // Mapa dinámico con datos de candidatos por provincia
-            // Si el mapa aún no está creado, inicializar Leaflet
+            // =================== MAPA ===================
             if (!map) {
                 map = L.map('map').setView([-38.4161, -63.6167], 4);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -131,24 +90,57 @@ select.addEventListener("change", () => {
                 }).addTo(map);
             }
 
-            // 🔹 Limpiar marcadores anteriores
             map.eachLayer(layer => {
                 if (layer instanceof L.CircleMarker || layer instanceof L.Marker) {
                     map.removeLayer(layer);
                 }
             });
 
-            // Agregar marcadores con el número de candidatos en cada provincia
             Object.entries(data.provincias_candidatos).forEach(([provincia, cantidad]) => {
-                const coordenadas = getCoordenadas(provincia); 
+                const coordenadas = getCoordenadas(provincia);
                 if (coordenadas && cantidad > 0) {
                     L.marker(coordenadas).addTo(map)
                         .bindPopup(`${provincia}: ${cantidad} candidatos`)
-                        .openPopup(); // Mostrar el número de candidatos directamente en el mapa
                 }
             });
         });
 });
+
+// Función utilitaria para crear un bar chart
+function crearBarChart(ctx, etiquetas, datos, titulo, stepSize = 5) {
+    return new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: etiquetas,
+            datasets: [{
+                label: titulo,
+                data: datos,
+                backgroundColor: 'rgba(57, 248, 248, 0.7)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: titulo,
+                    color: 'white',
+                    font: { size: 18 },
+                    padding: { top: 10, bottom: 20 }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { stepSize: stepSize }
+                }
+            }
+        }
+    });
+}
+
 function getCoordenadas(provincia) {
     const coordenadas = {
         "Buenos Aires": [-34.6037, -58.3816],
@@ -176,4 +168,4 @@ function getCoordenadas(provincia) {
         "Tucumán": [-26.8083, -65.2176]
     };
     return coordenadas[provincia] || null;
-}        
+}
