@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,9 @@
 </head>
 
 <header>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Logo">
-        </div>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Logo">
+    </div>
         
 <!-- Ícono de menú hamburguesa -->
 <input type="checkbox" id="menu-toggle" class="menu-toggle" />
@@ -119,12 +120,13 @@
 
   <section class="user-menu-container">
     <div class="menu-list">
+      <a href="{{ url_for('gestionar_usuarios') }}">Gestionar Roles</a>
+    </div>    
+    <div class="menu-list">
       <a href="{{ url_for('logout') }}">Cerrar sesión</a>
     </div>
-    <div class="menu-list">
-      <a href="{{ url_for('gestionar_usuarios') }}">Gestiónar Roles</a>
-    </div>
   </section>
+
 </div>
     </header>
 

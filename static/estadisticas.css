@@ -52,7 +52,8 @@ header {
     background-color: transparent; 
 }
 
-header .logo img {
+header .logo img {    
+    margin-top: 0.6rem;  
     margin-left: 5px;
     max-height: 70px;
     max-width: 100%;

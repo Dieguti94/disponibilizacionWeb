@@ -87,9 +87,12 @@
   </div>
 </div>
 </aside>
+
 <!-- MENU DE USUARIO -->
     <div class="user-menu-wrapper">
+        
   <input type="checkbox" id="user-toggle" class="user-checkbox" />
+  
   <label for="user-toggle" class="user-main">
     <div class="user-button">
       <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
@@ -98,19 +101,20 @@
       </svg>
     </div>
     <div class="user-name">
-        <p style="color: white; margin: 4px 0 0 0; font-size: 0.9rem;">{{ session.get('username') }}</p>
-        </div>
-    </label>
+      <p style="color: white; margin: 4px 0 0 0; font-size: 0.9rem;">{{ session.get('username') }}</p>
+    </div>
+  </label>
 
-         <section class="user-menu-container">
-        <div class="menu-list">
-         <a href="{{ url_for('logout') }}">Cerrar sesión</a>
-        </div>
-        <div class="menu-list">
-          <a href="{{ url_for('gestionar_usuarios') }}">Gestiónar Roles</a>
-        </div>
-         </section>
-        </div>
+  <section class="user-menu-container">
+    <div class="menu-list">
+      <a href="{{ url_for('gestionar_usuarios') }}">Gestionar Roles</a>
+    </div>    
+    <div class="menu-list">
+      <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </div>
+  </section>
+
+</div>
     </header>
 
 

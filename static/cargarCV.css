@@ -54,7 +54,7 @@ header {
 }
 
 header .logo img {
-  margin-top: 0.5rem;
+    margin-top: 0.6rem;
     margin-left: 5px;
     max-height: 70px;
     max-width: 100%;

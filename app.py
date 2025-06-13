@@ -706,12 +706,12 @@ def ver_ofertas():
     dataSet = pd.DataFrame([{
         "ID Oferta": o.idOfer,
         "Nombre": o.nombre,
-        "Fecha de Cierre": o.fecha_cierre.strftime("%Y-%m-%d"),
-        "Cantidad de Candidatos": o.cant_candidatos,
-        "Máx. Candidatos": o.max_candidatos,
+        "Fecha Cierre": o.fecha_cierre.strftime("%Y-%m-%d"),
+        "Cantidad de Candidatos Postulados": o.cant_candidatos,
+        "Cantidad Máx. de Candidatos": o.max_candidatos,
         "Remuneración": o.remuneracion,
         "Beneficio": o.beneficio,
-        "tipo": o.modalidad,
+        "Tipo": o.modalidad,
         "Estado": o.estado,
         "Responsable": o.usuario_responsable,
         "Acción": f'<form style="display: inline-block; width: 110px; height: 35px; margin: 0 auto;" method="POST" action="{url_for("cerrar_oferta", idOfer=o.idOfer)}">'
@@ -1378,6 +1378,15 @@ def cargarCV():
         if "cv_pdf" in request.files:
             file = request.files["cv_pdf"]
             if file and file.filename.endswith(".pdf"):
+                # revisar si pesa menos de 5MB:
+                file.seek(0, os.SEEK_END)
+                size = file.tell()
+                file.seek(0)
+               
+                if size > 5 * 1024 * 1024:
+                    flash("❌El archivo excede el tamaño máximo permitido de 5 MB.", category="pdf")
+                    return redirect("/cargarCV")
+                
                 try:
                     info = extraer_info_cv_pdf(file)
                     flash("✔️Información extraída exitosamente del archivo PDF.", category="pdf")

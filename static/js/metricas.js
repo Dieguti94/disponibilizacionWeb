@@ -58,7 +58,7 @@ select.addEventListener("change", () => {
                     labels: ["Total", "Aptos", "No Aptos", "Sin Revisar"],
                     datasets: [{
                         label: 'Cantidad de candidatos por estado',
-                        data: [data.total_candidatos, data.aptos, data.no_aptos, data.sin_revisar],
+                        data: [data.total_postulantes, data.aptos, data.no_aptos, data.sin_revisar],
                         backgroundColor: ['#0ea0a0', '#4CAF50', '#FF0000', '#808080'],
                         borderColor: ['#00fff2', '#3E8E41', '#CC0000', '#606060'],
                         borderWidth: 1
@@ -69,7 +69,7 @@ select.addEventListener("change", () => {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Cantidad de candidatos totales, aptos, no aptos y sin revisar',
+                            text: 'CANDIDATOS Totales, Aptos, No Aptos y Sin Revisar',
                             color: 'white',
                             font: { size: 18 },
                             padding: { top: 10, bottom: 20 }
@@ -85,18 +85,18 @@ select.addEventListener("change", () => {
             });
 
             // =================== GRAFICOS DE CANTIDADES POR TIPO ===================
-            chartEduCant = crearBarChart(ctxEduCant, data.etiquetas_educacion, data.cant_educacion, 'Cantidad de candidatos por educación');
-            chartTecCant = crearBarChart(ctxTecCant, data.etiquetas_tecnologia, data.cant_tecnologia, 'Cantidad de candidatos por tecnología');
-            chartTec2Cant = crearBarChart(ctxTec2Cant, data.etiquetas_tecnologia2, data.cant_tecnologia2, 'Cantidad de candidatos por tecnología Secundaria');
-            chartHabCant = crearBarChart(ctxHabCant, data.etiquetas_habilidad, data.cant_habilidad, 'Cantidad de candidatos por habilidad');
-            chartHab2Cant = crearBarChart(ctxHab2Cant, data.etiquetas_habilidad2, data.cant_habilidad2, 'Cantidad de candidatos por habilidad Secundaria');
+            chartEduCant = crearBarChart(ctxEduCant, data.etiquetas_educacion, data.cant_educacion, 'CANDIDATOS x Educación');
+            chartTecCant = crearBarChart(ctxTecCant, data.etiquetas_tecnologia, data.cant_tecnologia, 'CANDIDATOS x Tecnología Principal');
+            chartTec2Cant = crearBarChart(ctxTec2Cant, data.etiquetas_tecnologia2, data.cant_tecnologia2, 'CANDIDATOS x Tecnología Secundaria');
+            chartHabCant = crearBarChart(ctxHabCant, data.etiquetas_habilidad, data.cant_habilidad, 'CANDIDATOS x Habilidad 1');
+            chartHab2Cant = crearBarChart(ctxHab2Cant, data.etiquetas_habilidad2, data.cant_habilidad2, 'CANDIDATOS x Habilidad 2');
 
             // =================== GRAFICOS DE PROMEDIO DE EXPERIENCIA ===================
-            chartEduExp = crearBarChart(ctxEduExp, Object.keys(data.exp_educacion), Object.values(data.exp_educacion), 'Promedio de experiencia por educación', 1);
-            chartTecExp = crearBarChart(ctxTecExp, Object.keys(data.exp_tecnologia), Object.values(data.exp_tecnologia), 'Promedio de experiencia por tecnología', 1);
-            chartTec2Exp = crearBarChart(ctxTec2Exp, Object.keys(data.exp_tecnologia2), Object.values(data.exp_tecnologia2), 'Promedio de experiencia por tecnología Secundaria', 1);
-            chartHabExp = crearBarChart(ctxHabExp, Object.keys(data.exp_habilidad), Object.values(data.exp_habilidad), 'Promedio de experiencia por habilidad', 1);
-            chartHab2Exp = crearBarChart(ctxHab2Exp, Object.keys(data.exp_habilidad2), Object.values(data.exp_habilidad2), 'Promedio de experiencia por habilidad Secundaria', 1);
+            chartEduExp = crearBarChart(ctxEduExp, Object.keys(data.exp_educacion), Object.values(data.exp_educacion), 'Promedio de experiencia x Educación', 1);
+            chartTecExp = crearBarChart(ctxTecExp, Object.keys(data.exp_tecnologia), Object.values(data.exp_tecnologia), 'Promedio de experiencia x Tecnología Principal', 1);
+            chartTec2Exp = crearBarChart(ctxTec2Exp, Object.keys(data.exp_tecnologia2), Object.values(data.exp_tecnologia2), 'Promedio de experiencia x Tecnología Secundaria', 1);
+            chartHabExp = crearBarChart(ctxHabExp, Object.keys(data.exp_habilidad), Object.values(data.exp_habilidad), 'Promedio de experiencia x Habilidad 1', 1);
+            chartHab2Exp = crearBarChart(ctxHab2Exp, Object.keys(data.exp_habilidad2), Object.values(data.exp_habilidad2), 'Promedio de experiencia x Habilidad 2', 1);
 
             // =================== MAPA ===================
             if (!map) {
@@ -112,7 +112,7 @@ select.addEventListener("change", () => {
                 }
             });
 
-            Object.entries(data.provincias_candidatos).forEach(([provincia, cantidad]) => {
+            Object.entries(data.provincias_postulantes).forEach(([provincia, cantidad]) => {
                 const coordenadas = getCoordenadas(provincia);
                 if (coordenadas && cantidad > 0) {
                     L.marker(coordenadas).addTo(map)
