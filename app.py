@@ -321,6 +321,7 @@ def sobre_nosotros():
 
 
 
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -328,7 +329,21 @@ def login():
         password = request.form['password']
         user = Usuario.query.filter_by(username=username).first()
         
-        if user and check_password_hash(user.password, password):
+        # Verificar si el usuario existe
+        user_exists = user is not None
+        
+        # Verificar si la contraseña sería correcta para algún usuario
+        password_exists = False
+        if not user_exists:
+            # Buscar si existe algún usuario con esta contraseña
+            all_users = Usuario.query.all()
+            for u in all_users:
+                if check_password_hash(u.password, password):
+                    password_exists = True
+                    break
+        
+        if user_exists and check_password_hash(user.password, password):
+            # Login exitoso
             session['username'] = user.username
             session['type'] = user.type
             # Redirige según el rol usando url_for
@@ -338,12 +353,19 @@ def login():
                 return redirect(url_for('supervisor'))
             elif user.type == "Analista_Datos":
                 return redirect(url_for('analista'))
-            else:
-                flash("❌Contraseña incorrecta", category="login")
-                return render_template("auth/login.html")
+        elif user_exists and not check_password_hash(user.password, password):
+            # Usuario correcto, contraseña incorrecta
+            flash("❌ Contraseña incorrecta", category="login")
+            return redirect(url_for('login'))
+        elif not user_exists and password_exists:
+            # Usuario incorrecto, pero la contraseña existe
+            flash("❌ Usuario no existente", category="login")
+            return redirect(url_for('login'))
         else:
-            flash("❌Usuario no existente", category="login")
-            return render_template("auth/login.html")
+            # Ni el usuario ni la contraseña existen son correctos
+            flash("❌ Credenciales inválidas", category="login")
+            return redirect(url_for('login'))
+            
     return render_template("auth/login.html")
 
 
@@ -610,16 +632,39 @@ def crear_oferta():
             modalidad = request.form.get("modalidad")  
             fecha_cierre = datetime.strptime(fecha_cierre_str, "%Y-%m-%d")
 
-            #  Verificar si el nombre ya existe
+            # Validaciones
+            if not (nombre and 4 < len(nombre) < 51):
+                flash("❌ El nombre debe tener entre 5 y 50 caracteres.", "error")
+                return redirect("/crear_oferta")
+            
+            # Verificar si el nombre ya existe
             if OfertaLaboral.query.filter_by(nombre=nombre).first():
                 flash(f"Error: La oferta '{nombre}' ya existe. Elige un nombre diferente.")
+                return redirect("/crear_oferta")
+
+            if not (4 < max_candidatos < 1001):
+                flash("❌ La cantidad máxima de candidatos debe estar entre 5 y 1000.", "error")
+                return redirect("/crear_oferta")
+
+            try:
+                remuneracion_int = int(request.form.get("remuneracion"))
+            except ValueError:
+                flash("❌ La remuneración debe ser un número entero válido.", "error")
+                return redirect("/crear_oferta")
+
+            if not (200 < remuneracion_int < 90000):
+                flash("❌ La remuneración debe estar entre 201 y 89999.", "error")
+                return redirect("/crear_oferta")
+
+            if not (beneficio and 2 < len(beneficio) < 61):
+                flash("❌ El campo beneficio debe tener entre 3 y 60 caracteres.", "error")
                 return redirect("/crear_oferta")
 
             #  Validar modalidad antes de crear la oferta
             if modalidad not in ["Local", "Mixta", "Externa"]:
                 flash("❌ Modalidad inválida. Debe ser 'Local', 'Mixta' o 'Externa'.", "error")
                 return redirect("/crear_oferta")
-
+           
             nueva_oferta = OfertaLaboral(
                 nombre=nombre,
                 fecha_cierre=fecha_cierre,
@@ -683,7 +728,7 @@ def crear_oferta():
 
 
             db.session.commit()  
-            flash(f"Oferta '{nombre}' creada con éxito 🎉 con estado '{nueva_oferta.estado}', modalidad '{nueva_oferta.modalidad}' y etiquetas asignadas", "success")
+            flash(f"✔️Oferta '{nombre}' creada con éxito, con estado '{nueva_oferta.estado}', modalidad '{nueva_oferta.modalidad}' y etiquetas asignadas", "success")
             return redirect("/crear_oferta")
         
         except Exception as e:
@@ -715,8 +760,10 @@ def ver_ofertas():
         "Estado": o.estado,
         "Responsable": o.usuario_responsable,
         "Acción": f'<form style="display: inline-block; width: 110px; height: 35px; margin: 0 auto;" method="POST" action="{url_for("cerrar_oferta", idOfer=o.idOfer)}">'
+                f'<input type="hidden" name="forzar" value="1">'
                 f'<button style="font-size: 12px; margin: 0 !important; padding: 0 !important; width: 100px; height: 30px;" type="submit">Cerrar oferta</button></form>' 
                 if o.fecha_cierre > datetime.now() else "Oferta cerrada"
+
     } for o in ofertas])
 
     # Convertir el DataFrame a tabla HTML, asegurando que los botones sean renderizados
@@ -735,8 +782,11 @@ def cerrar_oferta(idOfer):
         flash("La oferta ya está cerrada o no existe.", "error")
         return redirect(url_for("ver_ofertas"))
 
-    # 🧠 Verificar si debe cerrarse por fecha o por cantidad
-    if oferta.fecha_cierre <= datetime.now() or oferta.cant_candidatos >= oferta.max_candidatos:
+    forzar = request.form.get("forzar")
+
+    print("Form data:", request.form)
+    print("Valor de forzar:", request.form.get("forzar"))
+    if forzar == "1" or oferta.fecha_cierre <= datetime.now() or oferta.cant_candidatos >= oferta.max_candidatos:
         oferta.fecha_cierre = datetime.now()
         oferta.estado = "Cerrada"
 
@@ -750,6 +800,7 @@ def cerrar_oferta(idOfer):
         flash("La oferta aún no puede cerrarse automáticamente.", "warning")
 
     return redirect(url_for("ver_ofertas"))
+
 
 @app.route("/limpiar_ofertas", methods=["POST"])
 @login_required(roles=["Admin_RRHH"])

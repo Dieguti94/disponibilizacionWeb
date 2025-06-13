@@ -151,13 +151,13 @@
         <p>Usuario responsable: <strong>{{ session.get('username') }}</strong></p>
 
         {% with messages = get_flashed_messages() %}
-        {% if messages %}
+          {% if messages %}
             <div class="flash-messages">
-            {% for message in messages %}
+              {% for message in messages %}
                 <div class="alert">{{ message|safe }}</div>
-            {% endfor %}
+              {% endfor %}
             </div>
-        {% endif %}
+          {% endif %}
         {% endwith %}
         <button type="submit">Crear Oferta</button>
     </form>

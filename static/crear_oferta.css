@@ -3,7 +3,11 @@ html {
     background: linear-gradient(to bottom, #000000, #353535);
 }
 
-
+/* Estilizar el ícono del calendario */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Invierte los colores (blanco si era negro) */
+    cursor: pointer;
+}
 
 /*cambioooo*/
 body {

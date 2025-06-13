@@ -135,6 +135,7 @@
             {% for oferta in ofertas %}
                 {% if oferta.estado == "Activa" %}
                     <form method="POST" action="{{ url_for('cerrar_oferta', idOfer=oferta.idOfer) }}" style="display:inline;">
+                        <input type="hidden" name="forzar" value="1">
                         <button type="submit">Cerrar oferta</button>
                     </form>
                 {% endif %}
@@ -154,6 +155,15 @@
       </form>
     </div>
 </body>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <div class="alert">{{ message|safe }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
 
     <footer class="footer">
     <div class="footer-content">

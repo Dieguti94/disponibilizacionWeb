@@ -78,7 +78,7 @@
     <!-- Menú desplegable: Volver al inicio-->
     <div class="submenu">
         <a href="{{ url_for('predecir') }}">Volver al Inicio</a>
-      </div>
+    </div>
 
   </nav>
   
@@ -130,11 +130,11 @@
 
 
 <body>
-    <h2>Gestión de Usuarios</h2>
+    <h1>Gestión de Usuarios</h1>
 
     <form method="GET" action="{{ url_for('gestionar_usuarios') }}">
-      <label>Filtrar por rol:</label>
-      <select name="rol" onchange="this.form.submit()">
+      <label class="filtro-label">Filtrar por rol:</label>
+      <select name="rol" class="custom-select" onchange="this.form.submit()">
         <option value="">-- Ver todos --</option>
         <option value="Supervisor" {% if filtro=='Supervisor' %}selected{% endif %}>Supervisores</option>
         <option value="Analista_Datos" {% if filtro=='Analista_Datos' %}selected{% endif %}>Analistas</option>
@@ -159,8 +159,10 @@
       </tbody>
     </table>
 
-    <a href="{{ url_for('crear_usuario') }}">Crear nuevo usuario</a>
-
+    <div class="submenu">
+        <a href="{{ url_for('crear_usuario') }}">Crear nuevo usuario</a>
+    </div>
+  
 </body>
 
 <footer class="footer">
