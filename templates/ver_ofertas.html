@@ -1,206 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Ver Ofertas Laborales</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='ver_ofertas.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <title>Ver Ofertas Laborales</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='ver_ofertas.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
 </head>
+
 <body>
-    <header>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Logo">
-        </div>
-        
-           
+  {% include "layout/header_general.html" %}
+  {% include "layout/menu.html" %}
 
-<!-- Ícono de menú hamburguesa -->
-<input type="checkbox" id="menu-toggle" class="menu-toggle" />
-<label for="menu-toggle" class="menu-icon">&#9776;</label>
+  <h1>Ver<span class="subtitulo">Ofertas Laborales</span></h1>
 
-<!-- Menú lateral deslizante -->
-<aside class="side-menu">
-  <nav class="menu-content">
-   
-    <!-- Menú desplegable: Administración de Oferta -->
-    <details>
-      <summary>
-       <h3><i class="fas fa-briefcase"></i> Administracion de Ofertas</h3>
-        <span class="arrow">&#9662;</span>
-      </summary>
-      <div class="submenu">
-        <a href="{{ url_for('crear_oferta') }}"><i class="fas fa-plus-circle"></i> Crear Oferta</a>
-        <a href="{{ url_for('ver_ofertas') }}"><i class="fas fa-list"></i> Ver Ofertas</a>
-      </div>
-    </details>
-
-    <!-- Menú desplegable: Postulantes -->
-    <details>
-      <summary>
-         <h3><i class="fas fa-users"></i> Postulantes</h3>
-        <span class="arrow">&#9662;</span>
-      </summary>
-      <div class="submenu">
-        <a href="{{ url_for('postulantes') }}"><i class="fas fa-eye"></i> Ver Postulantes</a>
-        <a href="{{ url_for('cargarCV') }}"><i class="fas fa-upload"></i> Cargar CV</a>
-      </div>
-    </details>
-
-    <!-- Menú desplegable: Configuración -->
-    <details>
-      <summary>
-         <h3><i class="fas fa-cogs"></i> Configuracion</h3>
-        <span class="arrow">&#9662;</span>
-      </summary>
-      <div class="submenu">
-        <a href="{{ url_for('mostrar_etiquetas') }}"><i class="fas fa-tags"></i>  Configurar Etiquetas</a>
-      </div>
-    </details>
-    <!-- Menú desplegable: Metricas-->
-    <details>
-      <summary>
-          <h3><i class="fas fa-chart-line"></i> Métricas</h3>
-        <span class="arrow">&#9662;</span>
-      </summary>
-      <div class="submenu">
-        <a href="{{ url_for('estadisticas') }}"><i class="fas fa-sliders-h"></i>  Estadisticas</a>
-        <a href="{{ url_for('metricas', oferta_id=idOfer) }}"><i class="fas fa-list"></i> Ver métricas</a>
-
-      </div>
-    </details>
-
-    <!-- Menú desplegable: Volver al inicio-->
-    <div class="submenu">
-        <a href="{{ url_for('predecir') }}">Volver al Inicio</a>
-      </div>
-
-  </nav>
-  <div class="support-button-wrapper">
-  <div class="nav-link support-button">
-    <i class="fas fa-headset"></i> Soporte
-    <div class="tooltip">
-      <ul class="tooltip-menu-with-icon">
-        <li class="tooltip-link">
-          <a href="#"><i class="fas fa-envelope"></i> perfectmatch.rrhh@gmail.com </a>
-        </li>
-        <li class="tooltip-link">
-          <a href="#"><i class="fas fa-phone"></i> +54 116668-4418</a>
-        </li>
-        <li class="tooltip-link">
-          <a href="#"><i class="fas fa-clock"></i> 8:30AM - 17:00PM </a>
-        </li>
-      </ul>
-    </div>
+  <div class="tabla-container">
+    {{ tabla|safe }}
   </div>
-</div>
-</aside>
-<!-- MENU DE USUARIO -->
-    <div class="user-menu-wrapper">
-        
-  <input type="checkbox" id="user-toggle" class="user-checkbox" />
-  
-  <label for="user-toggle" class="user-main">
-    <div class="user-button">
-      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
-        <circle cx="8" cy="5" r="3" fill="#ffffff"/>
-        <path d="M2 14c0-3 4-4 6-4s6 1 6 4" fill="#ffffff"/>
-      </svg>
-    </div>
-    <div class="user-name">
-      <p style="color: white; margin: 4px 0 0 0; font-size: 0.9rem;">{{ session.get('username') }}</p>
-    </div>
-  </label>
 
-  <section class="user-menu-container">
-    <div class="menu-list">
-      <a href="{{ url_for('gestionar_usuarios') }}">Gestionar Roles</a>
-    </div>
-    <div class="menu-list">
-      <a href="{{ url_for('logout') }}">Cerrar sesión</a>
-    </div>
-  </section>
-  
-</div>
-    </header>
-
-
-    <h1>Ver<span class="subtitulo">Ofertas Laborales</span></h1>
-
-    <div class="tabla-container">
-        {{ tabla|safe }}
-    </div>
-
-    {% if not mensaje %}
-        <div class="acciones">
-            {% for oferta in ofertas %}
-                {% if oferta.estado == "Activa" %}
-                    <form method="POST" action="{{ url_for('cerrar_oferta', idOfer=oferta.idOfer) }}" style="display:inline;">
-                        <input type="hidden" name="forzar" value="1">
-                        <button type="submit">Cerrar oferta</button>
-                    </form>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>{{ mensaje }}</p>
+  {% if not mensaje %}
+  <div class="acciones">
+    {% for oferta in ofertas %}
+    {% if oferta.estado == "Activa" %}
+    <form method="POST" action="{{ url_for('cerrar_oferta', idOfer=oferta.idOfer) }}" style="display:inline;">
+      <input type="hidden" name="forzar" value="1">
+      <button type="submit">Cerrar oferta</button>
+    </form>
     {% endif %}
-    <div style="text-align: center; margin: 0;">
-      <form method="POST" action="{{ url_for('limpiar_ofertas_expiradas') }}" 
-            style="display: inline-block;margin-left: 20px ;padding: 0px 60px; background-color: #4b0082; border-radius: 8px; box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);">
-        
-        <button type="submit" style="margin: 0 !important; font-size: 13px; color: #fff; background: none; border: none; cursor: pointer;">
-          <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>
-          Limpiar ofertas cerradas (+24hs)
-        </button>
-      </form>
-    </div>
-</body>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <div class="flash-messages">
-              {% for message in messages %}
-                <div class="alert">{{ message|safe }}</div>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endwith %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>{{ mensaje }}</p>
+  {% endif %}
+  <div style="text-align: center; margin: 0;">
+    <form method="POST" action="{{ url_for('limpiar_ofertas_expiradas') }}"
+      style="display: inline-block;margin-left: 20px ;padding: 0px 60px; background-color: #4b0082; border-radius: 8px; box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);">
 
-    <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
-        </div>
-        <div class="footer-description">
-          
-            <p>
-                Abal, Fernando Gabriel<br>
-                Ábalos, Lucas Gabriel<br>
-                Bianciotto, Matías Felipe<br>
-                Gutiérrez, Diego Germán<br>
-                Roldan, Guadalupe <br>
-                Sotelo, Evelyn Romina
-            </p>
-        </div>
-        <div class="footer-contacts">
-            <div class="footer-country">
-                <div class="address">
-                    <img src="{{ url_for('static', filename='images/ArgentinaS.png') }}" alt="Argentina Flag"><p>Argentina, Buenos Aires</p>
-                    
-                    <p>Siguenos en:</p>
-                    <div class="social-media">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2025 IA para la Predicción de Candidatos.All rights reserved</p>
-    </div>
-</footer>
+      <button type="submit"
+        style="margin: 0 !important; font-size: 13px; color: #fff; background: none; border: none; cursor: pointer;">
+        <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>
+        Limpiar ofertas cerradas (+24hs)
+      </button>
+    </form>
+  </div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="flash-messages">
+    {% for message in messages %}
+    <div class="alert">{{ message|safe }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  {% include "layout/footer.html" %}
 </body>
+
 </html>

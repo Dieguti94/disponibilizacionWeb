@@ -5,20 +5,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='sobreNosotros.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
 {% endblock %}
-
 {% block body %}
-<div class="particles">
-        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
-        <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
-        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="particle" style="left: 70%; animation-delay: 2s;"></div>
-        <div class="particle" style="left: 80%; animation-delay: 4s;"></div>
-        <div class="particle" style="left: 90%; animation-delay: 1s;"></div>
-    </div>
+{% include "fragments/particles.html" %}
 <div class="container-sobre-nosotros">
   
   <!-- Sección de presentación -->
@@ -71,9 +61,9 @@
 </div>
   <div class="bottom">
     <div class="content">
-      <span class="name">Nombre</span>
+      <span class="name">Diego Gutiérrez </span>
       <span class="about-me"
-        >Descripcion
+        >Desarrollador
       </span>
     </div>
     <div class="bottom-bottom">
@@ -130,9 +120,9 @@
 </div>
   <div class="bottom">
     <div class="content">
-      <span class="name">Nombre</span>
+      <span class="name">Evelyn Sotelo </span>
       <span class="about-me"
-        >Descripcion
+        >Documentadora
       </span>
     </div>
     <div class="bottom-bottom">
@@ -189,9 +179,9 @@
 </div>
   <div class="bottom">
     <div class="content">
-      <span class="name">Nombre</span>
+      <span class="name">Fernando Abal </span>
       <span class="about-me"
-        >Descripcion
+        >Desarrollador
       </span>
     </div>
     <div class="bottom-bottom">
@@ -248,9 +238,9 @@
 </div>
   <div class="bottom">
     <div class="content">
-      <span class="name">Nombre</span>
+      <span class="name">Matías Bianciotto</span>
       <span class="about-me"
-        >Descripcion
+        >Documentador
       </span>
     </div>
     <div class="bottom-bottom">
@@ -307,9 +297,9 @@
 </div>
   <div class="bottom">
     <div class="content">
-      <span class="name">Nombre</span>
+      <span class="name">Guadalupe Roldan</span>
       <span class="about-me"
-        >Descripcion
+        >Desarrolladora
       </span>
     </div>
     <div class="bottom-bottom">
@@ -406,9 +396,9 @@
 </div>
   <div class="bottom">
     <div class="content">
-      <span class="name">Nombre</span>
+      <span class="name">Lucas Abalos</span>
       <span class="about-me"
-        >Descripcion
+        >QA
       </span>
     </div>
     <div class="bottom-bottom">

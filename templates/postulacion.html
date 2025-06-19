@@ -7,20 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>IA de PREDICCION de Aptitud</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='cargarCV.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
 </head>
 
-<header>
-    <div class="logo">
-        <img src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="AI Image">
-    </div>
-    {% if es_admin %}
-        <div class="nav">
-            <a href="{{ url_for('predecir') }}">Inicio</a>
-        </div>
-    {% endif %}
-</header>
-
 <body>
+    {% include "layout/header_general.html" %}
+    {% if es_admin %}
+    <div class="nav">
+        <a href="{{ url_for('predecir') }}">Inicio</a>
+    </div>
+    {% endif %}
+    {% include "layout/menu.html" %}
     <h1>Completa los datos de tu CV</h1>
     <form method="post" action="/postulacion">
 
@@ -28,21 +27,24 @@
         <select name="idOfer" required>
             <option value="">-- Selecciona una oferta --</option>
             {% for oferta in opciones_ofertas if oferta.estado != "Cerrada" %}
-                <option value="{{ idOfer }}">{{ oferta.nombre }}</option>
+            <option value="{{ idOfer }}">{{ oferta.nombre }}</option>
             {% endfor %}
         </select>
-        
+
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}" title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
-        
+        <input type="text" name="nombre" id="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"
+            title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
+
         <label for="apellido">Apellido</label>
-        <input type="text" name="apellido" id="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}" title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
+        <input type="text" name="apellido" id="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"
+            title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
 
         <label for="email">Correo eléctronico</label>
         <input type="email" name="email" id="email" required>
 
         <label for="telefono">Teléfono</label>
-        <input type="text" name="telefono" pattern="\d{8,10}" maxlength="10" title="Debe tener entre 8 y 10 números" required>
+        <input type="text" name="telefono" pattern="\d{8,10}" maxlength="10" title="Debe tener entre 8 y 10 números"
+            required>
 
         <label for="ubicacion">Ubicación</label>
         <select name="ubicacion" id="ubicacion" required>
@@ -72,73 +74,43 @@
             <option value="Tierra del Fuego">Tierra del Fuego</option>
             <option value="Tucumán">Tucumán</option>
         </select>
-        
+
         <label for="experiencia">Experiencia (en años)</label>
         <input type="number" min="0" max="15" name="experiencia" id="experiencia" required>
-        
+
         <label for="educacion">Educación</label>
         <select name="educacion" id="educacion">
             {% for opcion in opciones_educacion %}
             <option value="{{ opcion }}">{{ opcion }}</option>
             {% endfor %}
         </select>
-        
+
         <label for="tecnologias">Tecnologías</label>
         <select name="tecnologias" id="tecnologias">
             {% for opcion in opciones_tecnologias %}
             <option value="{{ opcion }}">{{ opcion }}</option>
             {% endfor %}
         </select>
-        
+
         <label for="habilidades">Habilidades</label>
         <select name="habilidades" id="habilidades">
             {% for opcion in opciones_habilidades %}
             <option value="{{ opcion }}">{{ opcion }}</option>
             {% endfor %}
         </select>
-        
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="flash-messages">
+        <div class="flash-messages">
             {% for message in messages %}
-                <div class="alert">{{ message|safe }}</div>
+            <div class="alert">{{ message|safe }}</div>
             {% endfor %}
-            </div>
+        </div>
         {% endif %}
         {% endwith %}
         <button type="submit">Enviar CV</button>
     </form>
-
+    {% include "layout/footer.html" %}
 </body>
-
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="{{ url_for('static', filename='images/logoPerfectMatch.png') }}" alt="PF Image">
-        </div>
-        <div class="footer-description">
-            <p>
-                Abal, Fernando Gabriel<br>
-                Ábalos, Lucas Gabriel<br>
-                Bianciotto, Matías Felipe<br>
-                Gutiérrez, Diego Germán<br>
-                Roldan, Guadalupe<br>
-                Sotelo, Evelyn Romina
-            </p>
-        </div>
-        <div class="footer-contacts">
-            <div class="footer-country">
-                <div class="address">
-                    <img src="{{ url_for('static', filename='images/ArgentinaS.png') }}" alt="Argentina Flag">
-                    <p>Argentina</p>
-                    <p>Buenos Aires</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>©2025 IA para la Predicción de Candidatos — Desarrollado en Python con Scikit-Learn y Árboles de Decisión</p>
-    </div>
-</footer>
 
 </html>

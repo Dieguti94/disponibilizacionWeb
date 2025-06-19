@@ -1,0 +1,31 @@
+<header>
+    <div>
+        <img class="logo" src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="Logo de ApptitudAI">
+    </div>
+    <!-- MENU DE USUARIO -->
+    <div class="user-menu-wrapper">
+
+        <input type="checkbox" id="user-toggle" class="user-checkbox" />
+        <label for="user-toggle" class="user-main">
+            <div class="user-button">
+                <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+                    <circle cx="8" cy="5" r="3" fill="#ffffff" />
+                    <path d="M2 14c0-3 4-4 6-4s6 1 6 4" fill="#ffffff" />
+                </svg>
+            </div>
+            <div class="user-name">
+                <p style="color: white; margin: 4px 0 0 0; font-size: 0.9rem;">{{ session.get('username') }}</p>
+            </div>
+        </label>
+
+        <section class="user-menu-container">
+            <div class="menu-list">
+                <a href="{{ url_for('gestionar_usuarios') }}">Gestionar Roles</a>
+            </div>
+            <div class="menu-list">
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+            </div>
+        </section>
+
+    </div>
+</header>

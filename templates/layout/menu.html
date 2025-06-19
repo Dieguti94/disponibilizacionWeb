@@ -1,0 +1,87 @@
+<!-- Ícono de menú hamburguesa -->
+<input type="checkbox" id="menu-toggle" class="menu-toggle" />
+<label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+<!-- Menú lateral deslizante -->
+<aside class="side-menu">
+    <nav class="menu-content">
+
+        <!-- Menú desplegable: Administración de Oferta -->
+        <details>
+            <summary>
+                <h3><i class="fas fa-briefcase"></i> Administracion de Ofertas</h3>
+                <span class="arrow">&#9662;</span>
+            </summary>
+            <div class="submenu">
+                <a href="{{ url_for('crear_oferta') }}"><i class="fas fa-plus-circle"></i> Crear Oferta</a>
+                <a href="{{ url_for('ver_ofertas') }}"><i class="fas fa-list"></i> Ver Ofertas</a>
+            </div>
+        </details>
+
+        <!-- Menú desplegable: Postulantes -->
+        <details>
+            <summary>
+                <h3><i class="fas fa-users"></i> Postulantes</h3>
+                <span class="arrow">&#9662;</span>
+            </summary>
+            <div class="submenu">
+                <a href="{{ url_for('postulantes') }}"><i class="fas fa-eye"></i> Ver Postulantes</a>
+                <a href="{{ url_for('cargarCV') }}"><i class="fas fa-upload"></i> Cargar CV</a>
+            </div>
+        </details>
+
+        <!-- Menú desplegable: Configuración -->
+        <details>
+            <summary>
+                <h3><i class="fas fa-cogs"></i> Configuracion</h3>
+                <span class="arrow">&#9662;</span>
+            </summary>
+            <div class="submenu">
+                <a href="{{ url_for('mostrar_etiquetas') }}"><i class="fas fa-tags"></i> Configurar Etiquetas</a>
+            </div>
+        </details>
+
+
+
+        <!-- Menú desplegable: Metricas-->
+        <details>
+            <summary>
+                <h3><i class="fas fa-chart-line"></i> Métricas</h3>
+                <span class="arrow">&#9662;</span>
+            </summary>
+            <div class="submenu">
+                <a href="{{ url_for('estadisticas') }}"><i class="fas fa-sliders-h"></i> Estadisticas</a>
+                <a href="{{ url_for('metricas', oferta_id=idOfer) }}"><i class="fas fa-list"></i> Ver métricas</a>
+
+            </div>
+
+
+        </details>
+
+        <!-- Menú desplegable: Volver al inicio-->
+        <div class="submenu">
+            <a href="{{ url_for('predecir') }}">Volver al Inicio</a>
+        </div>
+
+    </nav>
+
+    <div class="support-button-wrapper">
+        <div class="nav-link support-button">
+            <i class="fas fa-headset"></i> Soporte
+            <div class="tooltip">
+                <ul class="tooltip-menu-with-icon">
+                    <li class="tooltip-link">
+                        <a href="#"><i class="fas fa-envelope"></i> perfectmatch.rrhh@gmail.com </a>
+                    </li>
+                    <li class="tooltip-link">
+                        <a href="#"><i class="fas fa-phone"></i> +54 116668-4418</a>
+                    </li>
+                    <li class="tooltip-link">
+                        <a href="#"><i class="fas fa-clock"></i> 8:30AM - 17:00PM </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aside>
+<script src="{{ url_for('static', filename='js/movimiento_menu.js') }}"></script>

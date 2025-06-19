@@ -833,7 +833,7 @@ def limpiar_ofertas_expiradas():
 @login_required(roles=["Admin_RRHH"])
 def estadisticas():
     if request.method == "POST":
-        return render_template("predecir.html")
+        return render_template("index.html")
     # Cargar modelo y encoders
     modelo = joblib.load(get_path("modelo_candidatos.pkl"))
     encoder_educacion = joblib.load(get_path("encoder_educacion.pkl"))
@@ -895,9 +895,10 @@ def estadisticas():
 @login_required(roles=["Admin_RRHH"])
 def predecir():
     plt.close("all")
-
-    # 📌 Cargar ofertas activas y pasarlas a la plantilla
     ofertas_activas = OfertaLaboral.query.filter_by(estado="Activa").all()
+    ofertas_cerradas = OfertaLaboral.query.filter_by(estado="Cerrada").all()
+    now = datetime.now()
+    total_candidatos = Candidato.query.count()
 
     if request.method == "POST":
         # 📌 Verifica que el archivo CSV esté en la solicitud
@@ -974,7 +975,7 @@ def predecir():
         except Exception as e:
             return f"Ocurrió un error al procesar el archivo: {e}"
 
-    return render_template("predecir.html", ofertas_activas=ofertas_activas)
+    return render_template("index.html", ofertas_activas=ofertas_activas, ofertas_cerradas=ofertas_cerradas, now=now, total_candidatos=total_candidatos)
 
 
 
@@ -1049,6 +1050,13 @@ def postulantes():
     # Aplicar filtro por aptitud si está activado
     if filtro == "apto":
         dataSet = dataSet[dataSet["Apto"] == "Apto"]
+
+    dataSet = dataSet.rename(columns={    
+    "Tecnologías": "Tecnología Principal",
+    "Habilidades": "Habilidad 1",
+    "Tecnologías2": "Tecnología Secundaria",
+    "Habilidades2": "Habilidad 2"
+})
 
     tabla_html = dataSet.to_html(classes="table table-striped", index=False)
     return render_template("postulantes.html", tabla=tabla_html, ofertas=OfertaLaboral.query.all(), idOfer=idOfer)
@@ -1391,19 +1399,48 @@ def extraer_info_cv_pdf(file_storage):
             info["ubicacion"] = prov
             break
 
-    # Años de experiencia
-    exp_match = re.search(r"(\d+)\s+(años|año)\s+de\s+experiencia", texto.lower())
-    if not exp_match:
-        exp_match = re.search(r"experiencia\s+laboral.*?(\d+)\s+(años|año)", texto.lower())
-    if not exp_match:
-        exp_match = re.search(r"(más de|alrededor de)\s+(\d+)\s+(años|año)", texto.lower())
+    # Estimar experiencia laboral a partir de rangos de años luego de la palabra "experiencia"
+    texto_lower = texto.lower()
+    indice_exp = texto_lower.find("experiencia")
 
-    if exp_match:
-        anios = exp_match.group(1) if exp_match.lastindex == 2 else exp_match.group(2)
-        try:
-            info["experiencia"] = int(anios)
-        except ValueError:
-            pass
+    if indice_exp != -1:
+        texto_despues_exp = texto_lower[indice_exp:]
+
+        # Cortar si se menciona algo educativo
+        palabras_corte = ["universidad", "licenciatura", "ingeniería", "educación", "estudios", "colegio", "título", "egresado"]
+        for palabra in palabras_corte:
+            corte_idx = texto_despues_exp.find(palabra)
+            if corte_idx != -1:
+                texto_despues_exp = texto_despues_exp[:corte_idx]
+                break
+
+        total_experiencia = 0
+        anio_actual = 2025
+
+        # Rango explícito (ej: "2015 - 2018", "2012 a 2014")
+        patron_rango = r"(20(0[9]|1[0-9]|2[0-5]))\s*(?:-|–|—|a|hasta)\s*(20(0[9]|1[0-9]|2[0-5]))"
+        for match in re.findall(patron_rango, texto_despues_exp):
+            try:
+                inicio = int(match[0])
+                fin = int(match[2])
+                if inicio < fin:
+                    total_experiencia += (fin - inicio)
+            except ValueError:
+                continue
+
+        # Rango abierto (ej: "2018 a actualidad", "2016 hasta hoy")
+        patron_abierto = r"(20(0[9]|1[0-9]|2[0-5]))\s*(?:-|–|—|a|hasta)\s*(actualidad|presente|hoy|actual)"
+        for match in re.findall(patron_abierto, texto_despues_exp):
+            try:
+                inicio = int(match[0])
+                fin = anio_actual
+                if inicio < fin:
+                    total_experiencia += (fin - inicio)
+            except ValueError:
+                continue
+
+        if total_experiencia >= 1:
+            info["experiencia"] = total_experiencia
 
     return info
 
@@ -1472,7 +1509,7 @@ def cargarCV():
         idOfer = request.form.get("idOfer")
 
         if not idOfer:
-            flash("Debes seleccionar una oferta laboral.")
+            flash("Debes seleccionar una oferta laboral.", category="form")
             return redirect("/cargarCV")
 
         try:
@@ -1518,6 +1555,11 @@ def cargarCV():
                     idhab2=habilidad2_obj.idhab2
                 )
                 db.session.add(candidato)
+
+            # Validación de postulación duplicada
+            if Postulacion.query.filter_by(idCandidato=candidato.id, idOfer=idOfer).first():
+                flash("❌Este candidato ya estaba postulado a la oferta seleccionada.", category="form")
+                return redirect("/cargarCV")
 
             nueva_postulacion = Postulacion(
                 idCandidato=candidato.id,
@@ -1652,8 +1694,7 @@ def asignar_valores(idOfer):
     oferta = OfertaLaboral.query.get(idOfer)
     if not oferta:
         flash("Oferta no encontrada", "error")
-        return redirect(url_for("dashboard"))
-
+        return redirect(url_for("ver_ofertas"))
     # 📌 Educación
     educacion_id = request.form.get("educacion_id")
     valor_educacion = request.form.get("valor_educacion")
@@ -1795,9 +1836,16 @@ def obtener_metricas(oferta_id):
 
         "provincias_postulantes": provincias_postulantes
     })
-
+@app.route('/eliminar_oferta/<int:idOfer>', methods=['POST'])
+@login_required(roles=["Admin_RRHH"])
+def eliminar_oferta(idOfer):
+    oferta = OfertaLaboral.query.get_or_404(idOfer)
+    db.session.delete(oferta)
+    db.session.commit()
+    flash("Oferta eliminada correctamente.", "success")
+    return redirect(url_for('predecir'))
 
 
 if __name__ == "__main__":
     threading.Timer(1.5, abrir_navegador).start() 
-    app.run(debug=False, host="127.0.0.1", port=5000)
+    app.run(debug=True, host="127.0.0.1", port=5000)
