@@ -41,7 +41,27 @@
       <div class="ofertas-section">
         <div class="ofertas-title">Ofertas Activas</div>
           <div class="ofertas-grid" id="ofertas-activas-grid">
-              <!-- Tarjetas de ofertas activas y crear oferta -->
+              <!-- Tarjeta para crear nueva oferta -->
+              <div class="oferta-card add" onclick="window.location.href='/crear_oferta';">
+                <span>+</span>
+                <div style="font-size: 14px;">Crear Oferta</div>
+              </div>
+              {% for oferta in ofertas_activas %}
+              <div class="oferta-card" data-oferta-id="{{ oferta.idOfer }}">
+                <div class="oferta-summary">
+                  <h3>{{ oferta.nombre }}</h3>
+                  <p>{{ oferta.ubicacion or 'Ubicación no especificada' }}</p>
+                  <div class="oferta-fecha">Desde: {{ oferta.fecha_inicio.strftime('%Y-%m-%d') if oferta.fecha_inicio else 'Sin fecha' }}</div>
+                </div>
+                <div class="oferta-detalles" style="display:none;">
+                  <p><strong>Remuneración:</strong> {{ oferta.remuneracion or 'No especificada' }}</p>
+                  <p><strong>Máximo de Candidatos:</strong> {{ oferta.max_candidatos or 'No especificado' }}</p>
+                  <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
+                  <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
+                  <button class="btn-etiquetas" onclick="event.stopPropagation(); window.location.href='/etiquetas?idOfer={{ oferta.idOfer }}';">Etiquetas</button>
+                </div>
+              </div>
+              {% endfor %}
           </div>
       </div>
 
@@ -50,13 +70,24 @@
         <div class="ofertas-title">Ofertas Cerradas</div>
           <div class="ofertas-grid" id="ofertas-cerradas-grid">
             {% for oferta in ofertas_cerradas %}
-            <div class="oferta-card oferta-cerrada">
-              <h3>{{ oferta.nombre }}</h3>
-              <p>{{ oferta.beneficio or 'Sin descripción' }}</p>
-              <p class="oferta-fecha">Cerrada hace {{ (now - oferta.fecha_cierre).days }} días</p>
-              <form method="POST" action="{{ url_for('eliminar_oferta', idOfer=oferta.idOfer) }}" style="width:100%;text-align:right;">
-                <button type="submit" class="btn-eliminar-oferta{% if (now - oferta.fecha_cierre).days > 1 %} cerrada-mas-1dia{% endif %}">Eliminar</button>
-              </form>
+            <div class="oferta-card oferta-cerrada" data-oferta-id="cerrada-{{ oferta.idOfer }}">
+              <div class="oferta-summary">
+                <h3>{{ oferta.nombre }}</h3>
+                <p>{{ oferta.beneficio or 'Sin descripción' }}</p>
+                <p class="oferta-fecha">Cerrada hace {{ (now - oferta.fecha_cierre).days }} días</p>
+              </div>
+              <div class="oferta-detalles" style="display:none;">
+                <p><strong>Remuneración:</strong> {{ oferta.remuneracion or 'No especificada' }}</p>
+                <p><strong>Máximo de Candidatos:</strong> {{ oferta.max_candidatos or 'No especificado' }}</p>
+                <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
+                <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
+                <button class="btn-etiquetas" onclick="event.stopPropagation(); window.location.href='/etiquetas?idOfer={{ oferta.idOfer }}';">Etiquetas</button>
+                {% if session.get('type') == 'Admin_RRHH' %}
+                <form method="POST" action="{{ url_for('eliminar_oferta', idOfer=oferta.idOfer) }}" style="width:100%;text-align:right;">
+                  <button type="submit" class="btn-eliminar-oferta{% if (now - oferta.fecha_cierre).days > 1 %} cerrada-mas-1dia{% endif %}">Eliminar</button>
+                </form>
+                {% endif %}
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -100,33 +131,6 @@
         createGauge(document.getElementById('gauge3'), gaugeData[2], gaugeMax[2], gaugeColors[2]);
     </script>
     <script>
-        // Datos de ejemplo para las ofertas activas
-        const ofertasActivas = [
-            { id: 1, titulo: 'Desarrollador Python', ubicacion: 'Remoto', fecha: '2025-06-15' },
-            { id: 2, titulo: 'Analista de Datos', ubicacion: 'Buenos Aires', fecha: '2025-06-14' },
-            { id: 3, titulo: 'QA Tester', ubicacion: 'Córdoba', fecha: '2025-06-13' }
-        ];
-        function renderOfertas() {
-            const grid = document.getElementById('ofertas-activas-grid');
-            grid.innerHTML = '';
-            // Tarjeta para crear nueva oferta
-            const addCard = document.createElement('div');
-            addCard.className = 'oferta-card add';
-            addCard.innerHTML = '<span>+</span><div style="font-size: 14px;">Crear Oferta</div>';
-            addCard.onclick = () => { window.location.href = '/crear_oferta'; };
-            grid.appendChild(addCard);
-            // Ofertas activas
-            ofertasActivas.forEach(oferta => {
-                const card = document.createElement('div');
-                card.className = 'oferta-card';
-                card.innerHTML = `<h3>${oferta.titulo}</h3><p>${oferta.ubicacion}</p><div class='oferta-fecha'>Desde: ${oferta.fecha}</div>`;
-                card.onclick = () => { window.open(`/detalle_oferta?id=${oferta.id}`, '_blank'); };
-                grid.appendChild(card);
-            });
-        }
-        renderOfertas();
-    </script>
-    <script>
         // Ejemplo: agregar clase roja si la oferta lleva más de 1 día cerrada (esto sería dinámico en backend)
         document.querySelectorAll('.oferta-card.oferta-cerrada').forEach(card => {
           const fecha = card.querySelector('.oferta-fecha');
@@ -134,7 +138,77 @@
             card.querySelector('.btn-eliminar-oferta').classList.add('cerrada-mas-1dia');
           }
         });
+      </script>
+      <script>
+      // Expansión de tarjetas de ofertas activas con animación y ajuste dinámico
+      document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.oferta-card[data-oferta-id]');
+        let expandedCard = null;
+        cards.forEach(card => {
+          card.addEventListener('click', function(e) {
+            // Evita expandir si se hace click en un botón dentro de la tarjeta
+            if (e.target.tagName === 'BUTTON' || e.target.closest('form')) return;
+            const detalles = card.querySelector('.oferta-detalles');
+            if (expandedCard && expandedCard !== card) {
+              collapseCard(expandedCard);
+            }
+            if (detalles.style.display === 'none' || detalles.style.display === '') {
+              expandCard(card);
+              expandedCard = card;
+            } else {
+              collapseCard(card);
+              expandedCard = null;
+            }
+          });
+        });
+        function expandCard(card) {
+          const detalles = card.querySelector('.oferta-detalles');
+          detalles.style.display = 'block';
+          detalles.style.maxHeight = detalles.scrollHeight + 'px';
+          card.classList.add('expanded');
+          card.style.height = (220 + detalles.scrollHeight) + 'px';
+        }
+        function collapseCard(card) {
+          const detalles = card.querySelector('.oferta-detalles');
+          detalles.style.display = 'none';
+          detalles.style.maxHeight = null;
+          card.classList.remove('expanded');
+          card.style.height = '';
+        }
+      });
     </script>
+    <style>
+    .oferta-card .oferta-detalles {
+      transition: max-height 0.3s ease, padding 0.3s, background 0.3s;
+      overflow: hidden;
+      background: rgba(44,0,80,0.92);
+      border-radius: 1rem;
+      margin-top: 10px;
+      padding: 0 8px;
+    }
+    .oferta-card.expanded {
+      z-index: 2;
+      box-shadow: 0 8px 32px 0 #7644ff99, 0 2px 16px 0 #00c3ff99;
+      border-color: #00c3ff;
+    }
+    .btn-etiquetas {
+      margin-top: 10px;
+      padding: 0.5em 1.2em;
+      background: #7644ff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px #7644ff33;
+    }
+    .btn-etiquetas:hover {
+      background: #00c3ff;
+      color: #fff;
+    }
+    </style>
   {% include "layout/footer.html" %}
 </body>
 

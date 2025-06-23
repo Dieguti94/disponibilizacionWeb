@@ -153,9 +153,3 @@ table tr:hover {
   border: none;
   padding: 1rem;
 }
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-}

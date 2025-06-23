@@ -20,48 +20,60 @@
 <body>
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
+    <main>
 
-    <h1>Metricas por <span class="subtitulo">Oferta Laboral</span></h1>
+        <h1>Metricas por <span class="subtitulo">Oferta Laboral</span></h1>
 
-    <select id="ofertaSelect" style="background-color: #3815b8; color: white;">
-        <option style="background-color: #3815b8; color: white;" value="">-- Seleccionar oferta --</option>
-        {% for oferta in ofertas %}
-        <option style="background-color: #3815b8; color: white;" value="{{ oferta.idOfer }}">
-            {{ oferta.nombre }}
-        </option>
-        {% endfor %}
-    </select>
-
-    <div class="grid-graficos">
-        <canvas id="grafico_total_candidatos" width="400" height="200"></canvas>
-
-        <canvas id="grafico_edu_cant" width="400" height="200"></canvas>
-
-        <canvas id="grafico_tec_cant" width="400" height="200"></canvas>
-
-        <canvas id="grafico_tec2_cant" width="400" height="200"></canvas>
-
-        <canvas id="grafico_hab_cant" width="400" height="200"></canvas>
-
-        <canvas id="grafico_hab2_cant" width="400" height="200"></canvas>
-
-        <canvas id="grafico_edu_exp" width="400" height="200"></canvas>
-
-        <canvas id="grafico_tec_exp" width="400" height="200"></canvas>
-
-        <canvas id="grafico_tec2_exp" width="400" height="200"></canvas>
-
-        <canvas id="grafico_hab_exp" width="400" height="200"></canvas>
-
-        <canvas id="grafico_hab2_exp" width="400" height="200"></canvas>
-    </div>
-
-    <div id="map-container">
-        <h2>Distribución de candidatos por provincia</h2>
-        <div id="map"></div>
-    </div>
+        <select id="ofertaSelect" style="background-color: #3815b8; color: white;">
+            <option style="background-color: #3815b8; color: white;" disabled selected value="">-- Seleccionar oferta --
+            </option>
+            {% for oferta in ofertas %}
+            <option style="background-color: #3815b8; color: white;" value="{{ oferta.idOfer }}">
+                {{ oferta.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+        <div class="prediccion-panel">
+            <div class="gauges-container">
+                <div class="carousel-container">
+                    <button class="carousel-arrow left" id="prevChart"><i class="fa fa-chevron-left"></i></button>
+                    <div class="carousel-wrapper">
+                        <canvas id="grafico_total_candidatos" width="10" height="10" class="carousel-chart"></canvas>
+                        <canvas id="grafico_edu_cant" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_tec_cant" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_tec2_cant" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_hab_cant" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_hab2_cant" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_edu_exp" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_tec_exp" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_tec2_exp" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_hab_exp" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                        <canvas id="grafico_hab2_exp" width="10" height="10" class="carousel-chart"
+                            style="display:none;"></canvas>
+                    </div>
+                    <button class="carousel-arrow right" id="nextChart"><i class="fa fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="gauges-container">
+                <div id="map-container">
+                    <h2>Distribución de candidatos por provincia</h2>
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </main>
     {% include "layout/footer.html" %}
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="{{ url_for('static', filename='js/metricas.js') }}"></script>
 </body>
+
 </html>

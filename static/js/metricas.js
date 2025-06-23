@@ -29,9 +29,64 @@ let chartHab2Exp = null;
 
 let map = null;
 
+// Carrusel de gráficos
+const chartIds = [
+    "grafico_total_candidatos",
+    "grafico_edu_cant",
+    "grafico_tec_cant",
+    "grafico_tec2_cant",
+    "grafico_hab_cant",
+    "grafico_hab2_cant",
+    "grafico_edu_exp",
+    "grafico_tec_exp",
+    "grafico_tec2_exp",
+    "grafico_hab_exp",
+    "grafico_hab2_exp"
+];
+let currentChartIndex = 0;
+
+const carouselContainer = document.querySelector('.carousel-container');
+if (carouselContainer) carouselContainer.style.display = "none";
+
+function showChart(index) {
+    chartIds.forEach((id, i) => {
+        const canvas = document.getElementById(id);
+        if (canvas) {
+            canvas.classList.remove("active");
+            canvas.style.display = "none";
+        }
+    });
+    const activeCanvas = document.getElementById(chartIds[index]);
+    if (activeCanvas) {
+        activeCanvas.classList.add("active");
+        activeCanvas.style.display = "block";
+    }
+    document.getElementById("prevChart").disabled = index === 0;
+    document.getElementById("nextChart").disabled = index === chartIds.length - 1;
+}
+
+document.getElementById("prevChart").addEventListener("click", () => {
+    if (currentChartIndex > 0) {
+        currentChartIndex--;
+        showChart(currentChartIndex);
+    }
+});
+document.getElementById("nextChart").addEventListener("click", () => {
+    if (currentChartIndex < chartIds.length - 1) {
+        currentChartIndex++;
+        showChart(currentChartIndex);
+    }
+});
+
 select.addEventListener("change", () => {
     const id = select.value;
-    if (!id) return;
+    if (!id) {
+        if (carouselContainer) carouselContainer.style.display = "none";
+        return;
+    }
+    if (carouselContainer) carouselContainer.style.display = "flex";
+    currentChartIndex = 0;
+    showChart(currentChartIndex);
 
     mapContainer.style.display = "block";
 
@@ -76,9 +131,23 @@ select.addEventListener("change", () => {
                         }
                     },
                     scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: '#fff' },
+                            grid: {
+                                color: 'rgba(255,255,255,0.08)',
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }
+                        },
                         y: {
                             beginAtZero: true,
-                            ticks: { stepSize: 5 }
+                            ticks: { stepSize: 5, color: '#fff' },
+                            grid: {
+                                color: 'rgba(255,255,255,0.08)',
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }
                         }
                     }
                 }
@@ -100,7 +169,15 @@ select.addEventListener("change", () => {
 
             // =================== MAPA ===================
             if (!map) {
-                map = L.map('map').setView([-38.4161, -63.6167], 4);
+                map = L.map('map', {
+                    zoomControl: false,
+                    scrollWheelZoom: false,
+                    doubleClickZoom: false,
+                    boxZoom: false,
+                    keyboard: false,
+                    tap: false,
+                    touchZoom: false,
+                }).setView([-40, -63.6167], 4);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '© OpenStreetMap'
                 }).addTo(map);
@@ -116,7 +193,7 @@ select.addEventListener("change", () => {
                 const coordenadas = getCoordenadas(provincia);
                 if (coordenadas && cantidad > 0) {
                     L.marker(coordenadas).addTo(map)
-                        .bindPopup(`${provincia}: ${cantidad} candidatos`)
+                        .bindPopup(`${provincia}<br>Candidatos en total: ${cantidad}`)
                 }
             });
         });
@@ -148,9 +225,23 @@ function crearBarChart(ctx, etiquetas, datos, titulo, stepSize = 5) {
                 }
             },
             scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: { color: '#fff' },
+                    grid: {
+                        color: 'rgba(255,255,255,0.08)', // grilla muy tenue
+                        borderColor: '#fff', // eje principal blanco
+                        borderWidth: 2
+                    }
+                },
                 y: {
                     beginAtZero: true,
-                    ticks: { stepSize: stepSize }
+                    ticks: { stepSize: stepSize, color: '#fff' },
+                    grid: {
+                        color: 'rgba(255,255,255,0.08)',
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }
                 }
             }
         }
@@ -185,3 +276,29 @@ function getCoordenadas(provincia) {
     };
     return coordenadas[provincia] || null;
 }
+
+// Inicializar el carrusel oculto
+showChart(currentChartIndex);
+if (carouselContainer) carouselContainer.style.display = "none";
+
+// Quitar el focus visual del botón del carrusel al hacer clic
+// Esto mejora la experiencia visual y evita el contorno azul tras el click
+// Puedes mover este bloque a tu archivo static/js/metricas.js si lo prefieres modular
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Mostrar panel solo si se selecciona una oferta
+    const select = document.getElementById('ofertaSelect');
+    const panel = document.querySelector('.prediccion-panel');
+    select.addEventListener('change', function () {
+        if (select.value) {
+            panel.style.display = 'block';
+        } else {
+            panel.style.display = 'none';
+        }
+    });
+    document.querySelectorAll('.carousel-arrow').forEach(function (btn) {
+        btn.addEventListener('mouseup', function () {
+            this.blur();
+        });
+    });
+});

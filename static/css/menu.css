@@ -1,6 +1,11 @@
 /*MENU DESPLEGABLE LATERAL*/
 .menu-icon {
-    font-size: 2rem;
+        min-width: 48px;
+        min-height: 48px;
+        font-size: 2rem;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;
     cursor: pointer;
     position: fixed;
     top: 0.7rem;
@@ -8,7 +13,7 @@
     opacity: 1;
     transition: opacity 0.2s;
     background-color: rgba(183, 0, 255, 0.2);
-    padding: 10px 15px;
+    padding: 6px 6px;
     border-radius: 60px;
     border: 2px solid #7644ff;
     color: white;
@@ -16,9 +21,12 @@
 }
 
 .menu-icon.hide-menu {
-    opacity: 0;
+    opacity: 1;
     pointer-events: none;
     transition: opacity 0.3s;
+}
+.menu-toggle:not(:checked)~.menu-icon {
+    left: 6.5rem;
 }
 
 .menu-icon.sticky-left {
@@ -26,11 +34,19 @@
     opacity: 1;
     transition: opacity 0.3s;
 }
-
-/* Posición cuando el menú está cerrado */
-.menu-toggle:not(:checked)~.menu-icon {
-    left: 6.5rem;
+.menu-toggle:checked ~ .menu-icon.sticky-left {
+    left: 300px !important;
 }
+
+
+@media screen and (max-width: 450px) {
+    
+    #menu-toggle:checked ~ header .user-menu-wrapper {
+    display: none !important;
+}
+}
+/* Posición cuando el menú está cerrado */
+
 
 /* Menú lateral */
 .side-menu {
@@ -243,6 +259,16 @@ details[open] .arrow {
     z-index: 30;
     /* Muy alto para que quede por encima de todo */
     padding-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .tooltip {
+        top: -130%;
+        left: -20%;
+        transform: translateY(-50%) translateX(0);
+        /* Centrado en pantallas pequeñas */
+    }
+    
 }
 
 .support-button:hover>.tooltip {

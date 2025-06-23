@@ -6,20 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>IA de PREDICCION de Aptitud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/postulacion.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='cargarCV.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
 </head>
 
 <body>
-    {% include "layout/header_general.html" %}
+
+    <header>
+        <div>
+            <img class="logo" src="{{ url_for('static', filename='images/logoApptitudAI.png') }}"
+                alt="Logo de ApptitudAI">
+        </div>
+    </header>
     {% if es_admin %}
     <div class="nav">
         <a href="{{ url_for('predecir') }}">Inicio</a>
     </div>
     {% endif %}
-    {% include "layout/menu.html" %}
     <h1>Completa los datos de tu CV</h1>
     <form method="post" action="/postulacion">
 

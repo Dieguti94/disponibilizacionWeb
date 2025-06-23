@@ -18,13 +18,14 @@ def setup_db(app):
     with app.app_context():
         db.create_all()
 
-        edu = Educacion(nombre='Secundario')
-        tec = Tecnologia(nombre='Java')
-        hab = Habilidad(nombre='Liderazgo')
+        edu = Educacion(nombre='secundario')
+        tec = Tecnologia(nombre='java')
+        hab = Habilidad(nombre='liderazgo')
+
         db.session.add_all([edu, tec, hab])
         db.session.commit()
 
-        oferta = OfertaLaboral(nombre="FrontEnd Developer JR", fecha_cierre=datetime.now(), max_candidatos=1, remuneracion="100000", beneficio = "Home Office", estado = 'Activa',  usuario_responsable="Fernando")
+        oferta = OfertaLaboral(nombre="FrontEnd Developer JR", fecha_cierre=datetime.now(), max_candidatos=1, cant_candidatos = 0,remuneracion="100000", beneficio = "Home Office", estado = 'Activa', modalidad='Local',  usuario_responsable="Fernando")
         db.session.add(oferta)
         db.session.commit()
 
@@ -42,7 +43,7 @@ def setup_db(app):
 def test_cambiar_importancia_oferta_educacion(app, setup_db):
     with app.app_context():
         oferta = OfertaLaboral.query.first()
-        edu = Educacion.query.filter_by(nombre="Secundario").first()
+        edu = Educacion.query.filter_by(nombre="secundario").first()
         rel = OfertaEducacion.query.filter_by(idOfer=oferta.idOfer, idEdu=edu.idedu).first()
         rel.importancia = 3
         db.session.commit()
@@ -53,7 +54,7 @@ def test_cambiar_importancia_oferta_educacion(app, setup_db):
 def test_cambiar_importancia_oferta_tecnologia(app, setup_db):
     with app.app_context():
         oferta = OfertaLaboral.query.first()
-        tec = Tecnologia.query.filter_by(nombre="Java").first()
+        tec = Tecnologia.query.filter_by(nombre="java").first()
         rel = OfertaTecnologia.query.filter_by(idOfer=oferta.idOfer, idTec=tec.idtec).first()
         rel.importancia = 3
         db.session.commit()
@@ -64,7 +65,7 @@ def test_cambiar_importancia_oferta_tecnologia(app, setup_db):
 def test_cambiar_importancia_oferta_habilidad(app, setup_db):
     with app.app_context():
         oferta = OfertaLaboral.query.first()
-        hab = Habilidad.query.filter_by(nombre="Liderazgo").first()
+        hab = Habilidad.query.filter_by(nombre="liderazgo").first()
         rel = OfertaHabilidad.query.filter_by(idOfer=oferta.idOfer, idHab=hab.idhab).first()
         rel.importancia = 3
         db.session.commit()

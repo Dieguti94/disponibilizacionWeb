@@ -1,35 +1,38 @@
 import pytest
-from app import app as appLocal, db, OfertaLaboral, OfertaEducacion, OfertaTecnologia, OfertaHabilidad, Candidato, Educacion, Tecnologia, Habilidad
+from app import app as appLocal, db, Postulacion, OfertaLaboral, OfertaEducacion, OfertaTecnologia, OfertaHabilidad,OfertaHabilidad2,OfertaTecnologia2, Candidato, Educacion, Tecnologia, Tecnologia2, Habilidad2, Habilidad
 from datetime import datetime
 
 @pytest.fixture(scope="module")
 def setup_metricas():
     with appLocal.app_context():
-        # Crear oferta
         oferta = OfertaLaboral(
             nombre="Oferta Test Métricas",
             fecha_cierre=datetime(2030, 1, 1),
             max_candidatos="10",
+            cant_candidatos = 0,
             remuneracion="1000",
             beneficio="Ninguno",
             estado="Activa",
+            modalidad='Local',
             usuario_responsable="Fernando"
         )
         db.session.add(oferta)
         db.session.commit()
 
-        # Obtengo las etiquetas
-        edu = Educacion.query.filter_by(nombre="Postgrado").first()
-        tec = Tecnologia.query.filter_by(nombre = "Java").first()
-        hab = Habilidad.query.filter_by(nombre = "Liderazgo").first()
-        
-        # Asociar etiquetas a la oferta
-        db.session.add(OfertaEducacion(idOfer=oferta.idOfer, idEdu=edu.idedu, importancia=3))
-        db.session.add(OfertaTecnologia(idOfer=oferta.idOfer, idTec=tec.idtec, importancia=3))
-        db.session.add(OfertaHabilidad(idOfer=oferta.idOfer, idHab=hab.idhab, importancia=3))
-        db.session.commit()
+        edu = Educacion.query.filter_by(nombre="postgrado").first()
+        tec1 = Tecnologia.query.filter_by(nombre="aws").first()
+        tec2 = Tecnologia2.query.filter_by(nombre ="azure").first()
+        hab1 = Habilidad.query.filter_by(nombre="adaptabilidad").first()
+        hab2 = Habilidad2.query.filter_by(nombre="autodidacta").first()
 
-        # Crear candidatos (3 aptos, 2 no aptos)
+        oferta_edu = OfertaEducacion(idOfer=oferta.idOfer, idEdu=edu.idedu, importancia=3)
+        oferta_tec = OfertaTecnologia(idOfer=oferta.idOfer, idTec=tec1.idtec, importancia=3)
+        oferta_tec2 = OfertaTecnologia2(idOfer=oferta.idOfer, idTec2=tec2.idtec2, importancia=3)
+        oferta_hab = OfertaHabilidad(idOfer=oferta.idOfer, idHab=hab1.idhab, importancia=3)
+        oferta_hab2 = OfertaHabilidad2(idOfer=oferta.idOfer, idHab2=hab2.idhab2, importancia=3)
+        
+        db.session.add_all([oferta_edu, oferta_tec, oferta_tec2, oferta_hab, oferta_hab2])
+        db.session.commit()
         for i in range(3):
             candidato = Candidato(
                 id=f"apto{i}@gmail.com{oferta.idOfer}",
@@ -40,13 +43,25 @@ def setup_metricas():
                 ubicacion="Buenos Aires",
                 experiencia=8,
                 idedu=edu.idedu,
-                idtec=tec.idtec,
-                idhab=hab.idhab,
+                idtec=tec1.idtec,
+                idtec2=tec2.idtec2,
+                idhab=hab1.idhab,
+                idhab2=hab2.idhab2,
+            )
+
+            post_apto = Postulacion(
+                idCandidato=candidato.id,
                 idOfer=oferta.idOfer,
+                experiencia=candidato.experiencia,
+                idedu=candidato.idedu,
+                idtec=candidato.idtec,
+                idtec2=candidato.idtec2,
+                idhab=candidato.idhab,
+                idhab2=candidato.idhab2,
                 aptitud=True,
                 puntaje=90
             )
-            db.session.add(candidato)
+            db.session.add_all([candidato, post_apto])
         for i in range(2):
             candidato = Candidato(
                 id=f"noapto{i}@gmail.com{oferta.idOfer}",
@@ -57,22 +72,36 @@ def setup_metricas():
                 ubicacion="Cordoba",
                 experiencia=1,
                 idedu=edu.idedu,
-                idtec=tec.idtec,
-                idhab=hab.idhab,
+                idtec=tec1.idtec,
+                idtec2=tec2.idtec2,
+                idhab=hab1.idhab,
+                idhab2=hab2.idhab2,
+            )
+
+            post_no_apto = Postulacion(
+                idCandidato=candidato.id,
                 idOfer=oferta.idOfer,
+                experiencia=candidato.experiencia,
+                idedu=candidato.idedu,
+                idtec=candidato.idtec,
+                idtec2=candidato.idtec2,
+                idhab=candidato.idhab,
+                idhab2=candidato.idhab2,
                 aptitud=False,
                 puntaje=0
             )
-            db.session.add(candidato)
+            db.session.add_all([candidato, post_no_apto])
         db.session.commit()
 
         yield oferta.idOfer
 
-        # Limpieza: borrar candidatos, etiquetas y oferta
-        Candidato.query.filter_by(idOfer=oferta.idOfer).delete()
+        Postulacion.query.filter_by(idOfer=oferta.idOfer).delete()
+        Candidato.query.filter(Candidato.id.like(f"%{oferta.idOfer}")).delete()
         OfertaEducacion.query.filter_by(idOfer=oferta.idOfer).delete()
         OfertaTecnologia.query.filter_by(idOfer=oferta.idOfer).delete()
+        OfertaTecnologia2.query.filter_by(idOfer=oferta.idOfer).delete()
         OfertaHabilidad.query.filter_by(idOfer=oferta.idOfer).delete()
+        OfertaHabilidad2.query.filter_by(idOfer=oferta.idOfer).delete()
         OfertaLaboral.query.filter_by(idOfer=oferta.idOfer).delete()
         db.session.commit()
 
@@ -94,7 +123,7 @@ def test_metricas_candidatos_totales(client, setup_metricas):
     assert response.status_code == 200
     
     data = response.get_json()
-    assert data["total_candidatos"] == 5
+    assert data["total_postulantes"] == 5
     assert data["aptos"] == 3
     assert data["no_aptos"] == 2
 
@@ -111,9 +140,11 @@ def test_metricas_cantidad_por_etiqueta(client, setup_metricas):
 
     data = response.get_json()
 
-    assert data["cantidades"][0] == 5
-    assert data["cantidades"][1] == 5
-    assert data["cantidades"][2] == 5
+    assert data["cant_educacion"][0] == 5
+    assert data["cant_tecnologia"][0] == 5
+    assert data["cant_tecnologia2"][0] == 5
+    assert data["cant_habilidad"][0] == 5
+    assert data["cant_habilidad2"][0] == 5
 
 def test_metricas_promedios(client, setup_metricas):
     oferta_id = setup_metricas
@@ -127,9 +158,13 @@ def test_metricas_promedios(client, setup_metricas):
     
     data = response.get_json()
 
-    assert data["promedios_experiencia"]["Postgrado"] == 5.2
-    assert data["promedios_experiencia"]["Java"] == 5.2
-    assert data["promedios_experiencia"]["Liderazgo"] == 5.2
+    assert data["exp_educacion"]["postgrado"] == 5.2
+    assert data["exp_tecnologia"]["aws"] == 5.2
+    assert data["exp_tecnologia2"]["azure"] == 5.2
+    assert data["exp_habilidad"]["adaptabilidad"] == 5.2
+    assert data["exp_habilidad2"]["autodidacta"] == 5.2
+    assert "liderazgo" not in data["exp_habilidad"]
+    assert "python" not in data["exp_tecnologia"]
 
 def test_metricas_por_provincias(client, setup_metricas):
     oferta_id = setup_metricas
@@ -143,10 +178,10 @@ def test_metricas_por_provincias(client, setup_metricas):
     
     data = response.get_json()
 
-    assert data["provincias_candidatos"]["Buenos Aires"] == 3
-    assert data["provincias_candidatos"]["Cordoba"] == 2
-    assert "Mendoza" not in data["provincias_candidatos"]
-    assert "Banana" not in data["provincias_candidatos"]
+    assert data["provincias_postulantes"]["Buenos Aires"] == 3
+    assert data["provincias_postulantes"]["Cordoba"] == 2
+    assert "Mendoza" not in data["provincias_postulantes"]
+    assert "Banana" not in data["provincias_postulantes"]
 
 def test_metricas_oferta_inexistente(client, setup_metricas):
     oferta_id = 43

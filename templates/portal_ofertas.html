@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>IA de PREDICCION de Aptitud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/postulacion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cargarCV.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal_ofertas.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <img class="logo" src="{{ url_for('static', filename='images/logoApptitudAI.png') }}"
+                alt="Logo de ApptitudAI">
+        </div>
+    </header>
+    <main>
+
+        <!-- Contenedor de ofertas activas -->
+        <div class="ofertas-section">
+            <div class="ofertas-title">
+                <p class="title-perfect">Ofertas</p>
+                <p class="title-match">Activas</p>
+            </div>
+            <div class="ofertas-grid" id="ofertas-activas-grid">
+                {% for oferta in ofertas_activas %}
+                <div class="oferta-card" data-oferta-id="{{ oferta.idOfer }}">
+                    <div class="oferta-summary">
+                        <h3>{{ oferta.nombre }}</h3>
+                        <p>{{ oferta.ubicacion or 'Ubicación no especificada' }}</p>
+                        <div class="oferta-fecha">Desde: {{ oferta.fecha_inicio.strftime('%Y-%m-%d') if
+                            oferta.fecha_inicio else 'Sin fecha' }}</div>
+                    </div>
+                    <div class="oferta-detalles" style="display:none;">
+                        <p><strong>Remuneración:</strong> {{ oferta.remuneracion or 'No especificada' }}</p>
+                        <p><strong>Máximo de Candidatos:</strong> {{ oferta.max_candidatos or 'No especificado' }}</p>
+                        <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
+                        <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
+                        <button class="btn-postularme"
+                            onclick="event.stopPropagation(); window.location.href='/postulacionIT?idOfer={{ oferta.idOfer }}';">Postularme</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{{ url_for('static', filename='js/portal_ofertas.js') }}"></script>
+
+    </main>
+    {% include "layout/footer.html" %}
+</body>
+
+</html>

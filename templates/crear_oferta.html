@@ -4,16 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Crear Nueva Oferta Laboral</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='crear_oferta.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='crear_oferta.css') }}">
 </head>
 
 <body>
+
+  <div class="header-container">
   {% include "layout/header_general.html" %}
+</div>
   {% include "layout/menu.html" %}
+  <main>
   <h1>Crear Nueva <span class="subtitulo">Oferta Laboral</span></h1>
 
   <form method="POST" action="{{ url_for('crear_oferta') }}">
@@ -23,23 +27,26 @@
     <span></span>
 
     <label for="nombre">Nombre de la oferta:</label>
-    <input type="text" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' 0-9]{4,51}" required>
+    <input type="text" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' 0-9]+" minlength="5" maxlength="50" title="Debe tener entre 5 y 50 caracteres. Solo letras, números y apóstrofes." required>
 
     <label for="fecha_cierre">Fecha de cierre:</label>
     <input type="date" name="fecha_cierre" required>
 
     <label for="max_candidatos">Cantidad máxima de candidatos:</label>
-    <input type="number" name="max_candidatos" min="4" max="1000" required>
+    <input type="number" name="max_candidatos" min="5" max="1000" title="Debe ser un número entre 5 y 1000" required>
 
     <label for="remuneracion">Remuneración ($USD):</label>
-    <input type="number" name="remuneracion" placeholder="Ej: 4000" min="200" max="90000" required>
+    <input type="number" name="remuneracion" placeholder="Ej: 4000" min="200" max="90000" title="Debe ser como mínimo 200 y como máximo 90000 USD" required>
 
     <label for="beneficio">Beneficio:</label>
-    <input type="text" name="beneficio" placeholder="Ej: Home office" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' 0-9]{3,60}"
-      required>
+    <input type="text" name="beneficio" placeholder="Ej: Home office" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' 0-9]+" minlength="3" maxlength="60" title="Debe tener entre 3 y 60 caracteres, solo letras, números y apóstrofes."required>
+    
+    <label for="descripcion">Descripción de la oferta:</label>
+    <textarea name="descripcion" rows="4" minlength="10" maxlength="200" placeholder="Describe brevemente la oferta (máximo 200 caracteres)" required></textarea>
 
     <label for="modalidad">Modalidad de la oferta:</label>
     <select name="modalidad" required>
+      <option value="" disabled selected>-- Selecciona una opción --</option>
       <option value="Local">Local</option>
       <option value="Mixta">Mixta</option>
       <option value="Externa">Externa</option>
@@ -58,7 +65,7 @@
     {% endwith %}
     <button type="submit">Crear Oferta</button>
   </form>
-
+</main>
   {% include "layout/footer.html" %}
 
   <script>

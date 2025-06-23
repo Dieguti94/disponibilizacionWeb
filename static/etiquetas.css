@@ -237,8 +237,10 @@ form span:nth-child(4) {
   animation: elevar 2s ease-out forwards;
 }
 
-.form-label {
-  margin-top: 2rem;
+form label {
+  display: block;
+  margin: 1rem 0 1rem 0;
+  font-weight: bold;
 }
 
 .form-select {
@@ -387,12 +389,6 @@ button:active {
   padding: 1rem;
 }
 
-label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-}
-
 .tabla-container {
   overflow-x: auto;
   cursor: grab;
@@ -447,10 +443,4 @@ table tr:hover {
   background-color: transparent;
   border: none;
   padding: 1rem;
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
 }

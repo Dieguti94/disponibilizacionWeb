@@ -3,114 +3,73 @@
 {% block title %}Login{% endblock %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!--FUENTE IMPORTADA-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
- <!--CONTENEDOR PRINCIPAL DEL LOGIN-->
-<div class="container d-flex justify-content-end"> <!--MUEVO A LA DERECHA-->
-
+<!-- CONTENEDOR PRINCIPAL DEL LOGIN -->
+<div class="container d-flex justify-content-end">
+    <!-- Formulario de login -->
     <form class="form-signin" action="/login" method="POST" style="max-width: 40% !important;">
-    
         <h1 class="h3 mb-3 fw-normal">Login</h1>
-
         <div class="form-floating input-box">
-            <input type="text" class="form-control" id="username" name="username"  autofocus>
+            <input type="text" class="form-control" id="username" name="username" autofocus>
             <label for="username" style="color: #757575 !important;">Usuario</label>
             <i class="fas fa-user"></i>
         </div>
-        
         <div class="form-floating input-box mt-2">
-            <input type="password" class="form-control" id="password" name="password" >
+            <input type="password" class="form-control" id="password" name="password">
             <label for="password" style="color: #757575 !important;">Contraseña</label>
             <i class="fas fa-lock"></i>
         </div>
-
-        <button class="w-100 btn btn-lg custom-login-btn" type="submit">Ingresar</button> 
-        
-
+        <button class="w-100 btn btn-lg custom-login-btn" type="submit">Ingresar</button>
         {% with messages = get_flashed_messages(category_filter=["login"]) %}
-        {% if messages %}
-            <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error de acceso',
-                    text: '{{ messages[0] }}',
-                    confirmButtonColor: '#6f42c1'
-                });
-            });
-            </script>
-        {% endif %}
+            {% if messages %}
+                <script>
+                    window.addEventListener('DOMContentLoaded', () => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error de acceso',
+                            text: '{{ messages[0] }}',
+                            confirmButtonColor: '#6f42c1'
+                        });
+                    });
+                </script>
+            {% endif %}
         {% endwith %}
-    
     </form>
 
-     <!--ANIMACION-->
-     <div class="toggle-box">
+    <!-- ANIMACIÓN Y PANELES -->
+    <div class="toggle-box">
         <div class="toggle-box d-flex">
-    
-    <!-- Contacto a la izquierda -->
-    <div class="contact-info d-none">
-        <h2>Contactate con Nosotros</h2>
-        <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
-        <p><i class="fas fa-envelope"></i> perfectmatch.rrhh@gmail.com</p>
-        <p><i class="fas fa-map-marker-alt"></i> Av. Siempreviva 123, CABA</p>
+            <!-- Contacto a la izquierda -->
+            <div class="contact-info d-none">
+                <h2>Contactate con Nosotros</h2>
+                <p><i class="fas fa-phone"></i> +54 11 1234-5678</p>
+                <p><i class="fas fa-envelope"></i> perfectmatch.rrhh@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Siempreviva 123, CABA</p>
+            </div>
+            <!-- Panel izquierdo (botón Sobre nosotros) -->
+            <div class="toggle-panel toggle-left">
+                <h1>¡Bienvenido a ApptitudAI!</h1>
+                <p>¿Queres hacer crecer tu empresa?</p>
+                <button class="btn about-btn" tabindex="0">Sobre nosotros</button>
+            </div>
+            <!-- Panel derecho (biografía) -->
+            <div class="toggle-panel toggle-right">
+                <h1>¡El futuro de los Recursos Humanos!</h1>
+                <p>ApptitudAI es una plataforma inteligente diseñada para transformar la manera en que las empresas gestionan su talento. Desde 2025, estamos presentes como empresa con la misión de revolucionar los procesos de selección mediante inteligencia artificial y análisis de datos.</p>
+                <button class="btn login-btn" tabindex="-1">Login</button>
+                <a href="{{ url_for('sobre_nosotros') }}" class="boton-violeta-neon mt-3" tabindex="-1">¿Querés saber más sobre nosotros?</a>
+            </div>
+        </div>
     </div>
-
-    <!-- Panel izquierdo (botón Sobre nosotros) -->
-    <div class="toggle-panel toggle-left">
-        <h1>¡Bienvenido a ApptitudAI!</h1>
-        <p>¿Queres hacer crecer tu empresa?</p>
-        <button class="btn register-btn">Sobre nosotros</button>
-    </div>
-
-    <!-- Panel derecho (biografía) -->
-    <div class="toggle-panel toggle-right">
-        <h1>¡El futuro de los Recursos Humanos!</h1>
-        <p>ApptitudAI es una plataforma inteligente diseñada para transformar la manera en que las empresas gestionan su talento. Desde 2025, estamos presentes como empresa con la misión de revolucionar los procesos de selección mediante inteligencia artificial y análisis de datos.</p>
-        <button class="btn login-btn">Login</button>
-        <a href="{{ url_for('sobre_nosotros') }}" class="boton-violeta-neon mt-3">¿Querés saber más sobre nosotros?</a>
-    </div>
-
 </div>
-<!--ANIMACION -->
-<script>
-    const container = document.querySelector('.container');
-    const registerBtn = document.querySelector('.register-btn');
-    const loginBtn = document.querySelector('.login-btn');
 
-    registerBtn.addEventListener('click', () => {
-        container.classList.add('active');
-        document.querySelector('.contact-info').classList.remove('d-none');
-    });
-
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove('active');
-        document.querySelector('.contact-info').classList.add('d-none');
-    });
-</script>
-<!-- SweetAlert2 -->
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-// Validación en el cliente: campos vacíos
-document.querySelector('.form-signin').addEventListener('submit', function(e) {
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    if (!username || !password) {
-        e.preventDefault(); 
-        Swal.fire({
-            icon: 'warning',
-            title: 'Campos vacíos',
-            text: 'Por favor completá usuario y contraseña.',
-            confirmButtonColor: '#6f42c1'
-        });
-    }
-});
-</script>
+<script src="{{ url_for('static', filename='js/auth/login.js') }}"></script>
 {% endblock %}
 

@@ -25,10 +25,12 @@
   <div class="acciones">
     {% for oferta in ofertas %}
     {% if oferta.estado == "Activa" %}
-    <form method="POST" action="{{ url_for('cerrar_oferta', idOfer=oferta.idOfer) }}" style="display:inline;">
+    {% if session.get('type') == 'Admin_RRHH' %}
+    <form method="POST" action="{{ url_for('cerrar_oferta', idOfer=oferta.idOfer) }}">
       <input type="hidden" name="forzar" value="1">
       <button type="submit">Cerrar oferta</button>
     </form>
+    {% endif %}
     {% endif %}
     {% endfor %}
   </div>
@@ -36,6 +38,7 @@
   <p>{{ mensaje }}</p>
   {% endif %}
   <div style="text-align: center; margin: 0;">
+    {% if session.get('type') == 'Admin_RRHH' %}
     <form method="POST" action="{{ url_for('limpiar_ofertas_expiradas') }}"
       style="display: inline-block;margin-left: 20px ;padding: 0px 60px; background-color: #4b0082; border-radius: 8px; box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);">
 
@@ -45,6 +48,7 @@
         Limpiar ofertas cerradas (+24hs)
       </button>
     </form>
+    {% endif %}
   </div>
   {% with messages = get_flashed_messages() %}
   {% if messages %}

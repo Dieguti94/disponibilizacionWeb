@@ -24,13 +24,13 @@ def test_actualizacion_importancia(client, importancia):
         oferta = db.session.query(OfertaLaboral).first()
         idOfer = oferta.idOfer
 
-        edu = db.session.execute(db.select(Educacion).filter_by(nombre="Secundario")).scalar_one()
+        edu = db.session.execute(db.select(Educacion).filter_by(nombre="secundario")).scalar_one()
         id_edu = edu.idedu
 
-        tec = db.session.execute(db.select(Tecnologia).filter_by(nombre="Java")).scalar_one()
+        tec = db.session.execute(db.select(Tecnologia).filter_by(nombre="java")).scalar_one()
         id_tec = tec.idtec
 
-        hab = db.session.execute(db.select(Habilidad).filter_by(nombre="Liderazgo")).scalar_one()
+        hab = db.session.execute(db.select(Habilidad).filter_by(nombre="liderazgo")).scalar_one()
         id_hab = hab.idhab
 
         edu_rel = OfertaEducacion.query.filter_by(idOfer=idOfer, idEdu=id_edu).first()
@@ -82,13 +82,13 @@ def test_actualizar_etiquetas_fuera_de_rango(client, importancia):
     with appLocal.app_context():
         oferta = db.session.query(OfertaLaboral).first()
         id_oferta = oferta.idOfer
-        edu = db.session.execute(db.select(Educacion).filter_by(nombre="Secundario")).scalar_one()
+        edu = db.session.execute(db.select(Educacion).filter_by(nombre="secundario")).scalar_one()
         id_edu = edu.idedu
         
-        tec = db.session.execute(db.select(Tecnologia).filter_by(nombre ="Java")).scalar_one()
+        tec = db.session.execute(db.select(Tecnologia).filter_by(nombre ="java")).scalar_one()
         id_tec = tec.idtec
        
-        hab = db.session.execute(db.select(Habilidad).filter_by(nombre ="Liderazgo")).scalar_one()
+        hab = db.session.execute(db.select(Habilidad).filter_by(nombre ="liderazgo")).scalar_one()
         id_hab = hab.idhab
 
     with client.session_transaction() as sess:
@@ -106,3 +106,31 @@ def test_actualizar_etiquetas_fuera_de_rango(client, importancia):
 
     assert respuesta.status_code == 400
 
+#Test que verifica que no se pueda asignar la importancia a una oferta inexistente
+def test_actualizar_etiquetas_con_oferta_inexistente(client):
+    with client.session_transaction() as sess:
+        sess["username"] = "Fernando"
+        sess["type"] = "Admin_RRHH"
+
+    with appLocal.app_context():
+        
+        edu = db.session.execute(db.select(Educacion).filter_by(nombre="secundario")).scalar_one()
+        id_edu = edu.idedu
+        
+        tec = db.session.execute(db.select(Tecnologia).filter_by(nombre ="java")).scalar_one()
+        id_tec = tec.idtec
+       
+        hab = db.session.execute(db.select(Habilidad).filter_by(nombre ="liderazgo")).scalar_one()
+        id_hab = hab.idhab
+
+
+    response = client.post(f"/asignar_valores/{23564}", data={
+        "educacion_id": id_edu,
+        "valor_educacion": 3,
+        "tecnologia_id": id_tec,
+        "valor_tecnologia": 3,
+        "habilidad_id": id_hab,
+        "valor_habilidad": 3
+    }, follow_redirects=True)
+
+    assert b"Oferta no encontrada" in response.data

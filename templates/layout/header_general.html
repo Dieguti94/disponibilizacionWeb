@@ -1,3 +1,4 @@
+<div class="header-container"></div>
 <header>
     <div>
         <img class="logo" src="{{ url_for('static', filename='images/logoApptitudAI.png') }}" alt="Logo de ApptitudAI">
@@ -20,7 +21,9 @@
 
         <section class="user-menu-container">
             <div class="menu-list">
+                {% if session.get('type') == 'Admin_RRHH' %}
                 <a href="{{ url_for('gestionar_usuarios') }}">Gestionar Roles</a>
+                {% endif %}
             </div>
             <div class="menu-list">
                 <a href="{{ url_for('logout') }}">Cerrar sesión</a>
@@ -29,3 +32,4 @@
 
     </div>
 </header>
+</div>

@@ -176,7 +176,9 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 220px;
+  min-width: 165px;
+  max-width: 195px;
+  width: 165px;
   transition: box-shadow 0.2s, transform 0.2s;
   border: 2px solid #7644ff;
 }
@@ -200,6 +202,11 @@ h1 {
   background: transparent;
   margin-bottom: 0.2rem;
   /* Elimina los tamaños forzados */
+  width: 165px !important;
+  height: 82.5px !important;
+  max-width: 165px;
+  max-height: 82.5px;
+  /* Mantener la altura original para no afectar la proporción vertical */
 }
 
 @media (max-width: 900px) {
@@ -209,11 +216,15 @@ h1 {
     max-width: 95vw;
   }
   .gauge-card {
-    min-width: 0;
-    width: 90vw;
+    min-width: 135px;
+    max-width: 165px;
+    width: 135px;
   }
-  .gauges-section canvas {
-    /* Elimina los tamaños forzados */
+  .gauge-card canvas {
+    width: 135px !important;
+    height: 67.5px !important;
+    max-width: 135px;
+    max-height: 67.5px;
   }
   .gauges-container {
     padding: 18px 4vw 18px 4vw;
@@ -225,8 +236,65 @@ h1 {
   }
   .ofertas-grid {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 0.7rem;
   }
+  .oferta-card {
+    min-height: 120px;
+    height: 150px;
+    max-width: 98vw;
+    border-radius: 0.8rem;
+    padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gauges-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 98vw;
+  }
+  .gauge-card {
+    min-width: 105px;
+    max-width: 135px;
+    width: 105px;
+    border-radius: 1rem;
+  }
+  .gauge-card canvas {
+    width: 135px !important;
+    height: 67.5px !important;
+    max-width: 135px;
+    max-height: 67.5px;
+  }
+  .prediccion-panel {
+    margin-top: 80px !important;
+  }
+  .logo, .logo-izquierda {
+    display: none !important;
+  }
+  .gauges-container {
+    padding: 10px 2vw 10px 2vw;
+    max-width: 99vw;
+  }
+  .ofertas-section {
+    width: 100% !important;
+    max-width: 98vw !important;
+    padding: 10px 2vw 10px 2vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+  .ofertas-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+  .oferta-card {
+    min-height: 120px;
+    height: 150px;
+    max-width: 98vw;
+    border-radius: 0.8rem;
+    padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+  }
+  
 }
 
 /* OFERTAS GRID */
@@ -243,6 +311,9 @@ h1 {
   backdrop-filter: blur(6px);
   overflow: visible;
   margin-bottom: 2rem;
+}
+@media screen {
+  
 }
 
 .ofertas-title {
@@ -407,9 +478,13 @@ h1 {
 }
 
 @media (max-width: 900px) {
-  .gauges-container, .ofertas-section {
-    padding: 18px 4vw 18px 4vw;
-    max-width: 98vw;
+   .ofertas-section {
+    width: 100% !important;
+    max-width: 98vw !important;
+    padding: 10px 2vw 10px 2vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
   }
   .gauges-section {
     grid-template-columns: 1fr;
@@ -418,11 +493,37 @@ h1 {
   }
   .gauge-card {
     min-width: 0;
-    width: 90vw;
+    width: 60vw;
   }
   .ofertas-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+   .ofertas-section {
+    width: 100% !important;
+    max-width: 98vw !important;
+    padding: 10px 2vw 10px 2vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+  }
+  .gauges-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 95vw;
+  }
+  .gauge-card {
+    min-width: 0;
+    width: 60vw;
+  }
+  .ofertas-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 0 auto;
+    padding: 0;
   }
 }
 
