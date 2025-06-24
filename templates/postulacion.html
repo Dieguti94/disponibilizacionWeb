@@ -44,13 +44,12 @@
 
     <form method="POST" action="/postulacion" enctype="multipart/form-data">
 
-        <label for="idOfer">Selecciona una oferta laboral:</label>
-        <select name="idOfer" required>
-            <option value="">-- Selecciona una oferta --</option>
-            {% for oferta in opciones_ofertas if oferta.estado != "Cerrada" %}
-            <option value="{{ oferta.idOfer }}">{{ oferta.nombre }}</option>
-            {% endfor %}
-        </select>
+        {% if oferta_seleccionada %}
+            <input type="hidden" name="idOfer" value="{{ oferta_seleccionada.idOfer }}">
+            <div class="oferta-titulo-seleccionada">
+                <strong>Oferta seleccionada:</strong> {{ oferta_seleccionada.nombre }}
+            </div>
+        {% endif %}
 
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"

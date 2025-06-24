@@ -413,11 +413,14 @@ def crear_usuario():
         username = request.form['username']
         password = generate_password_hash(request.form['password'], method="pbkdf2:sha256")
         type = request.form['type']
+        if type == "Admin_RRHH":
+            flash("No está permitido crear usuarios con rol Admin RRHH.", "error")
+            return redirect(url_for('crear_usuario'))
         nuevo = Usuario(username=username, password=password, type=type)
         db.session.add(nuevo)
         db.session.commit()
         flash("Usuario creado")
-        return redirect(url_for('gestionarUsuarios'))
+        return redirect(url_for('crear_usuario'))
     return render_template("crear_usuario.html")
 
 @app.route('/cambiar_password', methods=["GET", "POST"])
@@ -503,6 +506,9 @@ def enviar_correos():
 @app.route("/postulacionIT")
 def postulacionIT():
     # Las opciones ya están en la base de datos, no necesitamos encoders aquí
+    idOfer = request.args.get("idOfer")
+    if idOfer:
+        oferta_seleccionada = OfertaLaboral.query.get(int(idOfer))
     opciones_ofertas = [{"idOfer": oferta.idOfer, "nombre": oferta.nombre} for oferta in OfertaLaboral.query.filter(OfertaLaboral.estado != "Cerrada").all()]
     opciones_educacion = [educacion.nombre for educacion in Educacion.query.all()]
     opciones_tecnologias = [tecnologia.nombre for tecnologia in Tecnologia.query.all()]
@@ -519,12 +525,14 @@ def postulacionIT():
 
     return render_template(
         "postulacion.html",
+        oferta_seleccionada=oferta_seleccionada,
         opciones_educacion=session["opciones_educacion"],
         opciones_ofertas=session["opciones_ofertas"],
         opciones_tecnologias=session["opciones_tecnologias"],
         opciones_habilidades=session["opciones_habilidades"],
         opciones_tecnologias2=session["opciones_tecnologias2"],
-        opciones_habilidades2=session["opciones_habilidades2"]
+        opciones_habilidades2=session["opciones_habilidades2"],
+        idOfer=idOfer
     )
 
 

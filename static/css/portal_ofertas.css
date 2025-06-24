@@ -246,8 +246,8 @@ main {
 
     .oferta-card {
         min-height: 120px;
-        height: 150px;
-        max-width: 98vw;
+        /*height: 150px;*/
+        max-width: 500px;
         border-radius: 0.8rem;
         padding: 0.7rem;
     }
@@ -272,8 +272,8 @@ main {
 
     .oferta-card {
         min-height: 120px;
-        height: 150px;
-        max-width: 98vw;
+        /*height: 150px;*/
+        max-width: 250px;
         border-radius: 0.8rem;
         padding: 0.7rem;
     }

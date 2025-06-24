@@ -77,3 +77,12 @@ header {
 .btn-portal-home .user-button:hover {
     background-color: rgba(195, 0, 255, 0.3);
 }
+
+.oferta-titulo-seleccionada {
+    margin: 18px 0 18px 0;
+    font-size: 1.3em;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+}

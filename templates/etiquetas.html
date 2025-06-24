@@ -29,9 +29,9 @@
   {% include "layout/header_general.html" %}
   {% include "layout/menu.html" %}
 
+  <main>
   <h1><p class="title-perfect-violet">Configurar </p><p class="title-match-blue">Etiquetas</p></h1>
 
-  <main>
     <form method="GET" action="{{ url_for('mostrar_etiquetas') }}" style="background: transparent;">
       <label for="idOfer" style="font-size: 1.4rem !important;">Selecciona una oferta laboral:</label>
       <select name="idOfer" onchange="this.form.submit()" style="text-align: center; width: fit-content !important; font-size: 1.2rem; font-weight: bold;">
@@ -211,6 +211,13 @@
   {% include "layout/footer.html" %}
   <script src="{{ url_for('static', filename='js/cambioImportancia.js') }}"></script>
   <script src="{{ url_for('static', filename='js/etiquetasDistintas.js') }}"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 600) {
+      document.querySelectorAll('.carousel-chart').forEach(el => el.classList.add('active'));
+    }
+  });
+  </script>
 
 </body>
 

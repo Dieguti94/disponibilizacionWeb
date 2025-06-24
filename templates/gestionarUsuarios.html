@@ -10,12 +10,16 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 <body>
+  {% include "fragments/particles.html" %}
   {% include "layout/header_general.html" %}
   {% include "layout/menu.html" %}
-  <h1>Gestión de Usuarios</h1>
+
+  <h1><p class="title-perfect-violet">Gestión de </p><p class="title-match-blue">Usuarios</p></h1>
 
   <form method="GET" action="{{ url_for('gestionar_usuarios') }}">
     <label class="filtro-label">Filtrar por rol:</label>
@@ -40,8 +44,8 @@
         <td>{{ u.username }}</td>
         <td>{{ u.type }}</td>
         <td>
-          <a href="{{ url_for('editar_usuario', id=u.id) }}"> Editar</a>
-          {% if u.username != session['username'] %}
+          <a href="{{ url_for('editar_usuario', id=u.id, type=u.type) }}"> Editar</a>
+          {% if u.type != "Admin_RRHH" %}
           | <a href="{{ url_for('eliminar_usuario', id=u.id) }}"
             onclick="return confirm('¿Eliminar usuario?')">Eliminar</a>
           {% endif %}

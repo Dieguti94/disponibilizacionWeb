@@ -56,19 +56,24 @@ body {
     }
 }
 
-h1 {
-    font-family: 'Anton', sans-serif;
+h1{
+    font-family: "Erica One", sans-serif;
     font-size: 3rem;
-    font-weight: 600;
-    color: #ffffff;
+    width: fit-content;
     text-align: center;
-    margin: 3rem auto 1rem;
-    border-radius: 10px;
-    border: 10px solid #ffffff;
-    padding: 1rem;
-      animation: elevar 2s ease-out forwards;
-    text-shadow: none;
-    box-shadow: none;
+    border-radius: 32px;
+    border: none;
+    color: #fefefe;
+    text-shadow: -3px 3px 0px #49007e, 3px -3px 0px #2f00d9;
+    transition: all 0.3s ease-in-out;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5rem;
+    padding: 0;
+    position: relative; /* <-- necesario para el before */
 }
 
 h1 .subtitulo {
@@ -106,16 +111,110 @@ form h3 {
 form {
     animation: elevar 2s ease-out forwards;
     margin: 3rem auto 4rem auto;
-    padding: 25px;
-    border-radius: 25px;
-    width: 50%;
+    padding: 32px 28px 28px 28px;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 420px;
     text-align: center;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.267);
-    background-size: 400% 400%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 20px  rgba(255, 255, 255, 0.4);
-    margin-bottom: 5px;
+    color: #fff;
+    background: rgba(44,0,80,0.25);
+    border: 2.5px solid #7644ff;
+    box-shadow: 0 0 24px 0 #7644ff55, 0 2px 16px 0 #00c3ff55;
+    margin-bottom: 2rem;
+}
+
+form div {
+    margin-bottom: 22px;
+    text-align: left;
+}
+
+form label {
+    display: block;
+    font-weight: 600;
+    color: #a084ff;
+    margin-bottom: 7px;
+    font-size: 1.08rem;
+    letter-spacing: 0.5px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 80%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(161, 132, 255, 0.13);
+    color: #fff;
+    font-size: 1.08rem;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow: 0 0 8px #7644ff33;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+form select {
+    width: 87%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(161, 132, 255, 0.13);
+    color: #fff;
+    font-size: 1.08rem;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    box-shadow: 0 0 8px #7644ff33;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form select:focus {
+    background: rgba(118, 68, 255, 0.18);
+    outline: none;
+    box-shadow: 0 0 16px #7644ff77;
+}
+
+button[type="submit"] {
+    background: linear-gradient(90deg, #7644ff 60%, #00c3ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 0;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #7644ff33;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #00c3ff 0%, #7644ff 100%);
+    transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+    form {
+        padding: 18px 8px;
+        max-width: 98vw;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Cambia el fondo y color de las opciones del select */
+select option {
+    background-color: #3815b8; /* violeta oscuro */
+    color: #fff;
+}
+
+/* Para Webkit (Chrome, Edge, Safari) */
+select {
+    background-color: #2a0047; /* fondo del select cerrado */
+    color: #fff;
+    border: none;
 }
 
 input,

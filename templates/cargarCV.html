@@ -19,6 +19,7 @@
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
 
+    <main>
     <h1><p class="title-perfect-violet">Cargar </p><p class="title-match-blue">CV</p></h1>
 
     <form method="POST" enctype="multipart/form-data">
@@ -135,6 +136,7 @@
 
     </form>
 
+    </main>
     <script src="{{ url_for('static', filename='js/etiquetasDistintas.js') }}"></script>
     {% include "layout/footer.html" %}
     <script>

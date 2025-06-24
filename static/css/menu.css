@@ -289,6 +289,16 @@ details[open] .arrow {
     
 }
 
+@media screen and (min-width: 768px) {
+    .tooltip-container:hover .tooltip-menu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(-50%) translateX(15px);
+}
+
+
+}
+
 .support-button:hover>.tooltip {
     opacity: 1;
     pointer-events: auto;
@@ -383,12 +393,6 @@ details[open] .arrow {
   font-size: 20px;
   font-weight: 700;
   text-shadow: 0 0 6px #00aeff;
-}
-
-.tooltip-container:hover .tooltip-menu {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(-50%) translateX(15px);
 }
 
 /* Scrollbar para el menú lateral */

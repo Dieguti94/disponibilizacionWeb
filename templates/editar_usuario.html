@@ -10,27 +10,31 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
-
-
-
 <body>
+  {% include "fragments/particles.html" %}
   {% include "layout/header_general.html" %}
   {% include "layout/menu.html" %}
+
+  <h1><p class="title-perfect-violet">Editar </p><p class="title-match-blue">Usuarios</p></h1>
+
   <form method="POST">
     <div>
       <label>Usuario</label>
       <input type="text" name="username" value="{{ usuario.username }}" required>
     </div>
-    <div>
-      <label>Rol</label>
-      <select name="type">
-        <option value="Supervisor" {% if usuario.type=="Supervisor" %}selected{% endif %}>Supervisor</option>
-        <option value="Analista_Datos" {% if usuario.type=="Analista_Datos" %}selected{% endif %}>Analista</option>
-        <option value="Admin_RRHH" {% if usuario.type=="Admin_RRHH" %}selected{% endif %}>Admin RRHH</option>
-      </select>
-    </div>
+    {% if usuario.type != "Admin_RRHH" %}
+      <div>
+        <label>Rol</label>
+        <select name="type">
+          <option value="Supervisor" {% if usuario.type=="Supervisor" %}selected{% endif %}>Supervisor</option>
+          <option value="Analista_Datos" {% if usuario.type=="Analista_Datos" %}selected{% endif %}>Analista</option>
+        </select>
+      </div>
+    {% endif %}
     <div>
       <label>Nueva contraseña (opcional)</label>
       <input type="password" name="password" placeholder="Solo si querés cambiarla">

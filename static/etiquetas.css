@@ -157,7 +157,7 @@ h1{
   align-items: center;
   justify-content: center;
   gap: 15px;
-  margin-top: 2rem;
+  margin-top: 5rem;
   padding: 0;
   position: relative; /* <-- necesario para el before */
 }
@@ -494,4 +494,43 @@ td:first-child {
     width: fit-content;
     min-width: 200px; /* opcional */
     max-width: 100%;   /* para que no desborde */
+}
+
+@media (max-width: 600px) {
+  .carousel-wrapper {
+    display: block !important;
+    min-height: unset;
+  }
+  .carousel-chart {
+    display: block !important;
+    margin-bottom: 2.5rem;
+  }
+  .carousel-arrow {
+    display: none !important;
+  }
+
+  form select,
+  select[name="idOfer"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    font-size: 1.1rem !important;
+    box-sizing: border-box;
+    margin: 0 auto 1rem auto;
+    display: block;
+  }
+  form {
+    width: 90vw !important;
+    min-width: 0 !important;
+    max-width: 94vw !important;
+    padding: 10px !important;
+  }
+
+  .input-importancia {
+    width: 45px !important;
+    min-width: 30px !important;
+    max-width: 60px !important;
+    font-size: 1rem;
+    padding: 2px 4px;
+  }
 }

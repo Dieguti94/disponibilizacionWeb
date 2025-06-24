@@ -1,19 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Crear Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='editar_usuario.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
-
 <body>
+    {% include "fragments/particles.html" %}
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
+
+    <h1><p class="title-perfect-violet">Crear </p><p class="title-match-blue">Usuario</p></h1>
+
+    <form method="POST" style="margin: 0 auto; max-width: 420px;">
+        <div>
+            <label for="username">Usuario</label>
+            <input type="text" name="username" id="username" required autocomplete="off">
+        </div>
+        <div>
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" id="password" required autocomplete="new-password">
+        </div>
+        <div>
+            <label for="type">Rol</label>
+            <select name="type" id="type" required>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Analista_Datos">Analista</option>
+            </select>
+        </div>
+        <button type="submit">Crear usuario</button>
+    </form>
+
     {% include "layout/footer.html" %}
 </body>
-
 </html>
