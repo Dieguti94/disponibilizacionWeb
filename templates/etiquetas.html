@@ -10,154 +10,208 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='etiquetas.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/box-background.css') }}">
+  <style>
+    .carousel-chart {
+      display: none;
+    }
+
+    .carousel-chart.active {
+      display: block;
+    }
+  </style>
 </head>
 
 <body class="container mt-4">
+  {% include "fragments/particles.html" %}
   {% include "layout/header_general.html" %}
   {% include "layout/menu.html" %}
-  <form method="GET" action="{{ url_for('mostrar_etiquetas') }}">
-    <label for="idOfer">Selecciona una oferta laboral:</label>
-    <select name="idOfer" onchange="this.form.submit()">
-      {% for ofer in ofertas %}
-      <option value="{{ ofer.idOfer }}" {% if ofer.idOfer|string==idOfer|string %}selected{% endif %}>
 
-        {{ ofer.nombre }}
-      </option>
-      {% endfor %}
-    </select>
-  </form>
+  <h1><p class="title-perfect-violet">Configurar </p><p class="title-match-blue">Etiquetas</p></h1>
+
+  <main>
+    <form method="GET" action="{{ url_for('mostrar_etiquetas') }}" style="background: transparent;">
+      <label for="idOfer" style="font-size: 1.4rem !important;">Selecciona una oferta laboral:</label>
+      <select name="idOfer" onchange="this.form.submit()" style="text-align: center; width: fit-content !important; font-size: 1.2rem; font-weight: bold;">
+        {% for ofer in ofertas %}
+        <option value="{{ ofer.idOfer }}" {% if ofer.idOfer|string==idOfer|string %}selected{% endif %}>
+          {{ ofer.nombre }}
+        </option>
+        {% endfor %}
+      </select>
+    </form>
 
 
-  {% if oferta %}
-  <h3 class="titulo-centrado">Educación</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Etiqueta</th>
-        <th>Importancia</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for edu in educaciones %}
-      <tr>
-        <td>{{ edu.educacion.nombre }}</td>
-        <td>
-          {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
-          <input type="number" min="0" max="3" value="{{ edu.importancia }}" class="input-importancia"
-            data-id="{{ edu.id }}" data-tipo="educacion">
-          {% else %}
-          {{ edu.importancia }}
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h3 class="titulo-centrado">Tecnología Principal</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Etiqueta</th>
-        <th>Importancia</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for tec in tecnologias %}
-      <tr>
-        <td>{{ tec.tecnologia.nombre }}</td>
-        <td>
-          {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
-          <input type="number" min="0" max="3" value="{{ tec.importancia }}" class="input-importancia"
-            data-id="{{ tec.id }}" data-tipo="tecnologia">
-          {% else %}
-          {{ tec.importancia }}
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h3 class="titulo-centrado">Tecnología Secundaria</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Etiqueta</th>
-        <th>Importancia</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for tec2 in tecnologias2 %}
-      <tr>
-        <td>{{ tec2.tecnologia2.nombre }}</td>
-        <td>
-          {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
-          <input type="number" min="0" max="3" value="{{ tec2.importancia }}" class="input-importancia"
-            data-id="{{ tec2.id }}" data-tipo="tecnologia2">
-          {% else %}
-          {{ tec2.importancia }}
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h3 class="titulo-centrado">Habilidad 1</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Etiqueta</th>
-        <th>Importancia</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for hab in habilidades %}
-      <tr>
-        <td>{{ hab.habilidad.nombre }}</td>
-        <td>
-          {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
-          <input type="number" min="0" max="3" value="{{ hab.importancia }}" class="input-importancia"
-            data-id="{{ hab.id }}" data-tipo="habilidad">
-          {% else %}
-          {{ hab.importancia }}
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <h3 class="titulo-centrado">Habilidad 2</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Etiqueta</th>
-        <th>Importancia</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for hab2 in habilidades2 %}
-      <tr>
-        <td>{{ hab2.habilidad2.nombre }}</td>
-        <td>
-          {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
-          <input type="number" min="0" max="3" value="{{ hab2.importancia }}" class="input-importancia"
-            data-id="{{ hab2.id }}" data-tipo="habilidad2">
-          {% else %}
-          {{ hab2.importancia }}
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-  <p>No hay ofertas laborales disponibles.</p>
-  {% endif %}
+    {% if oferta %}
+    
+    <div class="carousel-container active">
+      <div class="box-background-child">
+      <button class="carousel-arrow left" id="prevChart"><i class="fa fa-chevron-left"></i></button>
+      <div class="carousel-wrapper">
+        <div class="carousel-chart active">
+          <h3 class="titulo-centrado">Educación</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Etiqueta</th>
+                <th>Importancia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for edu in educaciones %}
+              <tr>
+                <td>{{ edu.educacion.nombre }}</td>
+                <td>
+                  {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
+                  <div class="input-num-custom">
+                    <button type="button" class="btn-num menos" tabindex="-1">–</button>
+                    <input type="number" min="0" max="3" value="{{ edu.importancia }}" class="input-importancia"
+                      data-id="{{ edu.id }}" data-tipo="educacion">
+                    <button type="button" class="btn-num mas" tabindex="-1">+</button>
+                  </div>
+                  {% else %}
+                  {{ edu.importancia }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="carousel-chart">
+          <h3 class="titulo-centrado">Tecnología Principal</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Etiqueta</th>
+                <th>Importancia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for tec in tecnologias %}
+              <tr>
+                <td>{{ tec.tecnologia.nombre }}</td>
+                <td>
+                  {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
+                  <div class="input-num-custom">
+                    <button type="button" class="btn-num menos" tabindex="-1">–</button>
+                    <input type="number" min="0" max="3" value="{{ tec.importancia }}" class="input-importancia"
+                      data-id="{{ tec.id }}" data-tipo="tecnologia">
+                    <button type="button" class="btn-num mas" tabindex="-1">+</button>
+                  </div>
+                  {% else %}
+                  {{ tec.importancia }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="carousel-chart">
+          <h3 class="titulo-centrado">Tecnología Secundaria</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Etiqueta</th>
+                <th>Importancia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for tec2 in tecnologias2 %}
+              <tr>
+                <td>{{ tec2.tecnologia2.nombre }}</td>
+                <td>
+                  {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
+                  <div class="input-num-custom">
+                    <button type="button" class="btn-num menos" tabindex="-1">–</button>
+                    <input type="number" min="0" max="3" value="{{ tec2.importancia }}" class="input-importancia"
+                      data-id="{{ tec2.id }}" data-tipo="tecnologia2">
+                    <button type="button" class="btn-num mas" tabindex="-1">+</button>
+                  </div>
+                  {% else %}
+                  {{ tec2.importancia }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="carousel-chart">
+          <h3 class="titulo-centrado">Habilidad 1</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Etiqueta</th>
+                <th>Importancia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for hab in habilidades %}
+              <tr>
+                <td>{{ hab.habilidad.nombre }}</td>
+                <td>
+                  {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
+                  <div class="input-num-custom">
+                    <button type="button" class="btn-num menos" tabindex="-1">–</button>
+                    <input type="number" min="0" max="3" value="{{ hab.importancia }}" class="input-importancia"
+                      data-id="{{ hab.id }}" data-tipo="habilidad">
+                    <button type="button" class="btn-num mas" tabindex="-1">+</button>
+                  </div>
+                  {% else %}
+                  {{ hab.importancia }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="carousel-chart">
+          <h3 class="titulo-centrado">Habilidad 2</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Etiqueta</th>
+                <th>Importancia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for hab2 in habilidades2 %}
+              <tr>
+                <td>{{ hab2.habilidad2.nombre }}</td>
+                <td>
+                  {% if oferta.idOfer in ofertas_activas|map(attribute='idOfer') %}
+                  <div class="input-num-custom">
+                    <button type="button" class="btn-num menos" tabindex="-1">–</button>
+                    <input type="number" min="0" max="3" value="{{ hab2.importancia }}" class="input-importancia"
+                      data-id="{{ hab2.id }}" data-tipo="habilidad2">
+                    <button type="button" class="btn-num mas" tabindex="-1">+</button>
+                  </div>
+                  {% else %}
+                  {{ hab2.importancia }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button class="carousel-arrow right" id="nextChart"><i class="fa fa-chevron-right"></i></button>
+    </div>
+    </div>
+    {% else %}
+    <p>No hay ofertas laborales disponibles.</p>
+    {% endif %}
+  </main>
   {% include "layout/footer.html" %}
   <script src="{{ url_for('static', filename='js/cambioImportancia.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/etiquetasDistintas.js') }}"></script>
+
 </body>
 
 </html>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 <body >
@@ -18,24 +19,48 @@
   {% include "layout/header_general.html" %}
   {% include "layout/menu.html" %}
   
+  <main>
+    <h1 class="subrayado-multicolor"><p >ApptitudAI</p></h1>
+    <h1><p class="title-perfect-violet">Bienvenido</p><p class="title-match-blue">{{ usuario }}</p></h1>
   <div class="prediccion-panel">
     <!-- Contenedor de gauges con glow -->
     <div class="gauges-container">
       <div class="gauges-section" style="margin-bottom: 40px;">
         <div class="gauge-card">
-          <canvas id="gauge1" width="160" height="80"></canvas>
-          <div class="gauge-label">Ofertas activas</div>
-            </div>
-            <div class="gauge-card">
-                <canvas id="gauge2" width="160" height="80"></canvas>
-                <div class="gauge-label">Candidatos postulados</div>
-            </div>
-            <div class="gauge-card">
-                <canvas id="gauge3" width="160" height="80"></canvas>
-                <div class="gauge-label">Ofertas cerradas</div>
-            </div>
+            <div class="gauge-header">
+            <i class="fa-solid fa-clock"></i>
+            <span class="gauge-label">Ofertas activas</span>
+          </div>
+          <div class="gauge-grafico">
+              <canvas id="gauge1" width="160" height="80"></canvas>
+              <div id="porcentaje1" class="gauge-porcentaje">{{ porcentaje_activas }}%</div>
+          </div>
+          <div class="gauge-numero">{{ cantidad_activas }}</div>
+        </div>
+        <div class="gauge-card">
+          <div class="gauge-header">
+             <i class="fa-solid fa-person"></i>
+             <span class="gauge-label">Candidatos postulados</span>
+          </div>                
+          <div class="gauge-grafico">
+            <canvas id="gauge2" width="160" height="80"></canvas>
+            <div id="porcentaje2" class="gauge-porcentaje">{{ porcentaje_candidatos }}%</div>
+          </div>
+          <div class="gauge-numero">{{total_candidatos}}</div>
+        </div>
+        <div class="gauge-card">
+          <div class="gauge-header">
+            <i class="fa-solid fa-check"></i>
+            <span class="gauge-label">Ofertas cerradas</span>
+          </div>
+          <div class="gauge-grafico">
+            <canvas id="gauge3" width="160" height="80"></canvas>
+            <div id="porcentaje3" class="gauge-porcentaje">{{ porcentaje_cerradas }}%</div>       
+          </div>
+          <div class="gauge-numero">{{cantidad_cerradas}}</div>               
         </div>
       </div>
+    </div>
 
       <!-- Contenedor de ofertas activas -->
       <div class="ofertas-section">
@@ -43,19 +68,19 @@
           <div class="ofertas-grid" id="ofertas-activas-grid">
               <!-- Tarjeta para crear nueva oferta -->
               <div class="oferta-card add" onclick="window.location.href='/crear_oferta';">
+                <div style="font-size: 25px;">Crear Oferta</div>
                 <span>+</span>
-                <div style="font-size: 14px;">Crear Oferta</div>
               </div>
               {% for oferta in ofertas_activas %}
               <div class="oferta-card" data-oferta-id="{{ oferta.idOfer }}">
                 <div class="oferta-summary">
                   <h3>{{ oferta.nombre }}</h3>
-                  <p>{{ oferta.ubicacion or 'Ubicación no especificada' }}</p>
-                  <div class="oferta-fecha">Desde: {{ oferta.fecha_inicio.strftime('%Y-%m-%d') if oferta.fecha_inicio else 'Sin fecha' }}</div>
+                  <p>Tipo: <strong>{{ oferta.modalidad or 'Modalidad no especificada' }}</strong></p>
+                  <p>Remuneración: <strong>{{ oferta.remuneracion or 'No especificada' }}</strong></p>
+                  <p>Máx. Candidatos: <strong>{{ oferta.max_candidatos or 'No especificado' }}</strong></p>
+                  <div class="oferta-fecha">Hasta: {{ oferta.fecha_cierre.strftime('%Y-%m-%d') if oferta.fecha_cierre else 'Sin fecha' }}</div>
                 </div>
                 <div class="oferta-detalles" style="display:none;">
-                  <p><strong>Remuneración:</strong> {{ oferta.remuneracion or 'No especificada' }}</p>
-                  <p><strong>Máximo de Candidatos:</strong> {{ oferta.max_candidatos or 'No especificado' }}</p>
                   <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
                   <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
                   <button class="btn-etiquetas" onclick="event.stopPropagation(); window.location.href='/etiquetas?idOfer={{ oferta.idOfer }}';">Etiquetas</button>
@@ -73,63 +98,63 @@
             <div class="oferta-card oferta-cerrada" data-oferta-id="cerrada-{{ oferta.idOfer }}">
               <div class="oferta-summary">
                 <h3>{{ oferta.nombre }}</h3>
-                <p>{{ oferta.beneficio or 'Sin descripción' }}</p>
+                  <p>Tipo: <strong>{{ oferta.modalidad or 'Modalidad no especificada' }}</strong></p>
+                  <p>Remuneración: <strong>{{ oferta.remuneracion or 'No especificada' }}</strong></p>
+                  <p>Máx. Candidatos: <strong>{{ oferta.max_candidatos or 'No especificado' }}</strong></p>
                 <p class="oferta-fecha">Cerrada hace {{ (now - oferta.fecha_cierre).days }} días</p>
               </div>
               <div class="oferta-detalles" style="display:none;">
-                <p><strong>Remuneración:</strong> {{ oferta.remuneracion or 'No especificada' }}</p>
-                <p><strong>Máximo de Candidatos:</strong> {{ oferta.max_candidatos or 'No especificado' }}</p>
-                <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
-                <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
+                  <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
+                  <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
                 <button class="btn-etiquetas" onclick="event.stopPropagation(); window.location.href='/etiquetas?idOfer={{ oferta.idOfer }}';">Etiquetas</button>
-                {% if session.get('type') == 'Admin_RRHH' %}
+                
+              </div>
+              {% if session.get('type') == 'Admin_RRHH' %}
                 <form method="POST" action="{{ url_for('eliminar_oferta', idOfer=oferta.idOfer) }}" style="width:100%;text-align:right;">
                   <button type="submit" class="btn-eliminar-oferta{% if (now - oferta.fecha_cierre).days > 1 %} cerrada-mas-1dia{% endif %}">Eliminar</button>
                 </form>
-                {% endif %}
-              </div>
+              {% endif %}
             </div>
             {% endfor %}
           </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Datos de ejemplo para los gauges
-        const gaugeData = [5, 23, 2];
-        const gaugeMax = [10, 50, 10];
-        const gaugeColors = [
-            ['#4caf50', '#e0e0e0'],
-            ['#2196f3', '#e0e0e0'],
-            ['#f44336', '#e0e0e0']
-        ];
-        function createGauge(ctx, value, max, colors) {
-            return new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: [value, max - value],
-                        backgroundColor: colors,
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    rotation: -90,
-                    circumference: 180,
-                    cutout: '70%',
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { enabled: false },
-                        title: { display: false },
-                    },
-                    responsive: false
-                }
-            });
+    
+<script>
+const gaugeColors = [
+    ['#4caf50', '#e0e0e0'],
+    ['#2196f3', '#e0e0e0'],
+    ['#f44336', '#e0e0e0']
+    ];
+function createGauge(ctx, value, max, colors) {
+    return new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [value, max - value],
+                backgroundColor: colors,
+                borderWidth: 0
+            }]
+        },
+        options: {
+            rotation: -90,
+            circumference: 180,
+            cutout: '70%',
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false },
+                title: { display: false },
+            },
+            responsive: false
         }
-        createGauge(document.getElementById('gauge1'), gaugeData[0], gaugeMax[0], gaugeColors[0]);
-        createGauge(document.getElementById('gauge2'), gaugeData[1], gaugeMax[1], gaugeColors[1]);
-        createGauge(document.getElementById('gauge3'), gaugeData[2], gaugeMax[2], gaugeColors[2]);
+    });
+}
+    createGauge(document.getElementById('gauge1'), parseInt(document.getElementById('porcentaje1').textContent), 100, gaugeColors[0]);
+    createGauge(document.getElementById('gauge2'), parseInt(document.getElementById('porcentaje2').textContent), 100, gaugeColors[1]);
+    createGauge(document.getElementById('gauge3'), parseInt(document.getElementById('porcentaje3').textContent), 100, gaugeColors[2]);
     </script>
+
     <script>
         // Ejemplo: agregar clase roja si la oferta lleva más de 1 día cerrada (esto sería dinámico en backend)
         document.querySelectorAll('.oferta-card.oferta-cerrada').forEach(card => {
@@ -177,38 +202,7 @@
         }
       });
     </script>
-    <style>
-    .oferta-card .oferta-detalles {
-      transition: max-height 0.3s ease, padding 0.3s, background 0.3s;
-      overflow: hidden;
-      background: rgba(44,0,80,0.92);
-      border-radius: 1rem;
-      margin-top: 10px;
-      padding: 0 8px;
-    }
-    .oferta-card.expanded {
-      z-index: 2;
-      box-shadow: 0 8px 32px 0 #7644ff99, 0 2px 16px 0 #00c3ff99;
-      border-color: #00c3ff;
-    }
-    .btn-etiquetas {
-      margin-top: 10px;
-      padding: 0.5em 1.2em;
-      background: #7644ff;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      box-shadow: 0 2px 8px #7644ff33;
-    }
-    .btn-etiquetas:hover {
-      background: #00c3ff;
-      color: #fff;
-    }
-    </style>
+  </main>
   {% include "layout/footer.html" %}
 </body>
 

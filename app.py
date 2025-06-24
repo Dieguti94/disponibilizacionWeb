@@ -24,7 +24,7 @@ from datetime import datetime
 from flask import jsonify
 import fitz
 from datetime import datetime, timedelta
-
+from math import ceil
 
 app = Flask(__name__)
 app.secret_key = "MiraQueSéQueMeVes"  # Necesario para sesiones
@@ -98,12 +98,11 @@ class OfertaLaboral(db.Model):
     usuario_responsable = db.Column(db.String(100), nullable=False)
 
     postulaciones = db.relationship("Postulacion", back_populates="oferta", cascade="all, delete-orphan", lazy=True)
-    educaciones = db.relationship("OfertaEducacion", back_populates="oferta", lazy=True)
-    tecnologias = db.relationship("OfertaTecnologia", back_populates="oferta", lazy=True)
-    tecnologias2 = db.relationship("OfertaTecnologia2", back_populates="oferta", lazy=True)
-    habilidades = db.relationship("OfertaHabilidad", back_populates="oferta", lazy=True)
-    habilidades2 = db.relationship("OfertaHabilidad2", back_populates="oferta", lazy=True)
-
+    educaciones = db.relationship("OfertaEducacion", back_populates="oferta", cascade="all, delete-orphan", lazy=True)
+    tecnologias = db.relationship("OfertaTecnologia", back_populates="oferta", cascade="all, delete-orphan", lazy=True)
+    tecnologias2 = db.relationship("OfertaTecnologia2", back_populates="oferta", cascade="all, delete-orphan", lazy=True)
+    habilidades = db.relationship("OfertaHabilidad", back_populates="oferta", cascade="all, delete-orphan", lazy=True)
+    habilidades2 = db.relationship("OfertaHabilidad2", back_populates="oferta", cascade="all, delete-orphan", lazy=True)
 
 
 # Tablas intermedias para asociar cada oferta con sus etiquetas
@@ -476,29 +475,28 @@ def eliminar_usuario(id):
 
 @app.route('/enviar_correos')
 def enviar_correos():
-    #mails a candidatos aptos
-    destinatariosAptos = obtener_correos_aptos()
+    idOfer = request.args.get('idOfer')
+    oferta = OfertaLaboral.query.get(idOfer) if idOfer else None
+    nombre_oferta = oferta.nombre if oferta else ""
+    destinatariosAptos = obtener_correos_aptos(idOfer) if idOfer else obtener_correos_aptos()
+    destinatariosNoAptos = obtener_correos_noaptos(idOfer) if idOfer else obtener_correos_noaptos()
+
     with email.connect() as conn:
         for nombre, mail in destinatariosAptos:
-            mensaje = Message(subject='Oportunidad laboral',
-                              sender=app.config['MAIL_USERNAME'],
-                              recipients=[mail],
-                              body=f"Hola {nombre},\n\nHemos revisado tu perfil y estamos interesados en tu candidatura.\n¡Gracias por postularte!")
+            mensaje = Message(
+                subject=f"Proceso de selección - Puesto de {nombre_oferta}",
+                sender=app.config["MAIL_USERNAME"],
+                recipients=[mail],
+                body=f"Hola {nombre},\n\nHemos revisado tu perfil y estamos interesados en avanzar con tu candidatura para el puesto de {nombre_oferta}.\nNos gustaría coordinar una entrevista, por lo que te pedimos que nos indiques tus días y horarios disponibles.\n\nQuedamos atentos a tu respuesta.\n\nSaludos,\nEquipo de Perfect Match")
             conn.send(mensaje)
-    #mails a candidatos no aptos
-    destinatariosNoAptos = obtener_correos_noaptos()
-    with email.connect() as conn:
         for nombre, mail in destinatariosNoAptos:
-            mensaje = Message(subject='Oportunidad laboral',
-                                sender=app.config['MAIL_USERNAME'],
-                                recipients=[mail],
-                                body=f"Hola {nombre},\n\nLamentamos informarte que en esta oportunidad tu perfil no se ajusta a lo que buscamos.\nTe animamos a postularte en futuras oportunidades.")
+            mensaje = Message(
+                subject=f"Proceso de selección - Puesto de {nombre_oferta}",
+                sender=app.config["MAIL_USERNAME"],
+                recipients=[mail],
+                body=f"Hola {nombre},\n\nGracias por haberte postulado al puesto de {nombre_oferta} y por el tiempo que dedicaste al proceso.\nTras analizar tu perfil, en esta ocasión hemos decidido avanzar con otros candidatos que se ajustan mejor a los requerimientos del puesto.\n\nValoramos mucho tu interés y te alentamos a postularte a futuras oportunidades que se alineen con tu perfil.\n\n¡Te deseamos mucho éxito en tus próximos desafíos!\n\nSaludos cordiales,\nEquipo de Perfect Match")
             conn.send(mensaje)
     return redirect('/predecir')     
-
-
-
-
 
 
 # Página principal postulacion
@@ -532,41 +530,79 @@ def postulacionIT():
 
 @app.route("/postulacion", methods=["GET", "POST"])
 def postulacion():
-    #es_admin = "username" in session and session.get("type") == "Admin_RRHH"
+    opciones_ofertas = [{"idOfer": oferta.idOfer, "nombre": oferta.nombre} for oferta in OfertaLaboral.query.filter(OfertaLaboral.estado != "Cerrada").all()]
+    opciones_educacion = [educacion.nombre for educacion in Educacion.query.all()]
+    opciones_tecnologias = [tecnologia.nombre for tecnologia in Tecnologia.query.all()]
+    opciones_habilidades = [habilidad.nombre for habilidad in Habilidad.query.all()]
+    opciones_tecnologias2 = [tecnologia2.nombre for tecnologia2 in Tecnologia2.query.all()]
+    opciones_habilidades2 = [habilidad2.nombre for habilidad2 in Habilidad2.query.all()]
+
+    session["opciones_ofertas"] = opciones_ofertas
+    session["opciones_educacion"] = opciones_educacion
+    session["opciones_tecnologias"] = opciones_tecnologias
+    session["opciones_habilidades"] = opciones_habilidades
+    session["opciones_tecnologias2"] = opciones_tecnologias2
+    session["opciones_habilidades2"] = opciones_habilidades2
 
     if request.method == "POST":
-        # Obtener datos del formulario
+        if "cv_pdf" in request.files:
+            file = request.files["cv_pdf"]
+            if file and file.filename.endswith(".pdf"):
+                # revisar si pesa menos de 5MB:
+                file.seek(0, os.SEEK_END)
+                size = file.tell()
+                file.seek(0)
+               
+                if size > 5 * 1024 * 1024:
+                    flash("❌El archivo excede el tamaño máximo permitido de 5 MB.", category="pdf")
+                    return redirect("/postulacion")
+                
+                try:
+                    info = extraer_info_cv_pdf(file)
+                    flash("✔️Información extraída exitosamente del archivo PDF.", category="pdf")
+                    return render_template(
+                        "postulacion.html",
+                        opciones_ofertas=opciones_ofertas,
+                        opciones_educacion=opciones_educacion,
+                        opciones_tecnologias=opciones_tecnologias,
+                        opciones_habilidades=opciones_habilidades,
+                        opciones_tecnologias2=opciones_tecnologias2,
+                        opciones_habilidades2=opciones_habilidades2,
+                        precargado=info
+                    )
+                except Exception:
+                    flash("❌El archivo no es un PDF válido o está dañado.", category="pdf")
+                    return redirect("/postulacion")
+            else:
+                flash("❌Debes seleccionar un archivo PDF válido para continuar.", category="pdf")
+                return redirect("/postulacion")
+
         nombre = request.form["nombre"]
         apellido = request.form["apellido"]
         email = request.form["email"]
-        email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-        if not re.match(email_regex, email):
-            flash("Por favor ingresa un email válido.<br>Ejemplo: JuanPerez@gmail.com")
-            return redirect("/postulacion")
         telefono = request.form["telefono"]
-        if not telefono.isdigit() or len(telefono) < 8 or len(telefono) > 10:
-            flash("El teléfono debe contener solo números y tener entre 8 y 10 cifras.")
-            return redirect("/postulacion")
         ubicacion = request.form["ubicacion"]
-        PROVINCIAS_ARG = [
-        "Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba",
-        "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja",
-        "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan",
-        "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
-        "Tierra del Fuego", "Tucumán"]
-        if ubicacion not in PROVINCIAS_ARG:
-            flash("Ubicación no válida. Selecciona una provincia de Argentina.")
-            return redirect("/postulacion")
         experiencia = int(request.form["experiencia"])
         educacion = request.form["educacion"]
         tecnologias = request.form["tecnologias"]
         habilidades = request.form["habilidades"]
-        idOfer = request.form.get("idOfer")
         tecnologias2 = request.form["tecnologias2"]
         habilidades2 = request.form["habilidades2"]
+        idOfer = request.form.get("idOfer")
+
+        if not idOfer:
+            flash("Debes seleccionar una oferta laboral.", category="form")
+            return redirect("/postulacion")
 
         try:
-            # Buscar el ID correspondiente en las tablas
+            oferta = OfertaLaboral.query.get(idOfer)
+
+            if oferta.estado == "Cerrada":
+                flash("❌La oferta ya alcanzó el máximo de postulaciones.", category="form")
+                return redirect("/postulacion")
+
+            candidato = Candidato.query.filter_by(mail=email).first()
+
             educacion_obj = Educacion.query.filter_by(nombre=educacion).first()
             tecnologia_obj = Tecnologia.query.filter_by(nombre=tecnologias).first()
             habilidad_obj = Habilidad.query.filter_by(nombre=habilidades).first()
@@ -577,40 +613,71 @@ def postulacion():
                 flash("Error: Valores inválidos seleccionados.")
                 return redirect("/postulacion")
 
-            idedu = educacion_obj.idedu
-            idtec = tecnologia_obj.idtec
-            idhab = habilidad_obj.idhab
-            idtec2 = tecnologia2_obj.idtec2
-            idhab2 = habilidad2_obj.idhab2
+            if candidato:
+                candidato.experiencia = experiencia
+                candidato.idedu = educacion_obj.idedu
+                candidato.idtec = tecnologia_obj.idtec
+                candidato.idtec2 = tecnologia2_obj.idtec2
+                candidato.idhab = habilidad_obj.idhab
+                candidato.idhab2 = habilidad2_obj.idhab2
+                db.session.add(candidato)
+            else:
+                candidato = Candidato(
+                    id=email,
+                    nombre=nombre,
+                    apellido=apellido,
+                    mail=email,
+                    telefono=telefono,
+                    ubicacion=ubicacion,
+                    experiencia=experiencia,
+                    idedu=educacion_obj.idedu,
+                    idtec=tecnologia_obj.idtec,
+                    idtec2=tecnologia2_obj.idtec2,
+                    idhab=habilidad_obj.idhab,
+                    idhab2=habilidad2_obj.idhab2
+                )
+                db.session.add(candidato)
 
+            # Validación de postulación duplicada
+            if Postulacion.query.filter_by(idCandidato=candidato.id, idOfer=idOfer).first():
+                flash("❌Este candidato ya estaba postulado a la oferta seleccionada.", category="form")
+                return redirect("/postulacion")
 
-            # Crear y guardar el candidato
-            nuevo_candidato_db = Candidato(
-                id=email + idOfer,
-                nombre=nombre,
-                apellido=apellido,
-                mail=email,
-                telefono=telefono,
-                ubicacion=ubicacion,
-                experiencia=experiencia,
+            nueva_postulacion = Postulacion(
+                idCandidato=candidato.id,
                 idOfer=idOfer,
-                idedu=idedu,
-                idtec=idtec,
-                idhab=idhab,
-                idtec2=idtec2,
-                idhab2=idhab2,
-                aptitud=None
+                experiencia=experiencia,
+                idedu=educacion_obj.idedu,
+                idtec=tecnologia_obj.idtec,
+                idtec2=tecnologia2_obj.idtec2,
+                idhab=habilidad_obj.idhab,
+                idhab2=habilidad2_obj.idhab2,
+                aptitud=None,
+                puntaje=0
             )
-            db.session.add(nuevo_candidato_db)
-            db.session.commit()
-            flash(f"{nombre}, tu CV ha sido correctamente enviado a la oferta laboral de: '{OfertaLaboral.query.get(idOfer).nombre}'.")
-        except Exception as e:
-            flash(f"Este mail ya había sido registrado en esta postulación")
-            return redirect("/postulacion")
+            db.session.add(nueva_postulacion)
 
+            oferta.cant_candidatos += 1
+            db.session.add(oferta)
+            db.session.commit()
+
+            if oferta.cant_candidatos >= oferta.max_candidatos:
+                cerrar_url = request.host_url.rstrip("/") + url_for("cerrar_oferta", idOfer=oferta.idOfer)
+                try:
+                    requests.post(cerrar_url, cookies=request.cookies)
+                except Exception as e:
+                    flash("⚠️ No se pudo cerrar automáticamente la oferta. Intentalo manualmente.", "warning")
+
+            
+            flash(f"✔️Postulación de {nombre} registrada en la oferta '{oferta.nombre}'.", category="form")
+
+        except Exception as e:
+            flash("❌Error al procesar la postulación.", category="form")
+            return redirect("/postulacion")
+        
+    opciones_ofertas = [{"idOfer": o.idOfer, "nombre": o.nombre} for o in OfertaLaboral.query.filter(OfertaLaboral.estado != "Cerrada").all()]
     return render_template(
         "postulacion.html",
-        #es_admin=es_admin,
         opciones_ofertas=session["opciones_ofertas"],
         opciones_educacion=session["opciones_educacion"],
         opciones_tecnologias=session["opciones_tecnologias"],
@@ -624,6 +691,20 @@ def postulacion():
 def crear_oferta():
     if request.method == "POST":
         try:
+            # Verificar si todos los campos están vacíos
+            campos = [
+                request.form.get("nombre"),
+                request.form.get("fecha_cierre"),
+                request.form.get("max_candidatos"),
+                request.form.get("remuneracion"),
+                request.form.get("beneficio"),
+                request.form.get("descripcion"),
+                request.form.get("modalidad")
+            ]
+            if all(not c or str(c).strip() == "" for c in campos):
+                flash("❌ Debes completar al menos un campo para crear una oferta.", "error")
+                return redirect("/crear_oferta")
+
             nombre = request.form.get("nombre")
             fecha_cierre_str = request.form.get("fecha_cierre")
             max_candidatos = int(request.form.get("max_candidatos"))
@@ -734,7 +815,9 @@ def crear_oferta():
                 nueva_oferta.cant_candidatos += len(candidatos)
 
 
-            db.session.commit()  
+            db.session.commit()
+            if nueva_oferta.modalidad == "Local":
+                cerrar_oferta_automatica(nueva_oferta.idOfer)
             flash(f"✔️Oferta '{nombre}' creada con éxito, con estado '{nueva_oferta.estado}', modalidad '{nueva_oferta.modalidad}' y etiquetas asignadas", "success")
             return redirect("/crear_oferta")
         
@@ -763,13 +846,12 @@ def ver_ofertas():
         "Cantidad Máx. de Candidatos": o.max_candidatos,
         "Remuneración": o.remuneracion,
         "Beneficio": o.beneficio,
-        "Descripción": o.descripcion,
         "Tipo": o.modalidad,
         "Estado": o.estado,
         "Responsable": o.usuario_responsable,
-        "Acción": f'<form style="display: inline-block; width: 110px; height: 35px; margin: 0 auto;" method="POST" action="{url_for("cerrar_oferta", idOfer=o.idOfer)}">'
+        "Acción": f'<form style="display: inline-block; margin: 0 auto; width: fit-content; background-color: #c53b3b" method="POST" action="{url_for("cerrar_oferta", idOfer=o.idOfer)}">'
                 f'<input type="hidden" name="forzar" value="1">'
-                f'<button style="font-size: 12px; margin: 0 !important; padding: 0 !important; width: 100px; height: 30px;" type="submit">Cerrar oferta</button></form>' 
+                f'<button style="font-size: 16px; margin: 0 !important; padding: 0 !important; width: 100px; height: 15px;" type="submit">Cerrar oferta</button></form>' 
                 if o.fecha_cierre > datetime.now() else "Oferta cerrada"
 
     } for o in ofertas])
@@ -791,20 +873,11 @@ def cerrar_oferta(idOfer):
 
     forzar = request.form.get("forzar")
 
-    print("Form data:", request.form)
-    print("Valor de forzar:", request.form.get("forzar"))
     if forzar == "1" or oferta.fecha_cierre <= datetime.now() or oferta.cant_candidatos >= oferta.max_candidatos:
-        oferta.fecha_cierre = datetime.now()
-        oferta.estado = "Cerrada"
-
-        predecir_postulantes_automatica(oferta.idOfer)
-        asignar_puntajes_automatica(oferta.idOfer)
-        enviar_correos_automatica(oferta.idOfer)
-
-        db.session.commit()
-        flash(f"La oferta '{oferta.nombre}' ha sido cerrada correctamente.", "success")
+        cerrar_oferta_automatica(idOfer)
+        flash(f"La oferta ha sido cerrada correctamente.", category="ver_ofertas")
     else:
-        flash("La oferta aún no puede cerrarse automáticamente.", "warning")
+        flash("La oferta aún no puede cerrarse automáticamente.", category="ver_ofertas")
 
     return redirect(url_for("ver_ofertas"))
 
@@ -907,6 +980,13 @@ def predecir():
     now = datetime.now()
     total_candidatos = Candidato.query.count()
 
+    oferta_total = OfertaLaboral.query.count()
+    cantidad_activas = len(ofertas_activas)
+    cantidad_cerradas = len(ofertas_cerradas)
+    porcentaje_activas = int((cantidad_activas / oferta_total) * 100) if oferta_total > 0 else 0
+    porcentaje_candidatos = int((total_candidatos / 1000) * 100) if total_candidatos > 100 else int((total_candidatos / 100) * 100)
+    porcentaje_cerradas = int((cantidad_cerradas / oferta_total) * 100) if oferta_total > 0 else 0
+    
     if request.method == "POST":
         # 📌 Verifica que el archivo CSV esté en la solicitud
         if "archivo_csv" not in request.files:
@@ -982,7 +1062,20 @@ def predecir():
         except Exception as e:
             return f"Ocurrió un error al procesar el archivo: {e}"
 
-    return render_template("index.html", ofertas_activas=ofertas_activas, ofertas_cerradas=ofertas_cerradas, now=now, total_candidatos=total_candidatos)
+    if session.get("type")=="Admin_RRHH":
+        usuario = "Administrador"
+
+    if session.get("type")=="Supervisor":
+        usuario = "Supervisor"
+
+    if session.get("type")=="Analista_Datos":
+        usuario = "Analista"
+
+    return render_template("index.html",ofertas_activas=ofertas_activas,ofertas_cerradas=ofertas_cerradas,
+                           now=now,total_candidatos=total_candidatos,
+                           cantidad_activas=cantidad_activas,porcentaje_activas=porcentaje_activas,
+                           porcentaje_candidatos = porcentaje_candidatos, cantidad_cerradas = cantidad_cerradas,
+                           porcentaje_cerradas = porcentaje_cerradas, usuario=usuario, show_home_icon=False)
 
 
 
@@ -992,6 +1085,8 @@ def predecir():
 def postulantes():
     idOfer = request.args.get("idOfer")
     filtro = request.args.get("filtro")
+    page = int(request.args.get("page", 1))
+    per_page = 4
 
     ofertas = OfertaLaboral.query.all()
     if not idOfer:
@@ -1021,7 +1116,9 @@ def postulantes():
         return render_template("postulantes.html", 
                                mensaje="No hay postulaciones disponibles.", 
                                ofertas=OfertaLaboral.query.all(), 
-                               idOfer=idOfer)
+                               idOfer=idOfer,
+                               page=1,
+                               total_pages=1)
 
     # Mapear nombres de educación, tecnología y habilidades como ya lo hacías
     educacion_map = {edu.idedu: edu.nombre for edu in Educacion.query.all()}
@@ -1058,7 +1155,32 @@ def postulantes():
     if filtro == "apto":
         lista_postulantes = [p for p in lista_postulantes if p["apto"] == "Apto"]
 
-    return render_template("postulantes.html",postulantes=lista_postulantes,ofertas=OfertaLaboral.query.all(),idOfer=idOfer)
+    total = len(lista_postulantes)
+    total_pages = max(1, ceil(total / per_page))
+    start = (page - 1) * per_page
+    end = start + per_page
+    postulantes_pagina = lista_postulantes[start:end]
+
+    return render_template(
+    "postulantes.html",
+    postulantes=postulantes_pagina,
+    ofertas=OfertaLaboral.query.all(),
+    idOfer=idOfer,
+    page=page,
+    total_pages=total_pages
+)
+
+def cerrar_oferta_automatica(idOfer):
+    oferta = OfertaLaboral.query.get(idOfer)
+    if not oferta or oferta.estado == "Cerrada":
+        return False
+    oferta.fecha_cierre = datetime.now()
+    oferta.estado = "Cerrada"
+    predecir_postulantes_automatica(oferta.idOfer)
+    asignar_puntajes_automatica(oferta.idOfer)
+    enviar_correos_automatica(oferta.idOfer)
+    db.session.commit()
+    return True
 
 
 def predecir_postulantes_automatica(idOfer):
@@ -1100,26 +1222,27 @@ def asignar_puntajes_automatica(idOfer):
     db.session.commit()  #  Guardamos cambios en la base de datos
 
 
-
 def enviar_correos_automatica(idOfer):
+    oferta = OfertaLaboral.query.get(idOfer)
+    nombre_oferta = oferta.nombre if oferta else ""
     destinatariosAptos = obtener_correos_aptos(idOfer)
     destinatariosNoAptos = obtener_correos_noaptos(idOfer)
 
     with email.connect() as conn:
         for nombre, mail in destinatariosAptos:
             mensaje = Message(
-                subject="Oportunidad laboral",
+                subject=f"Proceso de selección - Puesto de {nombre_oferta}",
                 sender=app.config["MAIL_USERNAME"],
                 recipients=[mail],
-                body=f"Hola {nombre},\n\nHemos revisado tu perfil y estamos interesados en tu candidatura.\n¡Gracias por postularte!")
+                body=f"Hola {nombre},\n\nHemos revisado tu perfil y estamos interesados en avanzar con tu candidatura para el puesto de {nombre_oferta}.\nNos gustaría coordinar una entrevista, por lo que te pedimos que nos indiques tus días y horarios disponibles.\n\nQuedamos atentos a tu respuesta.\n\nSaludos,\nEquipo de Perfect Match")
             conn.send(mensaje)
 
         for nombre, mail in destinatariosNoAptos:
             mensaje = Message(
-                subject="Oportunidad laboral",
+                subject=f"Proceso de selección - Puesto de {nombre_oferta}",
                 sender=app.config["MAIL_USERNAME"],
                 recipients=[mail],
-                body=f"Hola {nombre},\n\nLamentamos informarte que en esta oportunidad tu perfil no se ajusta a lo que buscamos.\nTe animamos a postularte en futuras oportunidades.")
+                body=f"Hola {nombre},\n\nGracias por haberte postulado al puesto de {nombre_oferta} y por el tiempo que dedicaste al proceso.\nTras analizar tu perfil, en esta ocasión hemos decidido avanzar con otros candidatos que se ajustan mejor a los requerimientos del puesto.\n\nValoramos mucho tu interés y te alentamos a postularte a futuras oportunidades que se alineen con tu perfil.\n\n¡Te deseamos mucho éxito en tus próximos desafíos!\n\nSaludos cordiales,\nEquipo de Perfect Match")
             conn.send(mensaje)
 
 
@@ -1756,7 +1879,7 @@ def asignar_valores(idOfer):
 
 
 @app.route("/metricas")
-@login_required(roles=["Admin_RRHH"])
+@login_required(roles=["Admin_RRHH","analista"])
 def metricas():
     ofertas = OfertaLaboral.query.all()
     return render_template("metricas.html", ofertas=ofertas)
@@ -1869,4 +1992,4 @@ def portal_ofertas():
 
 if __name__ == "__main__":
     threading.Timer(1.5, abrir_navegador).start()
-    app.run(debug=False, host="127.0.0.1", port=5000)
+    app.run(debug=True, host="127.0.0.1", port=5000)

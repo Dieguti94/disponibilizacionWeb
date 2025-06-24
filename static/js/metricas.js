@@ -114,9 +114,20 @@ select.addEventListener("change", () => {
                     datasets: [{
                         label: 'Cantidad de candidatos por estado',
                         data: [data.total_postulantes, data.aptos, data.no_aptos, data.sin_revisar],
-                        backgroundColor: ['#0ea0a0', '#4CAF50', '#FF0000', '#808080'],
-                        borderColor: ['#00fff2', '#3E8E41', '#CC0000', '#606060'],
-                        borderWidth: 1
+                        backgroundColor: [
+                            'rgba(235, 28, 183, 0.74)',
+                            'rgba(57, 180, 57, 0.86)',
+                            'rgba(248, 20, 20, 0.7)',
+                            'rgba(57, 248, 248, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(235, 28, 183, 0.74)',
+                            'rgba(57, 180, 57, 0.86)',
+                            'rgba(248, 20, 20, 0.7)',
+                            'rgba(57, 248, 248, 0.7)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
                     }]
                 },
                 options: {
@@ -125,29 +136,26 @@ select.addEventListener("change", () => {
                         title: {
                             display: true,
                             text: 'CANDIDATOS Totales, Aptos, No Aptos y Sin Revisar',
-                            color: 'white',
-                            font: { size: 18 },
+                            color: '#fff',
+                            font: { size: 20 },
                             padding: { top: 10, bottom: 20 }
+                        },
+                        legend: {
+                            labels: {
+                                color: '#fff',
+                                font: { family: 'Space Grotesk, Segoe UI, sans-serif', size: 16 }
+                            }
                         }
                     },
                     scales: {
                         x: {
-                            beginAtZero: true,
-                            ticks: { color: '#fff' },
-                            grid: {
-                                color: 'rgba(255,255,255,0.08)',
-                                borderColor: '#fff',
-                                borderWidth: 2
-                            }
+                            ticks: { color: '#fff', font: { size: 14 } },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
                         },
                         y: {
                             beginAtZero: true,
-                            ticks: { stepSize: 5, color: '#fff' },
-                            grid: {
-                                color: 'rgba(255,255,255,0.08)',
-                                borderColor: '#fff',
-                                borderWidth: 2
-                            }
+                            ticks: { stepSize: 5, color: '#fff', font: { size: 14 } },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
                         }
                     }
                 }
@@ -199,7 +207,7 @@ select.addEventListener("change", () => {
         });
 });
 
-// Función utilitaria para crear un bar chart
+// Función utilitaria para crear un bar chart con estilo personalizado
 function crearBarChart(ctx, etiquetas, datos, titulo, stepSize = 5) {
     return new Chart(ctx, {
         type: 'bar',
@@ -208,40 +216,41 @@ function crearBarChart(ctx, etiquetas, datos, titulo, stepSize = 5) {
             datasets: [{
                 label: titulo,
                 data: datos,
-                backgroundColor: 'rgba(57, 248, 248, 0.7)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+                backgroundColor: [
+                    'rgba(0, 212, 255, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(0, 212, 255, 0.7)'
+                ],
+                borderWidth: 2,
+                borderRadius: 8
             }]
         },
         options: {
             responsive: true,
             plugins: {
+                legend: {
+                    labels: {
+                        color: '#fff',
+                        font: { family: 'Space Grotesk, Segoe UI, sans-serif', size: 16 }
+                    }
+                },
                 title: {
                     display: true,
                     text: titulo,
-                    color: 'white',
-                    font: { size: 18 },
-                    padding: { top: 10, bottom: 20 }
+                    color: '#fff',
+                    font: { size: 20 }
                 }
             },
             scales: {
                 x: {
-                    beginAtZero: true,
-                    ticks: { color: '#fff' },
-                    grid: {
-                        color: 'rgba(255,255,255,0.08)', // grilla muy tenue
-                        borderColor: '#fff', // eje principal blanco
-                        borderWidth: 2
-                    }
+                    ticks: { color: '#fff', font: { size: 14 } },
+                    grid: { color: 'rgba(255,255,255,0.08)' }
                 },
                 y: {
                     beginAtZero: true,
-                    ticks: { stepSize: stepSize, color: '#fff' },
-                    grid: {
-                        color: 'rgba(255,255,255,0.08)',
-                        borderColor: '#fff',
-                        borderWidth: 2
-                    }
+                    ticks: { stepSize: stepSize, color: '#fff', font: { size: 14 } },
+                    grid: { color: 'rgba(255,255,255,0.08)' }
                 }
             }
         }
@@ -288,7 +297,7 @@ if (carouselContainer) carouselContainer.style.display = "none";
 document.addEventListener('DOMContentLoaded', function () {
     // Mostrar panel solo si se selecciona una oferta
     const select = document.getElementById('ofertaSelect');
-    const panel = document.querySelector('.prediccion-panel');
+    const panel = document.querySelector('.box-background ');
     select.addEventListener('change', function () {
         if (select.value) {
             panel.style.display = 'block';

@@ -1,11 +1,6 @@
 /*MENU DESPLEGABLE LATERAL*/
 .menu-icon {
-        min-width: 48px;
-        min-height: 48px;
-        font-size: 2rem;
-        display: flex;
-        align-items: stretch;
-        justify-content: space-around;
+    font-size: 2rem;
     cursor: pointer;
     position: fixed;
     top: 0.7rem;
@@ -13,20 +8,29 @@
     opacity: 1;
     transition: opacity 0.2s;
     background-color: rgba(183, 0, 255, 0.2);
-    padding: 6px 6px;
+    padding: 10px 15px;
     border-radius: 60px;
     border: 2px solid #7644ff;
     color: white;
     z-index: 11;
 }
 
+@media screen and (max-width: 768px) {
+    
+    .menu-toggle:not(:checked)~.menu-icon {
+    margin-left: -85px;
+    margin-top: 5px;
+}
+.menu-icon {
+    margin-top: 5px;
+    
+}
+}
+ 
 .menu-icon.hide-menu {
     opacity: 1;
     pointer-events: none;
     transition: opacity 0.3s;
-}
-.menu-toggle:not(:checked)~.menu-icon {
-    left: 6.5rem;
 }
 
 .menu-icon.sticky-left {
@@ -34,6 +38,7 @@
     opacity: 1;
     transition: opacity 0.3s;
 }
+
 .menu-toggle:checked ~ .menu-icon.sticky-left {
     left: 300px !important;
 }
@@ -45,8 +50,11 @@
     display: none !important;
 }
 }
-/* Posición cuando el menú está cerrado */
 
+/* Posición cuando el menú está cerrado */
+.menu-toggle:not(:checked)~.menu-icon {
+    left: 6.5rem;
+}
 
 /* Menú lateral */
 .side-menu {
@@ -68,6 +76,16 @@
     overflow: visible !important;
     /* Asegura que no recorte el tooltip */
 
+}
+
+
+@media screen and (max-width: 768px) {
+    .tooltip {
+        top: -130%;
+        left: -20%;
+        transform: translateY(-50%) translateX(0);
+    }
+    
 }
 
 
@@ -311,4 +329,91 @@ details[open] .arrow {
 
 .user-name {
     text-align: center;
+}
+.tooltip-menu {
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(90, 24, 154, 0.85);
+  color: #f3e8ff;
+  border-radius: 10px;
+  padding: 100px 40px;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) translateX(10px);
+  transition: opacity 0.3s, transform 0.3s;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 12px rgba(160, 100, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(160, 100, 255, 0.4);
+  max-width: 320px;   /* Aumenta el ancho máximo */
+  min-width: 250px;   /* Opcional: asegura un ancho mínimo */
+  white-space: normal; /* Permite el salto de línea */
+}
+
+.tooltip-list li {
+  margin-bottom: 8px;
+  line-height: 1.5; /* Más espaciado entre líneas */
+  font-size: 20px;
+}
+
+.tooltip-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #e0c3ff;
+  text-shadow: 0 0 4px rgba(160, 100, 255, 0.7);
+}
+
+.tooltip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tooltip-list li {
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.highlight {
+  color: #3085e7; 
+  font-size: 20px;
+  font-weight: 700;
+  text-shadow: 0 0 6px #00aeff;
+}
+
+.tooltip-container:hover .tooltip-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-50%) translateX(15px);
+}
+
+/* Scrollbar para el menú lateral */
+.side-menu,
+.menu-content {
+    scrollbar-width: thin;
+    scrollbar-color: #7644ff #1a085a; /* thumb color, track color */
+}
+
+/* Para navegadores basados en Webkit (Chrome, Edge, Safari) */
+.side-menu::-webkit-scrollbar,
+.menu-content::-webkit-scrollbar {
+    width: 10px;
+    background: #1a085a;
+    border-radius: 8px;
+}
+
+.side-menu::-webkit-scrollbar-thumb,
+.menu-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #7644ff 40%, #3815b8 100%);
+    border-radius: 8px;
+    border: 2px solid #1a085a;
+}
+
+.side-menu::-webkit-scrollbar-thumb:hover,
+.menu-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #a084ff 40%, #7644ff 100%);
 }

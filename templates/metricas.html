@@ -12,17 +12,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/box-background.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 
-
-
 <body>
+    {% include "fragments/particles.html" %}
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
     <main>
-
-        <h1>Metricas por <span class="subtitulo">Oferta Laboral</span></h1>
+        <h1><p class="title-perfect-violet">Metricas por </p><p class="title-match-blue">Oferta Laboral</p></h1>
 
         <select id="ofertaSelect" style="background-color: #3815b8; color: white;">
             <option style="background-color: #3815b8; color: white;" disabled selected value="">-- Seleccionar oferta --
@@ -33,8 +34,8 @@
             </option>
             {% endfor %}
         </select>
-        <div class="prediccion-panel">
-            <div class="gauges-container">
+        <div class="box-background">
+            <div class="box-background-child ">
                 <div class="carousel-container">
                     <button class="carousel-arrow left" id="prevChart"><i class="fa fa-chevron-left"></i></button>
                     <div class="carousel-wrapper">
@@ -63,7 +64,7 @@
                     <button class="carousel-arrow right" id="nextChart"><i class="fa fa-chevron-right"></i></button>
                 </div>
             </div>
-            <div class="gauges-container">
+            <div class="box-background-child ">
                 <div id="map-container">
                     <h2>Distribución de candidatos por provincia</h2>
                     <div id="map"></div>

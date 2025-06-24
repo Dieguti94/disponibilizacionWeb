@@ -37,20 +37,26 @@ body {
   background-size: cover;
 }
 
-h1 {
-  font-family: 'Anton', sans-serif;
-  font-size: 3rem;
-  font-weight: 600;
-  color: #ffffff;
-  text-align: center;
-  margin: 3rem auto 1rem;
-  border-radius: 10px;
-  border: 10px solid #ffffff;
-  padding: 1rem;
-  animation: elevar 2s ease-out forwards;
-  text-shadow: none;
-  box-shadow: none;
+h1{
+    font-family: "Erica One", sans-serif;
+    font-size: 3rem;
+    width: fit-content;
+    text-align: center;
+    border-radius: 32px;
+    border: none;
+    color: #fefefe;
+    text-shadow: -3px 3px 0px #49007e, 3px -3px 0px #2f00d9;
+    transition: all 0.3s ease-in-out;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 2rem;
+    padding: 0;
+    position: relative; /* <-- necesario para el before */
 }
+
 
 h1 .subtitulo {
   font-style: italic;

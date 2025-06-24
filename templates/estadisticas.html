@@ -9,17 +9,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 
 <body>
+    {% include "fragments/particles.html" %}
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
-    <!-- CAMBIOOOOOOOOOOOOOOOO -->
-    <h1>Estadisticas del <span class="subtitulo"> Modelo </span></h1>
-    <!-- CAMBIOOOOOOOOOOOOOOOO -->
-    <h2 class="accuracy">Precisión calculada a través de accuracy score: {{ precision }}</h2>
 
+    <h1><p class="title-perfect-violet">Estadísticas del </p><p class="title-match-blue">Modelo</p></h1>
+
+    <h2 class="accuracy">Precisión calculada a través de accuracy score: {{ precision }}</h2>
 
     <h2 class="titulo2">Clases del encoder:</h2>
     <div class="tablas-flex">
@@ -46,29 +48,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th>TECNOLOGÍA PRINCIPAL</th>
+                        <th>TECNOLOGÍAS</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for clase in clases_tecnologias %}
-                    <tr>
-                        <td>{{ clase }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Tecnologías2 -->
-        <div class="tabla-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>TECNOLOGÍA SECUNDARIA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for clase in clases_tecnologias2 %}
                     <tr>
                         <td>{{ clase }}</td>
                     </tr>
@@ -82,7 +66,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>HABILIDAD 1</th>
+                        <th>HABILIDADES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,23 +79,6 @@
             </table>
         </div>
 
-        <!-- Habilidades2 -->
-        <div class="tabla-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>HABILIDAD 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for clase in clases_habilidades2 %}
-                    <tr>
-                        <td>{{ clase }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
         <h2 class="titulo2">Árbol de decisión</h2>
         <div class="tabla-container"
             style="text-align: center; border-radius: 120px; background: rgba(24, 24, 24, 0.76); box-shadow: 0 4px 10px rgb(73, 194, 250); max-width: 80%;">

@@ -62,20 +62,26 @@ canvas {
 }
 
 /* Encabezados */
-h1 {
-    font-family: 'Anton', sans-serif;
+h1{
+    font-family: "Erica One", sans-serif;
     font-size: 3rem;
-    font-weight: 600;
-    color: #ffffff;
+    width: fit-content;
     text-align: center;
-    margin: 3rem auto 1rem;
-    border-radius: 10px;
-    border: 10px solid #ffffff;
-    padding: 1rem;
-    animation: elevar 2s ease-out forwards;
-    text-shadow: none;
-    box-shadow: none;
+    border-radius: 32px;
+    border: none;
+    color: #fefefe;
+    text-shadow: -3px 3px 0px #49007e, 3px -3px 0px #2f00d9;
+    transition: all 0.3s ease-in-out;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 2rem;
+    padding: 0;
+    position: relative; /* <-- necesario para el before */
 }
+
 h1 .subtitulo {
     font-style: italic;
     color: #a259ff;
@@ -97,50 +103,6 @@ h2 {
     box-shadow: 0 6px 16px -4px #ffffff;
     transition: all 0.3s ease-in-out;
 }
-/* CONTENEDOR PRINCIPAL DE PREDICCION */
-.prediccion-panel {
-  display: none;
-  max-width: 1200px;
-  margin: 40px auto 0 auto;
-  background: rgba(255,255,255,0.05);
-  border-radius: 22px;
-  box-shadow: 0 8px 32px 0 rgba(80,61,255,0.13), 0 1.5px 8px 0 #39006144;
-  padding: 38px 32px 32px 32px;
-  color: #fff;
-  position: relative;
-  z-index: 2;
-  backdrop-filter: blur(6px);
-  overflow: hidden;
-  margin-bottom: 2rem;
-}
-/* CONTENEDOR DE GAUGES Y GLOW */
-.gauges-container {
-  position: relative;
-  max-width: 1200px; /* ensanchado */
-  margin: 0 auto 2.5rem auto;
-  padding: 38px 32px 32px 32px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 22px;
-  box-shadow: 0 8px 32px 0 rgba(80,61,255,0.13), 0 1.5px 8px 0 #39006144;
-  z-index: 2;
-  backdrop-filter: blur(6px);
-  overflow: visible;
-}
-
-.gauges-container::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  width: calc(100% + 60px);
-  height: calc(100% + 60px);
-  border-radius: 32px;
-  background: conic-gradient(from 0deg, #7644ff, #00c3ff, #ea00ff, #7644ff 100%);
-  filter: blur(32px) brightness(1.2);
-  opacity: 0.22;
-  z-index: 0;
-}
-
 /* Formularios y controles */
 form {
     animation: elevar 2s ease-out forwards;
@@ -170,6 +132,19 @@ select {
     transition: all 0.3s ease-in-out;
     width: 300px;
     text-align: center;
+}
+
+.box-background-child{
+    padding: 10px 2vw 10px 2vw !important;
+    max-width: 80vw !important
+}
+
+@media screen and (min-width: 600px) {
+    .box-background-child{
+    padding: 10px 2vw 10px 2vw !important;
+    max-width: 30vw !important
+}
+    
 }
 
 select:focus {
@@ -356,6 +331,27 @@ table tr:hover {
 }
 .leaflet-popup-tip {
     background: #3815b8 !important;
+}
+
+/* Estilo personalizado para el gráfico de habilidades */
+#grafico_hab_cant {
+    background: linear-gradient(135deg, #3815b8 80%, #a259ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(90,24,154,0.25);
+    padding: 1em;
+    margin: 0 auto 2em auto;
+    display: block;
+    border: 2px solid #fff;
+    max-width: 430px;
+    height: 430px;
+}
+
+/* Opcional: mejora para todos los gráficos del carrusel */
+.carousel-chart {
+    background: linear-gradient(135deg, #3815b8 80%, #a259ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(90,24,154,0.18);
+    border: 2px solid #fff;
 }
 
 /* Media queries */

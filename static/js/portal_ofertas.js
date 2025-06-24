@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         detalles.style.display = 'block';
         detalles.style.maxHeight = detalles.scrollHeight + 'px';
         card.classList.add('expanded');
-        card.style.height = (220 + detalles.scrollHeight) + 'px';
+        //card.style.height = (220 + detalles.scrollHeight) + 'px';
     }
 
     function collapseCard(card) {
@@ -83,6 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
         detalles.style.display = 'none';
         detalles.style.maxHeight = null;
         card.classList.remove('expanded');
-        card.style.height = '';
+        //card.style.height = '';
     }
 });

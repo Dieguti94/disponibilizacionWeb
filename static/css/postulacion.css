@@ -49,3 +49,31 @@ header {
     max-height: 70px;
     max-width: 100%;
 }
+
+.btn-portal-home {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    z-index: 200;
+    margin-left: 0;
+    margin-top: 0;
+    text-decoration: none;
+    /* Para que no tenga subrayado */
+}
+
+.btn-portal-home .user-button {
+    background-color: rgba(183, 0, 255, 0.2);
+    border: 2px solid #7644ff;
+    box-shadow: 0 0 8px rgba(161, 0, 201, 0.3);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.btn-portal-home .user-button:hover {
+    background-color: rgba(195, 0, 255, 0.3);
+}

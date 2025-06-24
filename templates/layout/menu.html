@@ -5,65 +5,89 @@
 <!-- Menú lateral deslizante -->
 <aside class="side-menu">
     <nav class="menu-content">
-
+ 
         <!-- Menú desplegable: Administración de Oferta -->
         <details>
-            <summary>
-                <h3><i class="fas fa-briefcase"></i> Administracion de Ofertas</h3>
-                <span class="arrow">&#9662;</span>
-            </summary>
-            <div class="submenu">
-                <a href="{{ url_for('crear_oferta') }}"><i class="fas fa-plus-circle"></i> Crear Oferta</a>
-                <a href="{{ url_for('ver_ofertas') }}"><i class="fas fa-list"></i> Ver Ofertas</a>
-            </div>
-        </details>
+  <summary class="tooltip-container">
+    <h3><i class="fas fa-briefcase"></i> Administración de Ofertas</h3>
+    <span class="arrow">&#9662;</span>
+    
+    <div class="tooltip-menu">
+      <div class="tooltip-title">Aquí podrás gestionar las ofertas laborales:</div>
+      <ul class="tooltip-list">
+        <li><strong class="highlight">Crear Oferta</strong>: completá el formulario para cargar una nueva propuesta laboral con sus requisitos.</li>
+        <li><strong class="highlight">Ver Ofertas</strong>: consultá y administrá las ofertas existentes, con opciones de edición o eliminación.</li>
+      </ul>
+    </div>
+    
+  </summary>
+  
+  <div class="submenu">
+    <a href="{{ url_for('crear_oferta') }}"><i class="fas fa-plus-circle"></i> Crear Oferta</a>
+    <a href="{{ url_for('ver_ofertas') }}"><i class="fas fa-list"></i> Ver Ofertas</a>
+  </div>
+</details>
+<!-- Menú desplegable: Postulantes-->
+<details>
+  <summary class="tooltip-container">
+    <h3><i class="fas fa-users"></i> Postulantes</h3>
+    <span class="arrow">&#9662;</span>
 
-        <!-- Menú desplegable: Postulantes -->
-        <details>
-            <summary>
-                <h3><i class="fas fa-users"></i> Postulantes</h3>
-                <span class="arrow">&#9662;</span>
-            </summary>
-            <div class="submenu">
-                <a href="{{ url_for('postulantes') }}"><i class="fas fa-eye"></i> Ver Postulantes</a>
-                <a href="{{ url_for('cargarCV') }}"><i class="fas fa-upload"></i> Cargar CV</a>
-            </div>
-        </details>
+    <div class="tooltip-menu">
+      <div class="tooltip-title">Aquí podrás gestionar a los postulantes:</div>
+      <ul class="tooltip-list">
+        <li><strong class="highlight">Ver Postulantes</strong>: consultá la lista de personas que aplicaron a tus ofertas laborales.</li>
+        <li><strong class="highlight">Cargar CV</strong>: subí manualmente un CV al sistema para registrar nuevos postulantes.</li>
+      </ul>
+    </div>
 
-        <!-- Menú desplegable: Configuración -->
-        <details>
-            <summary>
-                <h3><i class="fas fa-cogs"></i> Configuracion</h3>
-                <span class="arrow">&#9662;</span>
-            </summary>
-            <div class="submenu">
-                <a href="{{ url_for('mostrar_etiquetas') }}"><i class="fas fa-tags"></i> Configurar Etiquetas</a>
-            </div>
-        </details>
+  </summary>
 
+  <div class="submenu">
+    <a href="{{ url_for('postulantes') }}"><i class="fas fa-eye"></i> Ver Postulantes</a>
+    <a href="{{ url_for('cargarCV') }}"><i class="fas fa-upload"></i> Cargar CV</a>
+  </div>
+</details>
+<!-- Menú desplegable: Configuracion -->
+<details>
+  <summary class="tooltip-container">
+    <h3><i class="fas fa-cogs"></i> Configuración</h3>
+    <span class="arrow">&#9662;</span>
 
+    <div class="tooltip-menu">
+      <div class="tooltip-title">Aquí podrás personalizar tu entorno de trabajo:</div>
+      <ul class="tooltip-list">
+        <li><strong class="highlight">Configurar Etiquetas</strong>: gestioná y editá las etiquetas utilizadas para clasificar ofertas y postulantes.</li>
+      </ul>
+    </div>
 
-        <!-- Menú desplegable: Metricas-->
-        <details>
-            <summary>
-                <h3><i class="fas fa-chart-line"></i> Métricas</h3>
-                <span class="arrow">&#9662;</span>
-            </summary>
-            <div class="submenu">
-                {% if session.get('type') == 'Admin_RRHH' %}
-                <a href="{{ url_for('metricas', oferta_id=idOfer) }}"><i class="fas fa-list"></i> Ver métricas</a>
-                {% endif %}
-                <a href="{{ url_for('estadisticas') }}"><i class="fas fa-sliders-h"></i> Estadisticas</a>
+  </summary>
 
-            </div>
+  <div class="submenu">
+    <a href="{{ url_for('mostrar_etiquetas') }}"><i class="fas fa-tags"></i> Configurar Etiquetas</a>
+  </div>
+</details>
+<!-- Menú desplegable: Metricas -->
+<details>
+  <summary class="tooltip-container">
+    <h3><i class="fas fa-chart-line"></i> Métricas</h3>
+    <span class="arrow">&#9662;</span>
 
+    <div class="tooltip-menu">
+      <div class="tooltip-title">Aquí podrás acceder a datos clave del sistema:</div>
+      <ul class="tooltip-list">
+        <li><strong class="highlight">Estadísticas</strong>: visualizá información general sobre el desempeño de las ofertas y postulantes.</li>
+        <li><strong class="highlight">Ver métricas</strong>: consultá métricas detalladas de una oferta específica para analizar su impacto.</li>
+      </ul>
+    </div>
 
-        </details>
+  </summary>
 
-        <!-- Menú desplegable: Volver al inicio-->
-        <div class="submenu">
-            <a href="{{ url_for('predecir') }}">Volver al Inicio</a>
-        </div>
+  <div class="submenu">
+    <a href="{{ url_for('estadisticas') }}"><i class="fas fa-sliders-h"></i> Estadísticas</a>
+    <a href="{{ url_for('metricas', oferta_id=idOfer) }}"><i class="fas fa-list"></i> Ver métricas</a>
+  </div>
+</details>
 
     </nav>
 

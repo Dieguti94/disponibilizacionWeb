@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,101 +8,30 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/postulacion.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='cargarCV.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 <body>
-
-    <header>
-        <div>
-            <img class="logo" src="{{ url_for('static', filename='images/logoApptitudAI.png') }}"
-                alt="Logo de ApptitudAI">
+    <a href="{{ url_for('portal_ofertas') }}" class="btn-portal-home" title="Volver al portal de ofertas">
+        <div class="user-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="30" height="30" stroke-width="1.5" stroke="#fff">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
         </div>
-    </header>
-    {% if es_admin %}
-    <div class="nav">
-        <a href="{{ url_for('predecir') }}">Inicio</a>
-    </div>
-    {% endif %}
-    <h1>Completa los datos de tu CV</h1>
-    <form method="post" action="/postulacion">
+    </a>
 
-        <label for="idOfer">Selecciona una oferta laboral:</label>
-        <select name="idOfer" required>
-            <option value="">-- Selecciona una oferta --</option>
-            {% for oferta in opciones_ofertas if oferta.estado != "Cerrada" %}
-            <option value="{{ idOfer }}">{{ oferta.nombre }}</option>
-            {% endfor %}
-        </select>
+    {% include "fragments/particles.html" %}
+    <h1><p class="title-perfect-violet">Postulate </p><p class="title-match-blue">con Nosotros</p></h1>
 
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"
-            title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
-
-        <label for="apellido">Apellido</label>
-        <input type="text" name="apellido" id="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"
-            title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes" required>
-
-        <label for="email">Correo eléctronico</label>
-        <input type="email" name="email" id="email" required>
-
-        <label for="telefono">Teléfono</label>
-        <input type="text" name="telefono" pattern="\d{8,10}" maxlength="10" title="Debe tener entre 8 y 10 números"
-            required>
-
-        <label for="ubicacion">Ubicación</label>
-        <select name="ubicacion" id="ubicacion" required>
-            <option value="">Seleccione una provincia</option>
-            <option value="Buenos Aires">Buenos Aires</option>
-            <option value="CABA">Ciudad Autónoma de Buenos Aires</option>
-            <option value="Catamarca">Catamarca</option>
-            <option value="Chaco">Chaco</option>
-            <option value="Chubut">Chubut</option>
-            <option value="Córdoba">Córdoba</option>
-            <option value="Corrientes">Corrientes</option>
-            <option value="Entre Ríos">Entre Ríos</option>
-            <option value="Formosa">Formosa</option>
-            <option value="Jujuy">Jujuy</option>
-            <option value="La Pampa">La Pampa</option>
-            <option value="La Rioja">La Rioja</option>
-            <option value="Mendoza">Mendoza</option>
-            <option value="Misiones">Misiones</option>
-            <option value="Neuquén">Neuquén</option>
-            <option value="Río Negro">Río Negro</option>
-            <option value="Salta">Salta</option>
-            <option value="San Juan">San Juan</option>
-            <option value="San Luis">San Luis</option>
-            <option value="Santa Cruz">Santa Cruz</option>
-            <option value="Santa Fe">Santa Fe</option>
-            <option value="Santiago del Estero">Santiago del Estero</option>
-            <option value="Tierra del Fuego">Tierra del Fuego</option>
-            <option value="Tucumán">Tucumán</option>
-        </select>
-
-        <label for="experiencia">Experiencia (en años)</label>
-        <input type="number" min="0" max="15" name="experiencia" id="experiencia" required>
-
-        <label for="educacion">Educación</label>
-        <select name="educacion" id="educacion">
-            {% for opcion in opciones_educacion %}
-            <option value="{{ opcion }}">{{ opcion }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="tecnologias">Tecnologías</label>
-        <select name="tecnologias" id="tecnologias">
-            {% for opcion in opciones_tecnologias %}
-            <option value="{{ opcion }}">{{ opcion }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="habilidades">Habilidades</label>
-        <select name="habilidades" id="habilidades">
-            {% for opcion in opciones_habilidades %}
-            <option value="{{ opcion }}">{{ opcion }}</option>
-            {% endfor %}
-        </select>
-
-        {% with messages = get_flashed_messages() %}
+    <form method="POST" action="/postulacion" enctype="multipart/form-data">
+        <h2>Subir CV en PDF</h2>
+        <input type="file" id="cv_pdf" name="cv_pdf" accept=".pdf" required>
+        <p id="nombre_archivo" style="margin: 10px 0; font-weight: bold;"></p>
+        
+        <button type="submit">Extraer datos del CV</button>
+        <button type="button" onclick="limpiarArchivo()">Eliminar archivo</button>
+        {% with messages = get_flashed_messages(category_filter=["pdf"]) %}
         {% if messages %}
         <div class="flash-messages">
             {% for message in messages %}
@@ -112,9 +40,120 @@
         </div>
         {% endif %}
         {% endwith %}
-        <button type="submit">Enviar CV</button>
     </form>
+
+    <form method="POST" action="/postulacion" enctype="multipart/form-data">
+
+        <label for="idOfer">Selecciona una oferta laboral:</label>
+        <select name="idOfer" required>
+            <option value="">-- Selecciona una oferta --</option>
+            {% for oferta in opciones_ofertas if oferta.estado != "Cerrada" %}
+            <option value="{{ oferta.idOfer }}">{{ oferta.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"
+            title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes"
+            value="{{ precargado.nombre if precargado and precargado.nombre else '' }}" required>
+
+        <label for="apellido">Apellido</label>
+        <input type="text" name="apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ' ]{2,20}"
+            title="Debe tener entre 2 y 20 letras, puede incluir espacios o apóstrofes"
+            value="{{ precargado.apellido if precargado and precargado.apellido else '' }}" required>
+
+        <label for="email">Correo eléctronico</label>
+        <input type="email" name="email" value="{{ precargado.email if precargado and precargado.email else '' }}"
+            required>
+
+        <label for="telefono">Teléfono</label>
+        <input type="text" name="telefono" pattern="\d{8,13}" maxlength="13" title="Debe tener entre 8 y 13 números"
+            value="{{ precargado.telefono if precargado and precargado.telefono else '' }}" required>
+
+        <label for="ubicacion">Ubicación</label>
+        <select name="ubicacion" id="ubicacion" required>
+            <option disabled selected value="">-- Selecciona una provincia de Argentina --</option>
+            {% for prov in ["Buenos Aires", "CABA", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre
+            Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta",
+            "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"] %}
+            <option value="{{ prov }}" {% if precargado and precargado.ubicacion==prov %}selected{% endif %}>{{ prov }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label for="experiencia">Experiencia (en años)</label>
+        <input type="number" min="0" max="15" name="experiencia" id="experiencia"
+            value="{{ precargado.experiencia if precargado else '' }}" required>
+
+        <label for="educacion">Educación</label>
+        <select name="educacion" id="educacion" required>
+            <option disabled selected value="">-- Selecciona nivel de educación más alto alcanzado --</option>
+            {% for opcion in opciones_educacion %}
+            <option value="{{ opcion }}" {% if precargado and precargado.educacion==opcion %}selected{% endif %}>{{ opcion|capitalize }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="tecnologias">Tecnología Principal</label>
+        <select name="tecnologias" id="tecnologias" required>
+            <option disabled selected value="">-- Selecciona una tecnología --</option>
+            {% for opcion in opciones_tecnologias %}
+            <option value="{{ opcion }}" {% if precargado and precargado.tecnologias==opcion %}selected{% endif %}>{{ opcion|capitalize }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="tecnologias2">Tecnología Secundaria</label>
+        <select name="tecnologias2" id="tecnologias2" required>
+            <option disabled selected value="">-- Selecciona otra tecnología --</option>
+            {% for opcion in opciones_tecnologias2 %}
+            <option value="{{ opcion }}" {% if precargado and precargado.tecnologias2==opcion %}selected{% endif %}>{{ opcion|capitalize }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="habilidades">Habilidad 1</label>
+        <select name="habilidades" id="habilidades" required>
+            <option disabled selected value="">-- Selecciona una habilidad --</option>
+            {% for opcion in opciones_habilidades %}
+            <option value="{{ opcion }}" {% if precargado and precargado.habilidades==opcion %}selected{% endif %}>{{ opcion|capitalize }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="habilidades2">Habilidad 2</label>
+        <select name="habilidades2" id="habilidades2" required>
+            <option disabled selected value="">-- Selecciona otra habilidad --</option>
+            {% for opcion in opciones_habilidades2 %}
+            <option value="{{ opcion }}" {% if precargado and precargado.habilidades2==opcion %}selected{% endif %}>{{ opcion|capitalize }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn-submit">Enviar CV</button>
+        {% with messages = get_flashed_messages(category_filter=["form"]) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+            <div class="alert">{{ message|safe }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+    </form>
+
+    <script src="{{ url_for('static', filename='js/etiquetasDistintas.js') }}"></script>
     {% include "layout/footer.html" %}
+    <script>
+    const inputArchivo = document.getElementById('cv_pdf');
+    const nombreArchivo = document.getElementById('nombre_archivo');
+
+    inputArchivo.addEventListener('change', function () {
+        const archivo = this.files[0];
+        nombreArchivo.textContent = archivo ? `Archivo seleccionado: ${archivo.name}` : "";
+    });
+
+    function limpiarArchivo() {
+        inputArchivo.value = "";
+        nombreArchivo.textContent = "";
+    }
+    </script>
 </body>
 
 </html>

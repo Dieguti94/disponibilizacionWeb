@@ -9,13 +9,16 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 <body>
+  {% include "fragments/particles.html" %}
   {% include "layout/header_general.html" %}
   {% include "layout/menu.html" %}
 
-  <h1>Ver<span class="subtitulo">Ofertas Laborales</span></h1>
+  <h1><p class="title-perfect-violet">Ver </p><p class="title-match-blue">Ofertas Laborales</p></h1>
 
   <div class="tabla-container">
     {{ tabla|safe }}
@@ -37,27 +40,24 @@
   {% else %}
   <p>{{ mensaje }}</p>
   {% endif %}
-  <div style="text-align: center; margin: 0;">
-    {% if session.get('type') == 'Admin_RRHH' %}
-    <form method="POST" action="{{ url_for('limpiar_ofertas_expiradas') }}"
-      style="display: inline-block;margin-left: 20px ;padding: 0px 60px; background-color: #4b0082; border-radius: 8px; box-shadow: 0 0 10px rgba(75, 0, 130, 0.5);">
-
-      <button type="submit"
-        style="margin: 0 !important; font-size: 13px; color: #fff; background: none; border: none; cursor: pointer;">
-        <i class="fas fa-trash-alt" style="margin-right: 8px;"></i>
-        Limpiar ofertas cerradas (+24hs)
-      </button>
-    </form>
-    {% endif %}
-  </div>
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <div class="flash-messages">
-    {% for message in messages %}
-    <div class="alert">{{ message|safe }}</div>
-    {% endfor %}
-  </div>
-  {% endif %}
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% with messages = get_flashed_messages(category_filter=["ver_ofertas"]) %}
+      {% if messages %}
+          <script>
+              window.addEventListener('DOMContentLoaded', () => {
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Oferta cerrada con exito',
+                      text: '{{ messages[0] }}',
+                      confirmButtonColor: '#4dda31',
+                      customClass: {
+                          title: 'swal2-custom-title'
+                      }
+                  });
+              });
+          </script>
+      {% endif %}
   {% endwith %}
   {% include "layout/footer.html" %}
 </body>

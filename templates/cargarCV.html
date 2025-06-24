@@ -10,12 +10,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header_general.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
 </head>
 
 <body>
+    {% include "fragments/particles.html" %}
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
-    <h1>Cargar el<span class="subtitulo">CV</span>&nbsp;del Candidato</h1>
+
+    <h1><p class="title-perfect-violet">Cargar </p><p class="title-match-blue">CV</p></h1>
 
     <form method="POST" enctype="multipart/form-data">
         <h2>Subir CV en PDF</h2>
@@ -36,10 +40,6 @@
     </form>
 
     <form method="POST" action="/cargarCV" enctype="multipart/form-data">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
 
         <label for="idOfer">Selecciona una oferta laboral:</label>
         <select name="idOfer" required>
@@ -122,7 +122,7 @@
             {% endfor %}
         </select>
 
-        <button type="submit">Enviar CV</button>
+        <button type="submit" class="btn-submit">Enviar CV</button>
         {% with messages = get_flashed_messages(category_filter=["form"]) %}
         {% if messages %}
         <div class="flash-messages">

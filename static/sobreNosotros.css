@@ -329,6 +329,10 @@ p.lead1 {
   animation: scrollInfinite 100s linear infinite;
 }
 
+.slider-track .card {
+    margin: 0 20px; /* Aumenta el valor para más separación, por ejemplo 32px */
+}
+
 .employee-card {
   flex: 0 0 auto;
   width: 300px;
@@ -662,4 +666,28 @@ p.lead1 {
     padding: 10px 22px;
     font-size: 0.9rem;
   }
+}
+
+
+/* Scrollbar general para toda la página */
+html, body {
+    scrollbar-width: thin;
+    scrollbar-color: #7644ff #1a085a; /* thumb color, track color */
+}
+
+/* Para navegadores Webkit (Chrome, Edge, Safari) */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 10px;
+    background: #1a085a;
+    border-radius: 8px;
+}
+
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #7644ff 40%, #3815b8 100%);
+    border-radius: 8px;
+    border: 2px solid #1a085a;
+}
+
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #a084ff 40%, #7644ff 100%);
 }

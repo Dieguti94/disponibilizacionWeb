@@ -33,7 +33,7 @@ main {
     border: none;
     padding: 0;
     border-radius: 12px;
-    box-shadow: 0 2px 16px 0 #7644ff22;
+
     transition: box-shadow 0.2s, filter 0.2s;
     width: 70%;
     margin-left: auto;
@@ -43,7 +43,7 @@ main {
 
 .ofertas-title:hover {
     filter: brightness(1.08) drop-shadow(0 0 8px #00c3ff88);
-    box-shadow: 0 4px 24px 0 #7644ff44;
+
 }
 
 /* --- OFERTAS GRID --- */
@@ -56,6 +56,7 @@ main {
     box-sizing: border-box;
     justify-items: center;
     margin: 0 auto;
+    align-items: start;
 }
 
 /* --- OFERTA CARD --- */
@@ -73,7 +74,7 @@ main {
     transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s;
     position: relative;
     min-height: 180px;
-    height: 220px;
+    /*height: 220px;*/
     max-width: 220px;
     width: 100%;
     box-sizing: border-box;
@@ -285,4 +286,24 @@ main {
         margin-right: auto !important;
         box-sizing: border-box;
     }
+}
+
+h1{
+  font-family: "Erica One", sans-serif;
+  font-size: 3rem;
+  width: fit-content;
+  text-align: center;
+  border-radius: 32px;
+  border: none;
+  color: #fefefe;
+  text-shadow: -3px 3px 0px #49007e, 3px -3px 0px #2f00d9;
+  transition: all 0.3s ease-in-out;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  position: relative; /* <-- necesario para el before */
 }
