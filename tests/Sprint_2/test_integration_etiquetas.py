@@ -91,6 +91,13 @@ def test_actualizar_etiquetas_fuera_de_rango(client, importancia):
         hab = db.session.execute(db.select(Habilidad).filter_by(nombre ="liderazgo")).scalar_one()
         id_hab = hab.idhab
 
+        edu_rel = OfertaEducacion.query.filter_by(idOfer=id_oferta, idEdu=id_edu).first()
+        tec_rel = OfertaTecnologia.query.filter_by(idOfer=id_oferta, idTec=id_tec).first()
+        hab_rel = OfertaHabilidad.query.filter_by(idOfer=id_oferta, idHab=id_hab).first()
+        valor_edu_original = edu_rel.importancia
+        valor_tec_original = tec_rel.importancia
+        valor_hab_original = hab_rel.importancia
+
     with client.session_transaction() as sess:
             sess["username"] = "Fernando"
             sess["type"] = "Admin_RRHH"
@@ -104,7 +111,20 @@ def test_actualizar_etiquetas_fuera_de_rango(client, importancia):
     "valor_habilidad": importancia
     }, follow_redirects=True)
 
-    assert respuesta.status_code == 400
+    assert respuesta.status_code == 200
+
+    with appLocal.app_context():
+        edu_rel = OfertaEducacion.query.filter_by(idOfer=id_oferta, idEdu=id_edu).first()
+        tec_rel = OfertaTecnologia.query.filter_by(idOfer=id_oferta, idTec=id_tec).first()
+        hab_rel = OfertaHabilidad.query.filter_by(idOfer=id_oferta, idHab=id_hab).first()
+
+        assert edu_rel.importancia in [0, 1, 2, 3]
+        assert tec_rel.importancia in [0, 1, 2, 3]
+        assert hab_rel.importancia in [0, 1, 2, 3]
+
+        assert edu_rel.importancia == valor_edu_original
+        assert tec_rel.importancia == valor_tec_original
+        assert hab_rel.importancia == valor_hab_original
 
 #Test que verifica que no se pueda asignar la importancia a una oferta inexistente
 def test_actualizar_etiquetas_con_oferta_inexistente(client):
@@ -131,6 +151,7 @@ def test_actualizar_etiquetas_con_oferta_inexistente(client):
         "valor_tecnologia": 3,
         "habilidad_id": id_hab,
         "valor_habilidad": 3
-    }, follow_redirects=True)
+    }, follow_redirects=False)
 
-    assert b"Oferta no encontrada" in response.data
+    assert response.status_code == 302
+    assert "/ver_ofertas" in response.headers["Location"]

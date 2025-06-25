@@ -39,6 +39,7 @@ def setup_db(app):
             cant_candidatos=0,
             remuneracion="100000",
             beneficio="Remoto",
+            descripcion="Se busca desarrollador backend con 3 años de experiencia",
             estado="Activa",
             modalidad= 'Local',
             usuario_responsable="Fernando"

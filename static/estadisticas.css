@@ -52,7 +52,7 @@ h1{
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin-top: 2rem;
+    margin-top: 5rem;
     padding: 0;
     position: relative; /* <-- necesario para el before */
 }

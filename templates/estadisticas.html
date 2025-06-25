@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Estadísticas del Modelo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='estadisticas.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/particles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fragments/titles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logoApptitudAI.png') }}">
 </head>
 
 
@@ -19,7 +21,7 @@
     {% include "layout/header_general.html" %}
     {% include "layout/menu.html" %}
 
-    <h1><p class="title-perfect-violet">Estadísticas del </p><p class="title-match-blue">Modelo</p></h1>
+    <h1><p class="title-perfect-violet">Estadísticas </p><p class="title-match-blue">del Modelo</p></h1>
 
     <h2 class="accuracy">Precisión calculada a través de accuracy score: {{ precision }}</h2>
 

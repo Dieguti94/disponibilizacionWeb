@@ -196,7 +196,10 @@ button[type="submit"]:hover {
 
 @media (max-width: 600px) {
     form {
-        padding: 18px 8px;
+        padding: 0;
+        padding-top: 18px !important;
+        padding-bottom: 18px !important;
+        padding-left: 8px !important;
         max-width: 98vw;
     }
     h1 {

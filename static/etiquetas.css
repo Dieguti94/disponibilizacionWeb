@@ -419,7 +419,7 @@ table {
   border: 2px solid #3734cf;
   font-size: 1.15rem;
   overflow: hidden;
-  padding: 5px;
+  padding: 0;
 }
 
 table th, table td {
@@ -497,6 +497,9 @@ td:first-child {
 }
 
 @media (max-width: 600px) {
+  .carousel-container{
+    padding: 0;
+  }
   .carousel-wrapper {
     display: block !important;
     min-height: unset;

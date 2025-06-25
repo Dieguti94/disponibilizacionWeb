@@ -12,6 +12,7 @@ def setup_metricas():
             cant_candidatos = 0,
             remuneracion="1000",
             beneficio="Ninguno",
+            descripcion="Se busca desarrollador backend con 3 años de experiencia",
             estado="Activa",
             modalidad='Local',
             usuario_responsable="Fernando"

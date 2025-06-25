@@ -26,6 +26,7 @@ def test_crear_oferta_exitosa(client):
             'cant_candidatos':'0',
             'remuneracion': '50000',
             'beneficio': 'Home Office',
+            'descripcion': 'Se busca desarrollador backend con 3 años de experiencia',
             'estado': 'Activa',
             'modalidad': 'Local',
             'usuario_responsable': 'Fernando' 
@@ -57,6 +58,7 @@ def test_asignacion_de_etiquetas_exitosa(client):
             'cant_candidatos':'0',
             'remuneracion': '50000',
             'beneficio': 'Home Office',
+            'descripcion': 'Se busca desarrollador backend con 3 años de experiencia',
             'estado': 'Activa',
             'modalidad': 'Local',
             'usuario_responsable': 'Fernando' 
@@ -93,6 +95,7 @@ def test_oferta_duplicada(client):
             'cant_candidatos':'0',
             'remuneracion': '50000',
             'beneficio': 'Home Office',
+            'descripcion': 'Se busca desarrollador backend con 3 años de experiencia',
             'estado': 'Activa',
             'modalidad': 'Local',
             'usuario_responsable': 'Fernando'  
@@ -107,6 +110,7 @@ def test_oferta_duplicada(client):
             'cant_candidatos':'0',
             'remuneracion': '50000',
             'beneficio': 'Home Office',
+            'descripcion': 'Se busca desarrollador backend con 3 años de experiencia',
             'estado': 'Activa',
             'modalidad': 'Local',
             'usuario_responsable': 'Fernando'
@@ -139,17 +143,13 @@ def test_campos_vacios(client):
             'cant_candidatos':'',
             'remuneracion': '',
             'beneficio': '',
+            'descripcion': '',
             'estado': '',
             'modalidad': '',
             'usuario_responsable': '' 
         }, follow_redirects=True)
 
-        assert b"El nombre debe tener entre 5 y 50 caracteres" in response.data
-        # assert b"La oferta" in response.data and b"ya existe. Elige un nombre diferente." in response.data
-        # assert b"candidatos debe estar entre 5 y 1000" in response.data
-        # assert b"Debe ser 'Local', 'Mixta' o 'Externa'" in response.data
-        # assert b"El campo beneficio debe tener entre 3 y 60 caracteres" in response.data
-        # assert b"La remun" in response.data and b"debe estar entre 201 y 89999"
+        assert b"Debes completar al menos un campo para crear una oferta." in response.data
 
 #Test que verifica que se cierre la oferta laboral(revisar)
 def test_validar_ciere_de_oferta(client):
@@ -165,6 +165,7 @@ def test_validar_ciere_de_oferta(client):
             'cant_candidatos':'1',
             'remuneracion': '5000',
             'beneficio': 'Gimnasio',
+            'descripcion': 'Se busca desarrollador backend con 3 años de experiencia',
             'estado': 'Activa',
             'modalidad': 'Local',
             'usuario_responsable': 'Fernando' 
