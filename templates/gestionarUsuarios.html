@@ -45,7 +45,9 @@
         <td>{{ u.username }}</td>
         <td>{{ u.type }}</td>
         <td>
+          {% if u.username == session['username'] or u.type != "Admin_RRHH" %}
           <a href="{{ url_for('editar_usuario', id=u.id, type=u.type) }}"> Editar</a>
+          {% endif %}
           {% if u.type != "Admin_RRHH" %}
           | <a href="{{ url_for('eliminar_usuario', id=u.id) }}"
             onclick="return confirm('¿Eliminar usuario?')">Eliminar</a>

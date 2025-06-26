@@ -27,6 +27,10 @@
 
     <form method="POST" action="/postulacion" enctype="multipart/form-data">
         <h2>Subir CV en PDF</h2>
+        {% if oferta_seleccionada %}
+            <input type="hidden" name="idOfer" value="{{ oferta_seleccionada.idOfer }}">
+        {% endif %}
+
         <input type="file" id="cv_pdf" name="cv_pdf" accept=".pdf" required>
         <p id="nombre_archivo" style="margin: 10px 0; font-weight: bold;"></p>
         

@@ -384,6 +384,7 @@ def admin_rrhh():
 
 
 @app.route('/supervisor')
+@login_required(roles=["Supervisor"])
 def supervisor():
     #if 'username' in session and session.get('type') == "Supervisor":
         #return f"Bienvenido {session.get('username')} al panel de Supervisor."
@@ -391,10 +392,11 @@ def supervisor():
 
 
 @app.route('/analista')
+@login_required(roles=["Analista_Datos"])
 def analista():
-    if 'username' in session and session.get('type') == "Analista_Datos":
-        return f"Bienvenido {session.get('username')} al panel de Analista de Datos."
-    return redirect('/login')
+    #if 'username' in session and session.get('type') == "Analista_Datos":
+    #    return f"Bienvenido {session.get('username')} al panel de Analista de Datos."
+    return redirect('/predecir')
 
 @app.route('/gestionar_usuarios', methods=['GET', 'POST'])
 @login_required(roles=["Admin_RRHH"])
@@ -413,9 +415,12 @@ def crear_usuario():
         username = request.form['username']
         password = generate_password_hash(request.form['password'], method="pbkdf2:sha256")
         type = request.form['type']
+        
+        #Comentar si necesitamos agregar administradores
         if type == "Admin_RRHH":
             flash("No está permitido crear usuarios con rol Admin RRHH.", "error")
             return redirect(url_for('crear_usuario'))
+        
         nuevo = Usuario(username=username, password=password, type=type)
         db.session.add(nuevo)
         db.session.commit()
@@ -444,8 +449,12 @@ def editar_usuario(id):
     usuario = Usuario.query.get_or_404(id)
 
     if request.method == "POST":
+        username_anterior = usuario.username
         usuario.username = request.form['username']
-        nuevo_tipo = request.form['type']
+        if usuario.type != "Admin_RRHH":
+            nuevo_tipo = request.form['type']
+        else:
+            nuevo_tipo = "Admin_RRHH"  # No se permite cambiar el tipo de Admin_RRHH
         nueva_clave = request.form['password']
 
         if nuevo_tipo:
@@ -454,6 +463,9 @@ def editar_usuario(id):
         if nueva_clave:
             usuario.password = generate_password_hash(nueva_clave, method="pbkdf2:sha256")
 
+        if session.get('username') == username_anterior:
+            session['username'] = usuario.username
+            
         db.session.commit()
         flash("Usuario actualizado correctamente")
         return redirect(url_for('gestionar_usuarios'))
@@ -554,6 +566,7 @@ def postulacion():
 
     if request.method == "POST":
         if "cv_pdf" in request.files:
+            session["idOfer"] = request.form.get("idOfer")
             file = request.files["cv_pdf"]
             if file and file.filename.endswith(".pdf"):
                 # revisar si pesa menos de 5MB:
@@ -576,7 +589,8 @@ def postulacion():
                         opciones_habilidades=opciones_habilidades,
                         opciones_tecnologias2=opciones_tecnologias2,
                         opciones_habilidades2=opciones_habilidades2,
-                        precargado=info
+                        precargado=info,
+                        oferta_seleccionada=OfertaLaboral.query.get(session.get("idOfer")) if session.get("idOfer") else None
                     )
                 except Exception:
                     flash("❌El archivo no es un PDF válido o está dañado.", category="pdf")
@@ -596,12 +610,13 @@ def postulacion():
         habilidades = request.form["habilidades"]
         tecnologias2 = request.form["tecnologias2"]
         habilidades2 = request.form["habilidades2"]
-        idOfer = request.form.get("idOfer")
+        idOfer = request.form.get("idOfer") or session.get("idOfer")
 
         if not idOfer:
             flash("Debes seleccionar una oferta laboral.", category="form")
             return redirect("/postulacion")
 
+        idOfer = int(idOfer)
         try:
             oferta = OfertaLaboral.query.get(idOfer)
 
@@ -691,7 +706,8 @@ def postulacion():
         opciones_tecnologias=session["opciones_tecnologias"],
         opciones_habilidades=session["opciones_habilidades"],
         opciones_tecnologias2=session["opciones_tecnologias2"],
-        opciones_habilidades2=session["opciones_habilidades2"]
+        opciones_habilidades2=session["opciones_habilidades2"],
+        oferta_seleccionada=OfertaLaboral.query.get(session.get("idOfer")) if session.get("idOfer") else None
     )
 
 @app.route('/crear_oferta', methods=['GET', 'POST'])
@@ -871,7 +887,7 @@ def ver_ofertas():
 
 
 @app.route("/cerrar_oferta/<int:idOfer>", methods=["POST"])
-@login_required(roles=["Admin_RRHH"])
+@login_required(roles=["Admin_RRHH", "Supervisor"])
 def cerrar_oferta(idOfer):
     oferta = OfertaLaboral.query.get(idOfer)
 
@@ -918,7 +934,7 @@ def limpiar_ofertas_expiradas():
 
 # Página de estadísticas
 @app.route("/estadisticas", methods=["GET", "POST"])
-@login_required(roles=["Admin_RRHH", "Supervisor"])
+@login_required(roles=["Admin_RRHH", "Analista_Datos"])
 def estadisticas():
     if request.method == "POST":
         return render_template("predecir.html")
@@ -980,7 +996,7 @@ def estadisticas():
 
 # Ruta para predecir con un archivo CSV
 @app.route("/predecir", methods=["GET", "POST"])
-@login_required(roles=["Admin_RRHH", "Supervisor"])
+@login_required(roles=["Admin_RRHH", "Supervisor", "Analista_Datos"])
 def predecir():
     plt.close("all")
     ofertas_activas = OfertaLaboral.query.filter_by(estado="Activa").all()
@@ -1089,7 +1105,7 @@ def predecir():
 
 
 @app.route("/postulantes")
-@login_required(roles=["Admin_RRHH", "Supervisor"])
+@login_required(roles=["Admin_RRHH", "Supervisor",  "Analista_Datos"])
 def postulantes():
     idOfer = request.args.get("idOfer")
     filtro = request.args.get("filtro")
@@ -1255,7 +1271,7 @@ def enviar_correos_automatica(idOfer):
 
 
 @app.route("/predecir_postulantes", methods=["POST"])
-@login_required(roles=["Admin_RRHH"])
+@login_required(roles=["Admin_RRHH", "Supervisor", "Analista_Datos"])
 def predecir_postulantes():
     try:
         # Cargar los candidatos existentes
@@ -1325,7 +1341,7 @@ def predecir_postulantes():
 
 
 @app.route('/asignar_puntajes', methods=["GET", "POST"])
-@login_required(roles=["Admin_RRHH"])
+@login_required(roles=["Admin_RRHH", "Supervisor", "Analista_Datos"])
 def asignar_puntajes():
     candidatos = Candidato.query.filter_by(aptitud=True).all()
     for c in candidatos:
@@ -1792,7 +1808,7 @@ def mostrar_etiquetas(idOfer=None):
 
 
 @app.route("/importancia/<tipo>/<int:id>", methods=["POST"])
-@login_required(roles=["Admin_RRHH"])
+@login_required(roles=["Admin_RRHH", "Supervisor"])
 def actualizar_importancia(tipo, id):
     data = request.get_json()
     try:
@@ -1819,6 +1835,12 @@ def actualizar_importancia(tipo, id):
     relacion = db.session.get(modelo, id)
     if not relacion:
         return jsonify({"error": "Etiqueta no encontrada"}), 404
+    
+    oferta = OfertaLaboral.query.get(relacion.idOfer)
+    if not oferta:
+        return jsonify({"error": "Oferta no encontrada"}), 404
+    if oferta.estado == "Cerrada":
+        return jsonify({"error": "No se puede modificar una oferta cerrada"}), 400
 
     relacion.importancia = importancia
     db.session.commit()
@@ -1887,14 +1909,14 @@ def asignar_valores(idOfer):
 
 
 @app.route("/metricas")
-@login_required(roles=["Admin_RRHH","analista"])
+@login_required(roles=["Admin_RRHH", "Supervisor", "Analista_Datos"])
 def metricas():
     ofertas = OfertaLaboral.query.all()
     return render_template("metricas.html", ofertas=ofertas)
 
     
 @app.route("/metricas/<int:oferta_id>")
-@login_required(roles=["Admin_RRHH"])
+@login_required(roles=["Admin_RRHH", "Supervisor", "Analista_Datos"])
 def obtener_metricas(oferta_id):
     oferta = OfertaLaboral.query.get_or_404(oferta_id)
 

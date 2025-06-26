@@ -68,10 +68,12 @@
         <div class="ofertas-title">Ofertas Activas</div>
           <div class="ofertas-grid" id="ofertas-activas-grid">
               <!-- Tarjeta para crear nueva oferta -->
+              {% if not session.get('type') == 'Analista_Datos' %}
               <div class="oferta-card add" onclick="window.location.href='/crear_oferta';">
                 <div style="font-size: 25px;">Crear Oferta</div>
                 <span>+</span>
               </div>
+              {% endif %}
               {% for oferta in ofertas_activas %}
               <div class="oferta-card oferta-activa" data-oferta-id="{{ oferta.idOfer }}">
                 <div class="oferta-summary">
@@ -84,7 +86,9 @@
                 <div class="oferta-detalles" style="display:none;">
                   <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
                   <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
+                  {% if not session.get('type') == 'Analista_Datos' %}
                   <button class="btn-etiquetas" onclick="event.stopPropagation(); window.location.href='/etiquetas?idOfer={{ oferta.idOfer }}';">Etiquetas</button>
+                  {% endif %}
                 </div>
               </div>
               {% endfor %}
@@ -107,7 +111,9 @@
               <div class="oferta-detalles" style="display:none;">
                 <p><strong>Beneficio:</strong> {{ oferta.beneficio or 'No especificado' }}</p>
                 <p><strong>Descripción:</strong> {{ oferta.descripcion or 'No especificada' }}</p>
+                {% if not session.get('type') == 'Analista_Datos' %}
                 <button class="btn-etiquetas" onclick="event.stopPropagation(); window.location.href='/etiquetas?idOfer={{ oferta.idOfer }}';">Etiquetas</button>
+                {% endif %}
               </div>
               {% if session.get('type') == 'Admin_RRHH' %}
                 <form method="POST" action="{{ url_for('eliminar_oferta', idOfer=oferta.idOfer) }}" style="width:100%; margin-top: 16px;">
