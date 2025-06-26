@@ -33,14 +33,33 @@
 
         <section class="user-menu-container">
         {% if session.get('type') == 'Admin_RRHH' %}
-           <div class="menu-list">
+            <div class="menu-list">
+                <a href="#" id="copiar-link-portal">Copiar Link Portal</a>
+            </div>
+            
+            <div class="menu-list">
                 <a href="{{ url_for('gestionar_usuarios') }}">Gestionar Roles</a>
             </div>
         {% endif %}
         <div class="menu-list">
             <a href="{{ url_for('logout') }}">Cerrar sesión</a>
         </div>
-    
+        
     </section>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const btn = document.getElementById('copiar-link-portal');
+                if (btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const url = "https://disponibilizacionweb.onrender.com/portal_ofertas";
+                        navigator.clipboard.writeText(url).then(function() {
+                            // Puedes cambiar alert por un toast o SweetAlert si prefieres
+                            alert("¡Link copiado al portapapeles!");
+                        });
+                    });
+                }
+            });
+    </script>
     </div>
 </header>
