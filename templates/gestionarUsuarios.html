@@ -26,6 +26,7 @@
     <label class="filtro-label">Filtrar por rol:</label>
     <select name="rol" class="custom-select" onchange="this.form.submit()">
       <option value="">-- Ver todos --</option>
+      <option value="Admin_RRHH" {% if filtro=='Admin_RRHH' %}selected{% endif %}>Administradores</option>
       <option value="Supervisor" {% if filtro=='Supervisor' %}selected{% endif %}>Supervisores</option>
       <option value="Analista_Datos" {% if filtro=='Analista_Datos' %}selected{% endif %}>Analistas</option>
     </select>
